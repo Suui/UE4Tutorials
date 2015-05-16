@@ -30,6 +30,39 @@ void AFancyCharacter::Tick( float DeltaTime )
 void AFancyCharacter::SetupPlayerInputComponent(class UInputComponent* InputComponent)
 {
 	Super::SetupPlayerInputComponent(InputComponent);
-
+	check(InputComponent);
+	InputComponent->BindAxis("Forward", this, &AFancyCharacter::MoveForward);
+	InputComponent->BindAxis("Strafe", this, &AFancyCharacter::Strafe);
+	InputComponent->BindAxis("Yaw", this, &AFancyCharacter::Yaw);
+	InputComponent->BindAxis("Pitch", this, &AFancyCharacter::Pitch);
 }
 
+void AFancyCharacter::MoveForward(float Amount)
+{
+	if (Controller != nullptr && Amount != 0)
+	{
+		FVector Forward = GetActorForwardVector();
+		AddMovementInput(Forward, Amount);
+	}
+}
+
+void AFancyCharacter::Strafe(float Amount)
+{
+	if (Controller != nullptr && Amount != 0)
+	{
+		FVector Right = GetActorRightVector();
+		AddMovementInput(Right, Amount);
+	}
+}
+
+void AFancyCharacter::Yaw(float Amount)
+{
+	if (Controller != nullptr && Amount != 0)
+		AddControllerYawInput(YAW_PITCH_MULTIPLIER * Amount * GetWorld()->GetDeltaSeconds());
+}
+
+void AFancyCharacter::Pitch(float Amount)
+{
+	if (Controller != nullptr && Amount != 0)
+		AddControllerPitchInput(YAW_PITCH_MULTIPLIER * Amount * GetWorld()->GetDeltaSeconds());
+}

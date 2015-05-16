@@ -10,6 +10,8 @@ class UE4TUTORIALS_API AFancyCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
+	const float YAW_PITCH_MULTIPLIER = 200.0f;
+
 public:
 	// Sets default values for this character's properties
 	AFancyCharacter();
@@ -23,6 +25,11 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
-	
-	
+	void MoveForward(float Amount);
+
+	void Strafe(float Amount);
+
+	void Yaw(float Amount);
+
+	void Pitch(float Amount);
 };
