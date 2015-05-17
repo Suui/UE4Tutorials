@@ -8,16 +8,13 @@ void AFancyHUD::DrawHUD()
 {
 	Super::DrawHUD();
 
-	for (int i = Messages.Num(); i >= 0; ++i)
+	for (int i = Messages.Num() - 1; i >= 0; i--)
 	{
 		DrawMessage(Messages[i], i);
 
 		Messages[i].Time -= GetWorld()->GetDeltaSeconds();
 		if (Messages[i].Time < 0) Messages.RemoveAt(i);
 	}
-
-	DrawLine(200, 300, 400, 500, FLinearColor::Blue);
-	DrawText("Greeting from Unreal!", FVector2D(0, 0), HudFont, FVector2D(1, 1), FColor::White);
 }
 
 
