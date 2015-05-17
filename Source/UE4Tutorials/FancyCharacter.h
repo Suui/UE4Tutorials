@@ -11,9 +11,16 @@ class UE4TUTORIALS_API AFancyCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
-	const float YAW_PITCH_MULTIPLIER = 200.0f;
-
 public:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Character Properties")
+	float CameraSensitivity;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Character Properties")
+	bool bInvertCameraXAxis;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Character Properties")
+	float bInvertCameraYAxis;
 
 	// Sets default values for this character's properties
 	AFancyCharacter();

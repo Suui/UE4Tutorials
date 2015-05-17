@@ -10,6 +10,9 @@ AFancyCharacter::AFancyCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	CameraSensitivity = 120.0f;
+	bInvertCameraXAxis = false;
+	bInvertCameraYAxis = true;
 }
 
 
@@ -64,12 +67,20 @@ void AFancyCharacter::Strafe(float Amount)
 void AFancyCharacter::Yaw(float Amount)
 {
 	if (Controller != nullptr && Amount != 0)
-		AddControllerYawInput(YAW_PITCH_MULTIPLIER * Amount * GetWorld()->GetDeltaSeconds());
+	{
+		if (bInvertCameraXAxis) 
+			Amount *= -1.0f;
+		AddControllerYawInput(CameraSensitivity * Amount * GetWorld()->GetDeltaSeconds());
+	}
 }
 
 
 void AFancyCharacter::Pitch(float Amount)
 {
 	if (Controller != nullptr && Amount != 0)
-		AddControllerPitchInput(YAW_PITCH_MULTIPLIER * Amount * GetWorld()->GetDeltaSeconds());
+	{
+		if (bInvertCameraYAxis) 
+			Amount *= -1.0f;
+		AddControllerPitchInput(CameraSensitivity * Amount * GetWorld()->GetDeltaSeconds());
+	}
 }

@@ -17,6 +17,7 @@ ANPC::ANPC()
 	ProxSphere->SetSphereRadius(500.0f);
 
 	ProxSphere->OnComponentBeginOverlap.AddDynamic(this, &ANPC::Prox);
+	NpcName = "Give me a name!";
 	NpcMessage = "Hi there!";
 }
 
@@ -29,7 +30,7 @@ void ANPC::Prox_Implementation(AActor* OtherActor, UPrimitiveComponent* OtherCom
 	if (PlayerController)
 	{
 		AFancyHUD* Hud = Cast<AFancyHUD>(PlayerController->GetHUD());
-		Hud->AddMessage(Message(NpcMessage, 5.0f, FColor::White));
+		Hud->AddMessage(Message(Texture, NpcName + ": " + NpcMessage, 5.0f, FColor::White));
 	}
 }
 

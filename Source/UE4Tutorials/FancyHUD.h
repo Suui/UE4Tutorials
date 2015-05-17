@@ -11,6 +11,7 @@ struct Message
 	FString Text;
 	float Time;
 	FColor Color;
+	UTexture2D* Texture;
 	
 	Message()
 	{
@@ -18,8 +19,9 @@ struct Message
 		Color = FColor::White;
 	}
 
-	Message(FString InputText, float InputTime, FColor InputColor)
+	Message(UTexture2D* InputTexture, FString InputText, float InputTime, FColor InputColor)
 	{
+		Texture = InputTexture;
 		Text = InputText;
 		Time = InputTime;
 		Color = InputColor;
@@ -39,6 +41,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = HUDFont)
 	UFont* HudFont;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = HUDFont)
+	float FontScale = 1.0f;
 
 	virtual void DrawHUD() override;
 
