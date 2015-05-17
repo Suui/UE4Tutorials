@@ -1,5 +1,6 @@
-I'm still not able to do this but I hope I'll get it done sometime before or during this summer (2015).
-I'm  trying to figure out how I'm going to set up this as I have to get a lot of stuff into a single project, thinking about the assets and the size limits of GitHub.
+### I'll be using this 0.1 release for testing purposes
+Hello, I'm still trying to figure out the correct way to set up this project in your own PC. Once I figure it out, I'll write a little section about it. 0.1 release came out just because I'll be making some tests from it. Thank you.
+
 
 # UE4Tutorials
 I've decided to unite every tutorial I follow on Unreal Engine 4 in a single project as it is way more comfortable. This way, whenever I need a reference, there's only one place I need to check.
