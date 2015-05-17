@@ -12,6 +12,7 @@ ANPC::ANPC()
 
 }
 
+
 // Called when the game starts or when spawned
 void ANPC::BeginPlay()
 {
@@ -19,12 +20,14 @@ void ANPC::BeginPlay()
 	
 }
 
+
 // Called every frame
 void ANPC::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
 
 }
+
 
 // Called to bind functionality to input
 void ANPC::SetupPlayerInputComponent(class UInputComponent* InputComponent)

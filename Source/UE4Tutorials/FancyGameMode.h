@@ -5,15 +5,9 @@
 #include "GameFramework/GameMode.h"
 #include "FancyGameMode.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
 class UE4TUTORIALS_API AFancyGameMode : public AGameMode
 {
 	GENERATED_BODY()
-	
-	
-	
-	
 };

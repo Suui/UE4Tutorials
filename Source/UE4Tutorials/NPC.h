@@ -5,6 +5,7 @@
 #include "GameFramework/Character.h"
 #include "NPC.generated.h"
 
+
 UCLASS()
 class UE4TUTORIALS_API ANPC : public ACharacter
 {

@@ -5,6 +5,7 @@
 #include "GameFramework/Character.h"
 #include "FancyCharacter.generated.h"
 
+
 UCLASS()
 class UE4TUTORIALS_API AFancyCharacter : public ACharacter
 {
@@ -13,6 +14,7 @@ class UE4TUTORIALS_API AFancyCharacter : public ACharacter
 	const float YAW_PITCH_MULTIPLIER = 200.0f;
 
 public:
+
 	// Sets default values for this character's properties
 	AFancyCharacter();
 

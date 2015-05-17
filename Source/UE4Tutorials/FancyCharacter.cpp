@@ -12,6 +12,7 @@ AFancyCharacter::AFancyCharacter()
 
 }
 
+
 // Called when the game starts or when spawned
 void AFancyCharacter::BeginPlay()
 {
@@ -19,12 +20,14 @@ void AFancyCharacter::BeginPlay()
 	
 }
 
+
 // Called every frame
 void AFancyCharacter::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
 
 }
+
 
 // Called to bind functionality to input
 void AFancyCharacter::SetupPlayerInputComponent(class UInputComponent* InputComponent)
@@ -37,6 +40,7 @@ void AFancyCharacter::SetupPlayerInputComponent(class UInputComponent* InputComp
 	InputComponent->BindAxis("Pitch", this, &AFancyCharacter::Pitch);
 }
 
+
 void AFancyCharacter::MoveForward(float Amount)
 {
 	if (Controller != nullptr && Amount != 0)
@@ -45,6 +49,7 @@ void AFancyCharacter::MoveForward(float Amount)
 		AddMovementInput(Forward, Amount);
 	}
 }
+
 
 void AFancyCharacter::Strafe(float Amount)
 {
@@ -55,11 +60,13 @@ void AFancyCharacter::Strafe(float Amount)
 	}
 }
 
+
 void AFancyCharacter::Yaw(float Amount)
 {
 	if (Controller != nullptr && Amount != 0)
 		AddControllerYawInput(YAW_PITCH_MULTIPLIER * Amount * GetWorld()->GetDeltaSeconds());
 }
+
 
 void AFancyCharacter::Pitch(float Amount)
 {
