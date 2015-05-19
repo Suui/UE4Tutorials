@@ -3,11 +3,11 @@
 #pragma once
 
 #include "GameFramework/GameMode.h"
-#include "FancyGameMode.generated.h"
+#include "LearningCPPGameMode.generated.h"
 
 
 UCLASS()
-class UE4TUTORIALS_API AFancyGameMode : public AGameMode
+class UE4TUTORIALS_API ALearningCPPGameMode : public AGameMode
 {
 	GENERATED_BODY()
 };

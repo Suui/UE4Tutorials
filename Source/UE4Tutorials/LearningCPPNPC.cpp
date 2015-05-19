@@ -1,13 +1,13 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "UE4Tutorials.h"
-#include "NPC.h"
-#include "FancyCharacter.h"
-#include "FancyHUD.h"
+#include "LearningCPPNPC.h"
+#include "LearningCPPCharacter.h"
+#include "LearningCPPHUD.h"
 
 
 // Sets default values
-ANPC::ANPC()
+ALearningCPPNPC::ALearningCPPNPC()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -16,27 +16,27 @@ ANPC::ANPC()
 	ProxSphere->AttachTo(RootComponent);
 	ProxSphere->SetSphereRadius(500.0f);
 
-	ProxSphere->OnComponentBeginOverlap.AddDynamic(this, &ANPC::Prox);
+	ProxSphere->OnComponentBeginOverlap.AddDynamic(this, &ALearningCPPNPC::Prox);
 	NpcName = "Give me a name!";
 	NpcMessage = "Hi there!";
 }
 
 
-void ANPC::Prox_Implementation(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void ALearningCPPNPC::Prox_Implementation(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (Cast<AFancyCharacter>(OtherActor) == nullptr) return;
+	if (Cast<ALearningCPPCharacter>(OtherActor) == nullptr) return;
 
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 	if (PlayerController)
 	{
-		AFancyHUD* Hud = Cast<AFancyHUD>(PlayerController->GetHUD());
+		ALearningCPPHUD* Hud = Cast<ALearningCPPHUD>(PlayerController->GetHUD());
 		Hud->AddMessage(Message(Texture, NpcName + ": " + NpcMessage, 5.0f, FColor::White));
 	}
 }
 
 
 // Called when the game starts or when spawned
-void ANPC::BeginPlay()
+void ALearningCPPNPC::BeginPlay()
 {
 	Super::BeginPlay();
 	
@@ -44,7 +44,7 @@ void ANPC::BeginPlay()
 
 
 // Called every frame
-void ANPC::Tick( float DeltaTime )
+void ALearningCPPNPC::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
 
@@ -52,7 +52,7 @@ void ANPC::Tick( float DeltaTime )
 
 
 // Called to bind functionality to input
-void ANPC::SetupPlayerInputComponent(class UInputComponent* InputComponent)
+void ALearningCPPNPC::SetupPlayerInputComponent(class UInputComponent* InputComponent)
 {
 	Super::SetupPlayerInputComponent(InputComponent);
 

@@ -3,11 +3,11 @@
 #pragma once
 
 #include "GameFramework/Character.h"
-#include "NPC.generated.h"
+#include "LearningCPPNPC.generated.h"
 
 
 UCLASS()
-class UE4TUTORIALS_API ANPC : public ACharacter
+class UE4TUTORIALS_API ALearningCPPNPC : public ACharacter
 {
 	GENERATED_BODY()
 
@@ -26,7 +26,7 @@ public:
 	FString NpcMessage;
 
 	// Sets default values for this character's properties
-	ANPC();
+	ALearningCPPNPC();
 
 	UFUNCTION(BlueprintNativeEvent, Category = "Collision")
 	void Prox(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);

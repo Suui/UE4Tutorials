@@ -1,11 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "UE4Tutorials.h"
-#include "FancyCharacter.h"
+#include "LearningCPPCharacter.h"
 
 
 // Sets default values
-AFancyCharacter::AFancyCharacter()
+ALearningCPPCharacter::ALearningCPPCharacter()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -17,7 +17,7 @@ AFancyCharacter::AFancyCharacter()
 
 
 // Called when the game starts or when spawned
-void AFancyCharacter::BeginPlay()
+void ALearningCPPCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	
@@ -25,7 +25,7 @@ void AFancyCharacter::BeginPlay()
 
 
 // Called every frame
-void AFancyCharacter::Tick( float DeltaTime )
+void ALearningCPPCharacter::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
 
@@ -33,18 +33,18 @@ void AFancyCharacter::Tick( float DeltaTime )
 
 
 // Called to bind functionality to input
-void AFancyCharacter::SetupPlayerInputComponent(class UInputComponent* InputComponent)
+void ALearningCPPCharacter::SetupPlayerInputComponent(class UInputComponent* InputComponent)
 {
 	Super::SetupPlayerInputComponent(InputComponent);
 	check(InputComponent);
-	InputComponent->BindAxis("Forward", this, &AFancyCharacter::MoveForward);
-	InputComponent->BindAxis("Strafe", this, &AFancyCharacter::Strafe);
-	InputComponent->BindAxis("Yaw", this, &AFancyCharacter::Yaw);
-	InputComponent->BindAxis("Pitch", this, &AFancyCharacter::Pitch);
+	InputComponent->BindAxis("Forward", this, &ALearningCPPCharacter::MoveForward);
+	InputComponent->BindAxis("Strafe", this, &ALearningCPPCharacter::Strafe);
+	InputComponent->BindAxis("Yaw", this, &ALearningCPPCharacter::Yaw);
+	InputComponent->BindAxis("Pitch", this, &ALearningCPPCharacter::Pitch);
 }
 
 
-void AFancyCharacter::MoveForward(float Amount)
+void ALearningCPPCharacter::MoveForward(float Amount)
 {
 	if (Controller != nullptr && Amount != 0)
 	{
@@ -54,7 +54,7 @@ void AFancyCharacter::MoveForward(float Amount)
 }
 
 
-void AFancyCharacter::Strafe(float Amount)
+void ALearningCPPCharacter::Strafe(float Amount)
 {
 	if (Controller != nullptr && Amount != 0)
 	{
@@ -64,7 +64,7 @@ void AFancyCharacter::Strafe(float Amount)
 }
 
 
-void AFancyCharacter::Yaw(float Amount)
+void ALearningCPPCharacter::Yaw(float Amount)
 {
 	if (Controller != nullptr && Amount != 0)
 	{
@@ -75,7 +75,7 @@ void AFancyCharacter::Yaw(float Amount)
 }
 
 
-void AFancyCharacter::Pitch(float Amount)
+void ALearningCPPCharacter::Pitch(float Amount)
 {
 	if (Controller != nullptr && Amount != 0)
 	{
