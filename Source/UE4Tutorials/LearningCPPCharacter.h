@@ -3,13 +3,19 @@
 #pragma once
 
 #include "GameFramework/Character.h"
-#include "FancyCharacter.generated.h"
+#include "LearningCPPCharacter.generated.h"
 
 
 UCLASS()
-class UE4TUTORIALS_API AFancyCharacter : public ACharacter
+class UE4TUTORIALS_API ALearningCPPCharacter : public ACharacter
 {
 	GENERATED_BODY()
+
+	TMap<FString, int> Backpack;
+	TMap<FString, UTexture2D*> ItemIcons;
+	bool bInventoryIsActive;
+
+//	void Pickup(APickupItem* Item);
 
 public:
 
@@ -23,7 +29,7 @@ public:
 	float bInvertCameraYAxis;
 
 	// Sets default values for this character's properties
-	AFancyCharacter();
+	ALearningCPPCharacter();
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

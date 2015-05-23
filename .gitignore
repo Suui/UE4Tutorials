@@ -15,13 +15,13 @@
 
 
 ### Suui ###
-# Basically ignoring every asset but blueprints
+# Basically ignoring every asset (.uasset || .umap) but Blueprints
 
 # Ignore StarterContent and Assets (Any StarterContent used in the project should be moved to the Assets)
-Content/StarterContent/*
 Content/Assets/*
 
-
+# Just in case
+Content/StarterContent/*
 
 
 ### Unreal Tournament gitignore ###

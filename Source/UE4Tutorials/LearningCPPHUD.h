@@ -3,7 +3,7 @@
 #pragma once
 
 #include "GameFramework/HUD.h"
-#include "FancyHUD.generated.h"
+#include "LearningCPPHUD.generated.h"
 
 
 struct Message
@@ -30,7 +30,7 @@ struct Message
 
 
 UCLASS()
-class UE4TUTORIALS_API AFancyHUD : public AHUD
+class UE4TUTORIALS_API ALearningCPPHUD : public AHUD
 {
 	GENERATED_BODY()
 	TArray<Message> Messages;

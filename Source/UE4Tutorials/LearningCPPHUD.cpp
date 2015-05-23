@@ -1,10 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "UE4Tutorials.h"
-#include "FancyHUD.h"
+#include "LearningCPPHUD.h"
 
 
-void AFancyHUD::DrawHUD()
+void ALearningCPPHUD::DrawHUD()
 {
 	Super::DrawHUD();
 
@@ -18,7 +18,7 @@ void AFancyHUD::DrawHUD()
 }
 
 
-void AFancyHUD::DrawMessage(Message InputMessage, int Index)
+void ALearningCPPHUD::DrawMessage(Message InputMessage, int Index)
 {
 	float OutputWidth, OutputHeight, Padding = 10.0f;
 	GetTextSize(InputMessage.Text, OutputWidth, OutputHeight, HudFont, FontScale);
@@ -34,7 +34,7 @@ void AFancyHUD::DrawMessage(Message InputMessage, int Index)
 }
 
 
-void AFancyHUD::AddMessage(Message InputMessage)
+void ALearningCPPHUD::AddMessage(Message InputMessage)
 {
 	Messages.Add(InputMessage);
 }
