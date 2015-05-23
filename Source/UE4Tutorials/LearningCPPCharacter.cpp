@@ -2,6 +2,7 @@
 
 #include "UE4Tutorials.h"
 #include "LearningCPPCharacter.h"
+#include "LearningCPPPickupItem.h"
 
 
 // Sets default values
@@ -37,10 +38,30 @@ void ALearningCPPCharacter::SetupPlayerInputComponent(class UInputComponent* Inp
 {
 	Super::SetupPlayerInputComponent(InputComponent);
 	check(InputComponent);
+	InputComponent->BindAction("Inventory", IE_Pressed, this, &ALearningCPPCharacter::ToggleInventory);
 	InputComponent->BindAxis("Forward", this, &ALearningCPPCharacter::MoveForward);
 	InputComponent->BindAxis("Strafe", this, &ALearningCPPCharacter::Strafe);
 	InputComponent->BindAxis("Yaw", this, &ALearningCPPCharacter::Yaw);
 	InputComponent->BindAxis("Pitch", this, &ALearningCPPCharacter::Pitch);
+}
+
+
+void ALearningCPPCharacter::Pickup(ALearningCPPPickupItem* Item)
+{
+	if (Backpack.Find(Item->Name))
+		Backpack[Item->Name] += Item->Quantity;
+	else
+	{
+		Backpack.Add(Item->Name, Item->Quantity);
+		ItemIcons.Add(Item->Name, Item->Icon);
+	}
+}
+
+
+void ALearningCPPCharacter::ToggleInventory()
+{
+	if (GEngine)
+		GEngine->AddOnScreenDebugMessage(0, 5.0f, FColor::Red, "Showing Inventory...");
 }
 
 

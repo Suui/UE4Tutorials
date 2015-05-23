@@ -5,6 +5,8 @@
 #include "GameFramework/Character.h"
 #include "LearningCPPCharacter.generated.h"
 
+class ALearningCPPPickupItem;
+
 
 UCLASS()
 class UE4TUTORIALS_API ALearningCPPCharacter : public ACharacter
@@ -15,7 +17,7 @@ class UE4TUTORIALS_API ALearningCPPCharacter : public ACharacter
 	TMap<FString, UTexture2D*> ItemIcons;
 	bool bInventoryIsActive;
 
-//	void Pickup(APickupItem* Item);
+	void ToggleInventory();
 
 public:
 
@@ -39,6 +41,8 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
+
+	void Pickup(ALearningCPPPickupItem* Item);
 
 	void MoveForward(float Amount);
 
