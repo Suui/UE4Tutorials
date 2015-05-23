@@ -1,5 +1,5 @@
-### I'll be using this 0.1 release for testing purposes
-Hello, I'm still trying to figure out the correct way to set up this project in your own PC. Once I figure it out, I'll write a little section about it. 0.1 release came out just because I'll be making some tests from it. Thank you.
+### Release 0.2
+I've now figured out how to get the project and make it work easily. However I won't be setting up the project until release 1.0, when I'm done with some tutorials.
 
 
 # UE4Tutorials
