@@ -63,20 +63,20 @@ void ALearningCPPHUD::AddMessage(Message InputMessage)
 
 void ALearningCPPHUD::AddWidget(Widget Widget)
 {
-	// Find the position of the widget based on the grid.
-	FVector2D Start(200, 200), Padding(12, 12);
-	Widget.Size = FVector2D(100, 100);
-	Widget.Position = Start;
+	Widget.Size = FVector2D(WIDGET_SIZE, WIDGET_SIZE);
 
-	for (int i = 0; i < Widgets.Num(); ++i)
+	if (Widgets.Num() == 0)
+		Widget.Position = FVector2D(WIDGET_PADDING, 200);
+	else
 	{
-		Widget.Position.X += Widget.Position.X + Padding.X;
-		// If there is no more room to the right then jump to the next line.
-		if (Widget.Position.X + Widget.Size.X > Dimensions.X)
-		{
-			Widget.Position.X = Start.X;
-			Widget.Position.Y = Widget.Size.Y + Padding.Y;
-		}
+		Widget.Position.X = Widgets[Widgets.Num() - 1].Position.X + WIDGET_SIZE + WIDGET_PADDING;
+		Widget.Position.Y = Widgets[Widgets.Num() - 1].Position.Y;
+	}
+
+	if (Widget.Position.X > Dimensions.X)
+	{
+		Widget.Position.X = WIDGET_PADDING;
+		Widget.Position.Y = Widgets[Widgets.Num() - 1].Position.Y + WIDGET_PADDING;
 	}
 
 	Widgets.Add(Widget);
@@ -85,5 +85,5 @@ void ALearningCPPHUD::AddWidget(Widget Widget)
 
 void ALearningCPPHUD::ClearWidgets()
 {
-
+	Widgets.Empty();
 }
