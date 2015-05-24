@@ -23,7 +23,6 @@ ALearningCPPCharacter::ALearningCPPCharacter()
 void ALearningCPPCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 
@@ -31,7 +30,6 @@ void ALearningCPPCharacter::BeginPlay()
 void ALearningCPPCharacter::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
-
 }
 
 

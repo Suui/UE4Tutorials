@@ -23,6 +23,11 @@ struct Widget
 
 	Widget(::Icon Icon) : Icon(Icon) {}
 
+	bool Hit(FVector2D Point)
+	{
+		return Position.X > Left() && Position.X < Right() && Position.Y > Top() && Position.Y < Bottom();
+	}
+
 	float Left() { return Position.X; }
 
 	float Right() { return Position.X + Size.X; }
