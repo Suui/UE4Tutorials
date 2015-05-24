@@ -3,6 +3,7 @@
 #include "UE4Tutorials.h"
 #include "LearningCPPCharacter.h"
 #include "LearningCPPPickupItem.h"
+#include "LearningCPPHUD.h"
 
 
 // Sets default values
@@ -14,6 +15,7 @@ ALearningCPPCharacter::ALearningCPPCharacter()
 	CameraSensitivity = 120.0f;
 	bInvertCameraXAxis = false;
 	bInvertCameraYAxis = true;
+	bInventoryIsActive = false;
 }
 
 
@@ -61,7 +63,31 @@ void ALearningCPPCharacter::Pickup(ALearningCPPPickupItem* Item)
 void ALearningCPPCharacter::ToggleInventory()
 {
 	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(0, 5.0f, FColor::Red, "Showing Inventory...");
+		GEngine->AddOnScreenDebugMessage(0, 1.0f, FColor::Red, "Showing Inventory...");
+
+	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+	ALearningCPPHUD* PlayerHud = Cast<ALearningCPPHUD>(PlayerController->GetHUD());
+
+	if (bInventoryIsActive)
+	{
+		PlayerHud->ClearWidgets();
+		bInventoryIsActive = false;
+		PlayerController->bShowMouseCursor = false;
+		return;
+	}
+
+	bInventoryIsActive = true;
+	PlayerController->bShowMouseCursor = true;
+
+	for (TMap<FString, int>::TIterator it = Backpack.CreateIterator(); it; ++it)
+	{
+		FString NameAndQuantity = it->Key + FString::Printf(TEXT(" x %d"), it->Value);
+		if (ItemIcons.Find(it->Key))
+		{
+			UTexture2D* Texture = ItemIcons[it->Key];
+			PlayerHud->AddWidget(Widget(Icon(NameAndQuantity, Texture)));
+		}
+	}
 }
 
 
@@ -87,6 +113,8 @@ void ALearningCPPCharacter::Strafe(float Amount)
 
 void ALearningCPPCharacter::Yaw(float Amount)
 {
+	if (bInventoryIsActive) return;
+
 	if (Controller != nullptr && Amount != 0)
 	{
 		if (bInvertCameraXAxis) 
@@ -98,6 +126,8 @@ void ALearningCPPCharacter::Yaw(float Amount)
 
 void ALearningCPPCharacter::Pitch(float Amount)
 {
+	if (bInventoryIsActive) return;
+
 	if (Controller != nullptr && Amount != 0)
 	{
 		if (bInvertCameraYAxis) 
