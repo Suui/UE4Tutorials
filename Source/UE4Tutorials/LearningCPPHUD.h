@@ -38,7 +38,7 @@ class UE4TUTORIALS_API ALearningCPPHUD : public AHUD
 	TArray<Widget> Widgets;
 
 	const float WIDGET_PADDING = 12.0f;
-	const float WIDGET_SIZE = 80.0f;
+	const float WIDGET_SIZE = 64.0f;
 	FVector2D Dimensions;
 
 	void DrawMessage(Message InputMessage, int Index);

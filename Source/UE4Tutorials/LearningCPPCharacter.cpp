@@ -81,7 +81,7 @@ void ALearningCPPCharacter::ToggleInventory()
 
 	for (TMap<FString, int>::TIterator it = Backpack.CreateIterator(); it; ++it)
 	{
-		FString NameAndQuantity = it->Key + FString::Printf(TEXT(" x %d"), it->Value);
+		FString NameAndQuantity = it->Key + FString::Printf(TEXT("x%d"), it->Value);
 		if (ItemIcons.Find(it->Key))
 		{
 			UTexture2D* Texture = ItemIcons[it->Key];
