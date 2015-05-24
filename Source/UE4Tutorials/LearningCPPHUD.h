@@ -3,6 +3,7 @@
 #pragma once
 
 #include "GameFramework/HUD.h"
+#include "LearningCPPInventoryInfo.h"
 #include "LearningCPPHUD.generated.h"
 
 
@@ -34,8 +35,17 @@ class UE4TUTORIALS_API ALearningCPPHUD : public AHUD
 {
 	GENERATED_BODY()
 	TArray<Message> Messages;
-	
+	TArray<Widget> Widgets;
+
+	const float WIDGET_PADDING = 12.0f;
+	const float WIDGET_SIZE = 64.0f;
+	FVector2D Dimensions;
+
 	void DrawMessage(Message InputMessage, int Index);
+
+	void DrawMessages();
+
+	void DrawWidgets();
 
 public:
 
@@ -48,4 +58,8 @@ public:
 	virtual void DrawHUD() override;
 
 	void AddMessage(Message InputMessage);
+
+	void AddWidget(Widget Widget);
+
+	void ClearWidgets();
 };

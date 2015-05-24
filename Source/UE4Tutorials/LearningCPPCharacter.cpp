@@ -2,6 +2,8 @@
 
 #include "UE4Tutorials.h"
 #include "LearningCPPCharacter.h"
+#include "LearningCPPPickupItem.h"
+#include "LearningCPPHUD.h"
 
 
 // Sets default values
@@ -13,6 +15,7 @@ ALearningCPPCharacter::ALearningCPPCharacter()
 	CameraSensitivity = 120.0f;
 	bInvertCameraXAxis = false;
 	bInvertCameraYAxis = true;
+	bInventoryIsActive = false;
 }
 
 
@@ -20,7 +23,6 @@ ALearningCPPCharacter::ALearningCPPCharacter()
 void ALearningCPPCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 
@@ -28,7 +30,6 @@ void ALearningCPPCharacter::BeginPlay()
 void ALearningCPPCharacter::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
-
 }
 
 
@@ -37,10 +38,54 @@ void ALearningCPPCharacter::SetupPlayerInputComponent(class UInputComponent* Inp
 {
 	Super::SetupPlayerInputComponent(InputComponent);
 	check(InputComponent);
+	InputComponent->BindAction("Inventory", IE_Pressed, this, &ALearningCPPCharacter::ToggleInventory);
 	InputComponent->BindAxis("Forward", this, &ALearningCPPCharacter::MoveForward);
 	InputComponent->BindAxis("Strafe", this, &ALearningCPPCharacter::Strafe);
 	InputComponent->BindAxis("Yaw", this, &ALearningCPPCharacter::Yaw);
 	InputComponent->BindAxis("Pitch", this, &ALearningCPPCharacter::Pitch);
+}
+
+
+void ALearningCPPCharacter::Pickup(ALearningCPPPickupItem* Item)
+{
+	if (Backpack.Find(Item->Name))
+		Backpack[Item->Name] += Item->Quantity;
+	else
+	{
+		Backpack.Add(Item->Name, Item->Quantity);
+		ItemIcons.Add(Item->Name, Item->Icon);
+	}
+}
+
+
+void ALearningCPPCharacter::ToggleInventory()
+{
+	if (GEngine)
+		GEngine->AddOnScreenDebugMessage(0, 1.0f, FColor::Red, "Showing Inventory...");
+
+	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+	ALearningCPPHUD* PlayerHud = Cast<ALearningCPPHUD>(PlayerController->GetHUD());
+
+	if (bInventoryIsActive)
+	{
+		PlayerHud->ClearWidgets();
+		bInventoryIsActive = false;
+		PlayerController->bShowMouseCursor = false;
+		return;
+	}
+
+	bInventoryIsActive = true;
+	PlayerController->bShowMouseCursor = true;
+
+	for (TMap<FString, int>::TIterator it = Backpack.CreateIterator(); it; ++it)
+	{
+		FString NameAndQuantity = it->Key + FString::Printf(TEXT("x%d"), it->Value);
+		if (ItemIcons.Find(it->Key))
+		{
+			UTexture2D* Texture = ItemIcons[it->Key];
+			PlayerHud->AddWidget(Widget(Icon(NameAndQuantity, Texture)));
+		}
+	}
 }
 
 
@@ -66,6 +111,8 @@ void ALearningCPPCharacter::Strafe(float Amount)
 
 void ALearningCPPCharacter::Yaw(float Amount)
 {
+	if (bInventoryIsActive) return;
+
 	if (Controller != nullptr && Amount != 0)
 	{
 		if (bInvertCameraXAxis) 
@@ -77,6 +124,8 @@ void ALearningCPPCharacter::Yaw(float Amount)
 
 void ALearningCPPCharacter::Pitch(float Amount)
 {
+	if (bInventoryIsActive) return;
+
 	if (Controller != nullptr && Amount != 0)
 	{
 		if (bInvertCameraYAxis) 
