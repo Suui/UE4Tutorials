@@ -3,7 +3,7 @@
 #pragma once
 
 #include "GameFramework/HUD.h"
-#include "LearningCPPInventoryInfo.h"
+#include "LearningCPPWidget.h"
 #include "LearningCPPHUD.generated.h"
 
 
@@ -35,9 +35,9 @@ class UE4TUTORIALS_API ALearningCPPHUD : public AHUD
 {
 	GENERATED_BODY()
 	TArray<Message> Messages;
-	TArray<Widget> Widgets;
+	TArray<LearningCPPWidget> Widgets;
 
-	Widget* LastTouchesWidget;
+	LearningCPPWidget* LastTouchesWidget;
 
 	const float WIDGET_PADDING = 12.0f;
 	const float WIDGET_SIZE = 64.0f;
@@ -63,7 +63,7 @@ public:
 
 	void AddMessage(Message InputMessage);
 
-	void AddWidget(Widget Widget);
+	void AddWidget(LearningCPPWidget Widget);
 
 	void ClearWidgets();
 };

@@ -4,6 +4,7 @@
 #include "LearningCPPCharacter.h"
 #include "LearningCPPPickupItem.h"
 #include "LearningCPPHUD.h"
+#include "LearningCPPWidget.h"
 
 
 // Sets default values
@@ -85,7 +86,7 @@ void ALearningCPPCharacter::ToggleInventory()
 		if (ItemIcons.Find(it->Key))
 		{
 			UTexture2D* Texture = ItemIcons[it->Key];
-			PlayerHud->AddWidget(Widget(Icon(NameAndQuantity, Texture)));
+			PlayerHud->AddWidget(LearningCPPWidget(Icon(NameAndQuantity, Texture)));
 		}
 	}
 }
