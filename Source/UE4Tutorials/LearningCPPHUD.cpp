@@ -63,7 +63,7 @@ void ALearningCPPHUD::MouseClicked()
 
 	for (int i = 0; i < Widgets.Num(); i++)
 	{
-		if (ClickPosition.X > Widgets[i].Left() && ClickPosition.X < Widgets[i].Right() && ClickPosition.Y > Widgets[i].Top() && ClickPosition.Y < Widgets[i].Bottom())
+		if (Widgets[i].Hit(ClickPosition))
 		{
 			LastTouchesWidget = &Widgets[i];
 			if (GEngine) GEngine->AddOnScreenDebugMessage(0, 1.0f, FColor::Yellow, LastTouchesWidget->Icon.Name + "has been clicked!");
