@@ -13,7 +13,7 @@ struct Message
 	float Time;
 	FColor Color;
 	UTexture2D* Texture;
-	
+
 	Message()
 	{
 		Time = 5.0f;
@@ -37,6 +37,8 @@ class UE4TUTORIALS_API ALearningCPPHUD : public AHUD
 	TArray<Message> Messages;
 	TArray<Widget> Widgets;
 
+	Widget* LastTouchesWidget;
+
 	const float WIDGET_PADDING = 12.0f;
 	const float WIDGET_SIZE = 64.0f;
 	FVector2D Dimensions;
@@ -56,6 +58,8 @@ public:
 	float FontScale = 1.0f;
 
 	virtual void DrawHUD() override;
+
+	void MouseClicked();
 
 	void AddMessage(Message InputMessage);
 

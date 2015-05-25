@@ -39,6 +39,8 @@ void ALearningCPPCharacter::SetupPlayerInputComponent(class UInputComponent* Inp
 	Super::SetupPlayerInputComponent(InputComponent);
 	check(InputComponent);
 	InputComponent->BindAction("Inventory", IE_Pressed, this, &ALearningCPPCharacter::ToggleInventory);
+	InputComponent->BindAction("MouseClickedLMB", IE_Pressed, this, &ALearningCPPCharacter::MouseClicked);
+
 	InputComponent->BindAxis("Forward", this, &ALearningCPPCharacter::MoveForward);
 	InputComponent->BindAxis("Strafe", this, &ALearningCPPCharacter::Strafe);
 	InputComponent->BindAxis("Yaw", this, &ALearningCPPCharacter::Yaw);
@@ -60,7 +62,7 @@ void ALearningCPPCharacter::Pickup(ALearningCPPPickupItem* Item)
 
 void ALearningCPPCharacter::ToggleInventory()
 {
-	if (GEngine)
+	if (GEngine != nullptr && bInventoryIsActive == false)
 		GEngine->AddOnScreenDebugMessage(0, 1.0f, FColor::Red, "Showing Inventory...");
 
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
@@ -86,6 +88,14 @@ void ALearningCPPCharacter::ToggleInventory()
 			PlayerHud->AddWidget(Widget(Icon(NameAndQuantity, Texture)));
 		}
 	}
+}
+
+
+void ALearningCPPCharacter::MouseClicked()
+{
+	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+	ALearningCPPHUD* PlayerHud = Cast<ALearningCPPHUD>(PlayerController->GetHUD());
+	PlayerHud->MouseClicked();
 }
 
 

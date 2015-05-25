@@ -19,6 +19,8 @@ class UE4TUTORIALS_API ALearningCPPCharacter : public ACharacter
 
 	void ToggleInventory();
 
+	void MouseClicked();
+
 public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Character Properties")

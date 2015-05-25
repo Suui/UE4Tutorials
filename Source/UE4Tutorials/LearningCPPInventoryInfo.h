@@ -23,9 +23,9 @@ struct Widget
 
 	Widget(::Icon Icon) : Icon(Icon) {}
 
-	bool Hit(FVector2D Point)
+	bool Hit(FVector2D ClickPosition)
 	{
-		return Position.X > Left() && Position.X < Right() && Position.Y > Top() && Position.Y < Bottom();
+		return ClickPosition.X > Left() && ClickPosition.X < Right() && ClickPosition.Y > Top() && ClickPosition.Y < Bottom();
 	}
 
 	float Left() { return Position.X; }
