@@ -18,7 +18,7 @@
 # Basically ignoring every asset (.uasset || .umap) but Blueprints
 # Ignore StarterContent and Assets (Any StarterContent used in the project should be moved to the Assets)
 Content/Assets/*
-Content/StarterContent/* # Just in case
+Content/StarterContent/*
 Binaries/*
 
 
