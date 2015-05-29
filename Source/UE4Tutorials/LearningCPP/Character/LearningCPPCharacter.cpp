@@ -85,7 +85,7 @@ void ALearningCPPCharacter::ToggleInventory()
 		if (ItemIcons.Find(it->Key))
 		{
 			UTexture2D* Texture = ItemIcons[it->Key];
-			PlayerHud->AddWidget(LearningCPPWidget(Icon(NameAndQuantity, Texture)));
+			PlayerHud->AddWidget(LearningCPPWidget(FIcon(NameAndQuantity, Texture)));
 		}
 	}
 }

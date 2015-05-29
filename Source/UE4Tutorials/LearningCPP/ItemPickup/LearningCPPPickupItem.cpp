@@ -36,7 +36,7 @@ void ALearningCPPPickupItem::Prox_Implementation(AActor* OtherActor, UPrimitiveC
 
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 	ALearningCPPHUD* PlayerHUD = Cast<ALearningCPPHUD>(PlayerController->GetHUD());
-	PlayerHUD->AddMessage(Message(Icon, FString("Picked up ") + FString::FromInt(Quantity) + FString(" " + Name), 5.0f, FColor::White));
+	PlayerHUD->AddMessage(FMessage(FString("Picked up ") + FString::FromInt(Quantity) + FString(" " + Name), 5.0f, FColor::White, Icon));
 
 	Destroy();
 }

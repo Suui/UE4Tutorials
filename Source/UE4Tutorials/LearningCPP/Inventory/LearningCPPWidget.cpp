@@ -4,7 +4,7 @@
 #include "LearningCPPWidget.h"
 
 
-LearningCPPWidget::LearningCPPWidget(::Icon Icon): Icon(Icon) {}
+LearningCPPWidget::LearningCPPWidget(FIcon Icon): Icon(Icon) {}
 
 
 bool LearningCPPWidget::Hit(FVector2D ClickPosition)
@@ -25,7 +25,7 @@ float LearningCPPWidget::Top() { return Position.Y; }
 float LearningCPPWidget::Bottom() { return Position.Y + Size.Y; }
 
 
-::Icon LearningCPPWidget::GetIcon() const { return Icon; }
+::FIcon LearningCPPWidget::GetIcon() const { return Icon; }
 
 
 FVector2D LearningCPPWidget::GetPosition() const { return Position; }
@@ -34,13 +34,13 @@ FVector2D LearningCPPWidget::GetPosition() const { return Position; }
 FVector2D LearningCPPWidget::GetSize() const { return Size; }
 
 
-void LearningCPPWidget::SetIcon(const ::Icon& InputIcon) { Icon = InputIcon; }
+void LearningCPPWidget::SetIcon(const FIcon& Icon) { this->Icon = Icon; }
 
 
-void LearningCPPWidget::SetPosition(const FVector2D& InputPosition) { Position = InputPosition; }
+void LearningCPPWidget::SetPosition(const FVector2D& Position) { this->Position = Position; }
 
 
-void LearningCPPWidget::SetSize(const FVector2D& InputSize) { Size = InputSize; }
+void LearningCPPWidget::SetSize(const FVector2D& Size) { this->Size = Size; }
 
 
 LearningCPPWidget::~LearningCPPWidget() {}

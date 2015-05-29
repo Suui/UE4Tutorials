@@ -7,26 +7,25 @@
 #include "LearningCPPHUD.generated.h"
 
 
-struct Message
+struct FMessage
 {
 	FString Text;
 	float Time;
 	FColor Color;
 	UTexture2D* Texture;
 
-	Message()
+	FMessage()
 	{
 		Time = 5.0f;
 		Color = FColor::White;
 	}
 
-	Message(UTexture2D* InputTexture, FString InputText, float InputTime, FColor InputColor)
-	{
-		Texture = InputTexture;
-		Text = InputText;
-		Time = InputTime;
-		Color = InputColor;
-	}
+
+	FMessage(const FString& Text, float Time, const FColor& Color, UTexture2D* Texture)
+		: Text(Text),
+		  Time(Time),
+		  Color(Color),
+		  Texture(Texture) {}
 };
 
 
@@ -34,16 +33,16 @@ UCLASS()
 class UE4TUTORIALS_API ALearningCPPHUD : public AHUD
 {
 	GENERATED_BODY()
-	TArray<Message> Messages;
+	TArray<FMessage> Messages;
 	TArray<LearningCPPWidget> Widgets;
 
-	LearningCPPWidget* LastTouchesWidget;
+	LearningCPPWidget* LastTouchedWidget;
 
 	const float WIDGET_PADDING = 12.0f;
 	const float WIDGET_SIZE = 64.0f;
 	FVector2D Dimensions;
 
-	void DrawMessage(Message InputMessage, int Index);
+	void DrawMessage(FMessage Message, int Index);
 
 	void DrawMessages();
 
@@ -61,7 +60,7 @@ public:
 
 	void MouseClicked();
 
-	void AddMessage(Message InputMessage);
+	void AddMessage(FMessage Message);
 
 	void AddWidget(LearningCPPWidget Widget);
 
