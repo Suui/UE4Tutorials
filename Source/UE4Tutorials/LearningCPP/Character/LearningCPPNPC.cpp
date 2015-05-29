@@ -30,7 +30,7 @@ void ALearningCPPNPC::Prox_Implementation(AActor* OtherActor, UPrimitiveComponen
 	if (PlayerController)
 	{
 		ALearningCPPHUD* Hud = Cast<ALearningCPPHUD>(PlayerController->GetHUD());
-		Hud->AddMessage(Message(Texture, NpcName + ": " + NpcMessage, 3.0f, FColor::White));
+		Hud->AddMessage(FMessage(NpcName + ": " + NpcMessage, 3.0f, FColor::White, Texture));
 	}
 }
 

@@ -28,19 +28,19 @@ void ALearningCPPHUD::DrawMessages()
 }
 
 
-void ALearningCPPHUD::DrawMessage(Message InputMessage, int Index)
+void ALearningCPPHUD::DrawMessage(FMessage Message, int Index)
 {
 	float OutputWidth, OutputHeight, Padding = 10.0f;
-	GetTextSize(InputMessage.Text, OutputWidth, OutputHeight, HudFont, FontScale);
+	GetTextSize(Message.Text, OutputWidth, OutputHeight, HudFont, FontScale);
 	// GetTextSize -- Returns the size of the text, given the FString, in OutputWidth and OutputHeight (Passed by reference)
 
 	float MessageHeight = OutputHeight + 2.0f * Padding;
 	float X = 0.0f, Y = Index * MessageHeight;
 
 	DrawRect(FLinearColor::Black, X, Y, Dimensions.X, MessageHeight);
-	if (InputMessage.Texture != nullptr)
-		DrawTexture(InputMessage.Texture, X, Y, MessageHeight, MessageHeight, 0, 0, 1, 1);
-	DrawText(InputMessage.Text, InputMessage.Color, X + Padding + MessageHeight, Y + Padding, HudFont, FontScale);
+	if (Message.Texture != nullptr)
+		DrawTexture(Message.Texture, X, Y, MessageHeight, MessageHeight, 0, 0, 1, 1);
+	DrawText(Message.Text, Message.Color, X + Padding + MessageHeight, Y + Padding, HudFont, FontScale);
 }
 
 
@@ -58,21 +58,21 @@ void ALearningCPPHUD::MouseClicked()
 {
 	FVector2D ClickPosition;
 	PlayerOwner->GetMousePosition(ClickPosition.X, ClickPosition.Y);
-	LastTouchesWidget = nullptr;
+	LastTouchedWidget = nullptr;
 
 	for (int i = 0; i < Widgets.Num(); i++)
 	{
 		if (Widgets[i].Hit(ClickPosition))
 		{
-			LastTouchesWidget = &Widgets[i];
-			if (GEngine) GEngine->AddOnScreenDebugMessage(0, 1.0f, FColor::Yellow, LastTouchesWidget->GetIcon().Name + " has been clicked!");
+			LastTouchedWidget = &Widgets[i];
+			if (GEngine) GEngine->AddOnScreenDebugMessage(0, 1.0f, FColor::Yellow, LastTouchedWidget->GetIcon().Name + " has been clicked!");
 			return;
 		}
 	}
 }
 
 
-void ALearningCPPHUD::AddMessage(Message InputMessage)
+void ALearningCPPHUD::AddMessage(FMessage InputMessage)
 {
 	Messages.Add(InputMessage);
 }
