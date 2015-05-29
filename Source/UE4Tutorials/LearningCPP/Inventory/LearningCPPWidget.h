@@ -3,25 +3,25 @@
 #pragma once
 
 
-struct Icon
+struct FIcon
 {
 	FString Name;
 	UTexture2D* Texture;
 
-	Icon() { Name = "NoName"; Texture = nullptr; }
+	FIcon() { Name = "NoName"; Texture = nullptr; }
 
-	Icon(const FString& InputName, UTexture2D* InputTexture) : Name(InputName), Texture(InputTexture) {}
+	FIcon(const FString& Name, UTexture2D* Texture) : Name(Name), Texture(Texture) {}
 };
 
 
 class UE4TUTORIALS_API LearningCPPWidget
 {
-	Icon Icon;
+	FIcon Icon;
 	FVector2D Position, Size;
 
 public:
 
-	LearningCPPWidget(::Icon Icon);
+	LearningCPPWidget(FIcon Icon);
 
 	bool Hit(FVector2D ClickPosition);
 
@@ -33,17 +33,17 @@ public:
 
 	float Bottom();
 
-	::Icon GetIcon() const;
+	FIcon GetIcon() const;
 
 	FVector2D GetPosition() const;
 
 	FVector2D GetSize() const;
 
-	void SetIcon(const ::Icon& InputIcon);
+	void SetIcon(const FIcon& Icon);
 
-	void SetPosition(const FVector2D& InputPosition);
+	void SetPosition(const FVector2D& Position);
 
-	void SetSize(const FVector2D& InputSize);
+	void SetSize(const FVector2D& Size);
 
 	~LearningCPPWidget();
 };
