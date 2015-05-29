@@ -3,7 +3,7 @@
 #include "UE4Tutorials.h"
 #include "LearningCPPNPC.h"
 #include "LearningCPPCharacter.h"
-#include "LearningCPPHUD.h"
+#include <LearningCPP/GUI/LearningCPPHUD.h>
 
 
 // Sets default values

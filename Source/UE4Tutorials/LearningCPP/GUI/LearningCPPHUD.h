@@ -3,7 +3,7 @@
 #pragma once
 
 #include "GameFramework/HUD.h"
-#include "LearningCPPWidget.h"
+#include <LearningCPP/Inventory/LearningCPPWidget.h>
 #include "LearningCPPHUD.generated.h"
 
 

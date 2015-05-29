@@ -2,8 +2,8 @@
 
 #include "UE4Tutorials.h"
 #include "LearningCPPPickupItem.h"
-#include "LearningCPPCharacter.h"
-#include "LearningCPPHUD.h"
+#include <LearningCPP/Character/LearningCPPCharacter.h>
+#include <LearningCPP/GUI/LearningCPPHUD.h>
 
 
 // Sets default values

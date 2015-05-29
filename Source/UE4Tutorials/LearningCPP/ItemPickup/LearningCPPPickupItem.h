@@ -5,6 +5,7 @@
 #include "GameFramework/Actor.h"
 #include "LearningCPPPickupItem.generated.h"
 
+
 UCLASS()
 class UE4TUTORIALS_API ALearningCPPPickupItem : public AActor
 {
