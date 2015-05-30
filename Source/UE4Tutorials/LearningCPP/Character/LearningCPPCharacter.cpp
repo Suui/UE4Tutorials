@@ -121,7 +121,12 @@ void ALearningCPPCharacter::Strafe(float Amount)
 
 void ALearningCPPCharacter::Yaw(float Amount)
 {
-	if (bInventoryIsActive) return;
+	if (bInventoryIsActive)
+	{
+		auto PlayerController = GetWorld()->GetFirstPlayerController();
+		Cast<ALearningCPPHUD>(PlayerController->GetHUD())->MouseMoved();
+		return;
+	}
 
 	if (Controller != nullptr && Amount != 0)
 	{
@@ -134,7 +139,12 @@ void ALearningCPPCharacter::Yaw(float Amount)
 
 void ALearningCPPCharacter::Pitch(float Amount)
 {
-	if (bInventoryIsActive) return;
+	if (bInventoryIsActive)
+	{
+		auto PlayerController = GetWorld()->GetFirstPlayerController();
+		Cast<ALearningCPPHUD>(PlayerController->GetHUD())->MouseMoved();
+		return;
+	}
 
 	if (Controller != nullptr && Amount != 0)
 	{

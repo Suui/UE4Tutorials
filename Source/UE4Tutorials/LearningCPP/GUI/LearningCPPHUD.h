@@ -33,20 +33,16 @@ UCLASS()
 class UE4TUTORIALS_API ALearningCPPHUD : public AHUD
 {
 	GENERATED_BODY()
+
+	const float WIDGET_SIZE = 64.0f;
+	const float WIDGET_PADDING = 12.0f;
+	
 	TArray<FMessage> Messages;
 	TArray<LearningCPPWidget> Widgets;
 
+	FVector2D LastMousePos, Dimensions;
 	LearningCPPWidget* LastTouchedWidget;
 
-	const float WIDGET_PADDING = 12.0f;
-	const float WIDGET_SIZE = 64.0f;
-	FVector2D Dimensions;
-
-	void DrawMessage(FMessage Message, int Index);
-
-	void DrawMessages();
-
-	void DrawWidgets();
 
 public:
 
@@ -56,9 +52,23 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = HUDFont)
 	float FontScale = 1.0f;
 
+
+private:
+
+	void DrawMessages();
+
+	void DrawWidgets();
+
+	void DrawMessage(FMessage Message, int Index);
+
+
+public:
+
 	virtual void DrawHUD() override;
 
 	void MouseClicked();
+
+	void MouseMoved();
 
 	void AddMessage(FMessage Message);
 

@@ -28,6 +28,16 @@ void ALearningCPPHUD::DrawMessages()
 }
 
 
+void ALearningCPPHUD::DrawWidgets()
+{
+	for (int i = 0; i < Widgets.Num(); ++i)
+	{
+		DrawTexture(Widgets[i].GetIcon().Texture, Widgets[i].GetPosition().X, Widgets[i].GetPosition().Y, Widgets[i].GetSize().X, Widgets[i].GetSize().Y, 0, 0, 1, 1);
+		DrawText(Widgets[i].GetIcon().Name, FLinearColor::Yellow, Widgets[i].GetPosition().X, Widgets[i].GetPosition().Y, HudFont, 0.6f);
+	}
+}
+
+
 void ALearningCPPHUD::DrawMessage(FMessage Message, int Index)
 {
 	float OutputWidth, OutputHeight, Padding = 10.0f;
@@ -41,16 +51,6 @@ void ALearningCPPHUD::DrawMessage(FMessage Message, int Index)
 	if (Message.Texture != nullptr)
 		DrawTexture(Message.Texture, X, Y, MessageHeight, MessageHeight, 0, 0, 1, 1);
 	DrawText(Message.Text, Message.Color, X + Padding + MessageHeight, Y + Padding, HudFont, FontScale);
-}
-
-
-void ALearningCPPHUD::DrawWidgets()
-{
-	for (int i = 0; i < Widgets.Num(); ++i)
-	{
-		DrawTexture(Widgets[i].GetIcon().Texture, Widgets[i].GetPosition().X, Widgets[i].GetPosition().Y, Widgets[i].GetSize().X, Widgets[i].GetSize().Y, 0, 0, 1, 1);
-		DrawText(Widgets[i].GetIcon().Name, FLinearColor::Yellow, Widgets[i].GetPosition().X, Widgets[i].GetPosition().Y, HudFont, 0.6f);
-	}
 }
 
 
@@ -72,6 +72,21 @@ void ALearningCPPHUD::MouseClicked()
 }
 
 
+void ALearningCPPHUD::MouseMoved()
+{
+	FVector2D CurrentMousePos, MousePosDifference;
+
+	PlayerOwner->GetMousePosition(CurrentMousePos.X, CurrentMousePos.Y);
+	MousePosDifference = CurrentMousePos - LastMousePos;
+
+	float DragTime = PlayerOwner->GetInputKeyTimeDown(EKeys::LeftMouseButton);
+	if (DragTime > 0.0f && LastTouchedWidget != nullptr)
+		LastTouchedWidget->SetPosition(LastTouchedWidget->GetPosition() + MousePosDifference);
+
+	LastMousePos = CurrentMousePos;
+}
+
+
 void ALearningCPPHUD::AddMessage(FMessage InputMessage)
 {
 	Messages.Add(InputMessage);
@@ -85,12 +100,12 @@ void ALearningCPPHUD::AddWidget(LearningCPPWidget Widget)
 	if (Widgets.Num() == 0)
 		Widget.SetPosition(FVector2D(WIDGET_PADDING, 200));
 	else
-		Widget.SetPosition(FVector2D(	Widgets[Widgets.Num() - 1].GetPosition().X + WIDGET_SIZE + WIDGET_PADDING, 
-										Widgets[Widgets.Num() - 1].GetPosition().Y));
+		Widget.SetPosition(FVector2D(Widgets[Widgets.Num() - 1].GetPosition().X + WIDGET_SIZE + WIDGET_PADDING, 
+									 Widgets[Widgets.Num() - 1].GetPosition().Y));
 
 	if (Widget.GetPosition().X > Dimensions.X)
-		Widget.SetPosition(FVector2D(	WIDGET_PADDING, 
-										Widgets[Widgets.Num() - 1].GetPosition().Y + WIDGET_PADDING));
+		Widget.SetPosition(FVector2D(WIDGET_PADDING, 
+									 Widgets[Widgets.Num() - 1].GetPosition().Y + WIDGET_PADDING));
 
 	Widgets.Add(Widget);
 }
