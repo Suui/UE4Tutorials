@@ -1,4 +1,4 @@
-### Release 0.2
+### Release 0.3
 I've now figured out how to get the project and make it work easily. However I won't be setting up the project until release 1.0, when I'm done with some tutorials.
 
 
