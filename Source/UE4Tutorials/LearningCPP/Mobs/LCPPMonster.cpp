@@ -21,9 +21,25 @@ ALCPPMonster::ALCPPMonster()
 
 	SightSphereComp = CreateDefaultSubobject<USphereComponent>("Sight Sphere");
 	SightSphereComp->AttachTo(RootComponent);
+	SightSphereComp->OnComponentBeginOverlap.AddDynamic(this, &ALCPPMonster::StartChasing);
+	SightSphereComp->OnComponentEndOverlap.AddDynamic(this, &ALCPPMonster::StopChasing);
 
 	BaseAttackRangeSphereComp = CreateDefaultSubobject<USphereComponent>("Base Attack Range");
 	BaseAttackRangeSphereComp->AttachTo(RootComponent);
+}
+
+
+void ALCPPMonster::StartChasing(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	if (Cast<ALearningCPPCharacter>(OtherActor))
+		bEnemyInSight = true;
+}
+
+
+void ALCPPMonster::StopChasing(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex)
+{
+	if (Cast<ALearningCPPCharacter>(OtherActor))
+		bEnemyInSight = false;
 }
 
 
@@ -40,6 +56,13 @@ void ALCPPMonster::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (bEnemyInSight)
+		ChasePlayer(DeltaTime);
+}
+
+
+void ALCPPMonster::ChasePlayer(float DeltaTime)
+{
 	ALearningCPPCharacter* PlayerCharacter = Cast<ALearningCPPCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 	if (PlayerCharacter == nullptr) return;
 
