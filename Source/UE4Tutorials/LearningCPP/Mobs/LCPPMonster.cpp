@@ -12,6 +12,9 @@ ALCPPMonster::ALCPPMonster()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	bEnemyInSight = false;
+	bEnemyInAttackRange = false;
+
 	Speed = 20;
 	Health = 20;
 	ExperienceDrop = 0;
@@ -27,20 +30,32 @@ ALCPPMonster::ALCPPMonster()
 
 	BaseAttackRangeSphereComp = CreateDefaultSubobject<USphereComponent>("Base Attack Range");
 	BaseAttackRangeSphereComp->AttachTo(RootComponent);
+	BaseAttackRangeSphereComp->OnComponentBeginOverlap.AddDynamic(this, &ALCPPMonster::StartAttacking);
+	BaseAttackRangeSphereComp->OnComponentEndOverlap.AddDynamic(this, &ALCPPMonster::StopAttacking);
 }
 
 
 void ALCPPMonster::StartChasing(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (Cast<ALearningCPPCharacter>(OtherActor))
-		bEnemyInSight = true;
+	if (Cast<ALearningCPPCharacter>(OtherActor)) bEnemyInSight = true;
 }
 
 
 void ALCPPMonster::StopChasing(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex)
 {
-	if (Cast<ALearningCPPCharacter>(OtherActor))
-		bEnemyInSight = false;
+	if (Cast<ALearningCPPCharacter>(OtherActor)) bEnemyInSight = false;
+}
+
+
+void ALCPPMonster::StartAttacking(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	if (Cast<ALearningCPPCharacter>(OtherActor)) bEnemyInAttackRange = true;
+}
+
+
+void ALCPPMonster::StopAttacking(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex)
+{
+	if (Cast<ALearningCPPCharacter>(OtherActor)) bEnemyInAttackRange = false;
 }
 
 
