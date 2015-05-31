@@ -2,6 +2,7 @@
 
 #include "UE4Tutorials.h"
 #include "LCPPMonster.h"
+#include <LearningCPP/Character/LearningCPPCharacter.h>
 
 
 // Sets default values
@@ -35,10 +36,22 @@ void ALCPPMonster::BeginPlay()
 
 
 // Called every frame
-void ALCPPMonster::Tick( float DeltaTime )
+void ALCPPMonster::Tick(float DeltaTime)
 {
-	Super::Tick( DeltaTime );
+	Super::Tick(DeltaTime);
 
+	ALearningCPPCharacter* PlayerCharacter = Cast<ALearningCPPCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+	if (PlayerCharacter == nullptr) return;
+
+	FVector DirectionToPlayer = PlayerCharacter->GetActorLocation() - GetActorLocation();
+	DirectionToPlayer.Normalize();
+	AddMovementInput(DirectionToPlayer, Speed * DeltaTime);
+
+	// He will stand right even if the player is in a different altitude, by only rotating in the Z axis (Yaw).
+	FRotator RotationToPlayer = DirectionToPlayer.Rotation();
+	RotationToPlayer.Pitch = 0;		// Won't rotate in the Y axis.
+	RotationToPlayer.Roll = 0;		// Won't rotate in the X axis.
+	RootComponent->SetWorldRotation(RotationToPlayer);
 }
 
 
