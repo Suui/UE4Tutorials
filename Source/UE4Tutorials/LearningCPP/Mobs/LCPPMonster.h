@@ -15,6 +15,8 @@ class UE4TUTORIALS_API ALCPPMonster : public ACharacter
 
 public:
 
+	AActor* MeleeWeaponInstance;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MonsterProperties)
 	float Speed;
 
@@ -32,6 +34,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MonsterProperties)
 	float BaseAttackCD;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MonsterProperties)
+	UClass* MeleeWeaponBP;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = MonsterProperties)
 	float TimeSinceLastBaseAttack;
@@ -63,6 +68,8 @@ public:
 	virtual void BeginPlay() override;
 	// Called every frame
 	virtual void Tick(float DeltaSeconds) override;
+
+	void PostInitializeComponents() override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;

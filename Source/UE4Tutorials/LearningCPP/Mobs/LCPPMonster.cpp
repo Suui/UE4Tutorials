@@ -3,6 +3,7 @@
 #include "UE4Tutorials.h"
 #include "LCPPMonster.h"
 #include <LearningCPP/Character/LearningCPPCharacter.h>
+#include <UE4Tutorials/LearningCPP/Weapons/LCPPMeleeWeapon.h>
 
 
 // Sets default values
@@ -75,6 +76,19 @@ void ALCPPMonster::ChasePlayer(float DeltaTime)
 	RotationToPlayer.Pitch = 0;		// Won't rotate in the Y axis.
 	RotationToPlayer.Roll = 0;		// Won't rotate in the X axis.
 	RootComponent->SetWorldRotation(RotationToPlayer);
+}
+
+
+void ALCPPMonster::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();
+	if (MeleeWeaponBP == nullptr) return;
+
+	MeleeWeaponInstance = GetWorld()->SpawnActor<ALCPPMeleeWeapon>(MeleeWeaponBP, FVector(), FRotator());
+
+	if (MeleeWeaponInstance != nullptr)
+		Mesh->GetSocketByName("RightHandSocket")->AttachActor(MeleeWeaponInstance, Mesh);
+
 }
 
 

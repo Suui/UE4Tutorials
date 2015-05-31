@@ -15,11 +15,13 @@ ALCPPMeleeWeapon::ALCPPMeleeWeapon()
 	bIsSwinging = false;
 	WeaponHolder = nullptr;
 
+	RootComponent = CreateDefaultSubobject<USceneComponent>("Scene Component");
+
 	WeaponMesh = CreateDefaultSubobject<UStaticMeshComponent>("Weapon Mesh");
-	RootComponent = WeaponMesh;
+	WeaponMesh->AttachTo(RootComponent);
 
 	WeaponBoxComp = CreateDefaultSubobject<UBoxComponent>("Weapon Boundaries Box Component");
-	WeaponBoxComp->AttachTo(RootComponent);
+	WeaponBoxComp->AttachTo(WeaponMesh);
 	WeaponBoxComp->OnComponentBeginOverlap.AddDynamic(this, &ALCPPMeleeWeapon::Hit);
 }
 
