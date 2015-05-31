@@ -25,7 +25,7 @@ public:
 	UClass* Loot;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MonsterProperties)
-	int32 BaseAttackDamage;
+	int32 BaseAttackDMG;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MonsterProperties)
 	float BaseAttackCD;
@@ -37,7 +37,7 @@ public:
 	USphereComponent* SightSphereComp;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = MonsterProperties)
-	USphereComponent* BasicAttackRangeSphereComp;
+	USphereComponent* BaseAttackRangeSphereComp;
 
 	// Sets default values for this character's properties
 	ALCPPMonster();
