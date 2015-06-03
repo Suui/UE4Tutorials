@@ -52,7 +52,7 @@ Intermediate/ProjectFiles/*
 ### Unreal Engine gitignore ###
 
 # Ignore project files in the root
-/*.sln
+# Suui Commented /*.sln
 *.suo
 *.opensdf
 *.sdf
