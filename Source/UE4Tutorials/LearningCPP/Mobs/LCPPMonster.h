@@ -70,6 +70,9 @@ private:
 
 public:
 
+	UFUNCTION(BlueprintCallable, Category = MonsterFunctions)
+	void SwordSwung();
+
 	// Sets default values for this character's properties
 	ALCPPMonster();
 

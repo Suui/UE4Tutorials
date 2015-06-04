@@ -94,6 +94,13 @@ void ALCPPMonster::ChasePlayer(float DeltaTime)
 }
 
 
+void ALCPPMonster::SwordSwung()
+{
+	auto Sword = Cast<ALCPPMeleeWeapon>(MeleeWeaponInstance);
+	if (Sword != nullptr) Sword->Swing();
+}
+
+
 void ALCPPMonster::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
@@ -102,7 +109,7 @@ void ALCPPMonster::PostInitializeComponents()
 	MeleeWeaponInstance = GetWorld()->SpawnActor<ALCPPMeleeWeapon>(MeleeWeaponBP, FVector(), FRotator());
 
 	if (MeleeWeaponInstance != nullptr)
-		Mesh->GetSocketByName("RightHandSocket")->AttachActor(MeleeWeaponInstance, Mesh);
+		GetMesh()->GetSocketByName("RightHandSocket")->AttachActor(MeleeWeaponInstance, GetMesh());
 
 }
 

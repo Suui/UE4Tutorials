@@ -32,16 +32,10 @@ void ALCPPMeleeWeapon::Hit(AActor* OtherActor, UPrimitiveComponent* OtherCompone
 
 	if (bIsSwinging && OtherActor != WeaponHolder && TargetsHit.Contains(OtherActor) == false)
 	{
+		if (GEngine) GEngine->AddOnScreenDebugMessage(0, 0.5f, FColor::Magenta, "Target Hit!");
 		OtherActor->TakeDamage(AttackDamage + WeaponHolder->BaseAttackDMG, FDamageEvent(), nullptr, this);
 		TargetsHit.Add(OtherActor);
 	}
-}
-
-
-void ALCPPMeleeWeapon::Swing()
-{
-	TargetsHit.Empty();
-	bIsSwinging = true;
 }
 
 
@@ -65,4 +59,11 @@ void ALCPPMeleeWeapon::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
 
+}
+
+
+void ALCPPMeleeWeapon::Swing()
+{
+	TargetsHit.Empty();
+	bIsSwinging = true;
 }
