@@ -14,6 +14,7 @@ ALCPPMeleeWeapon::ALCPPMeleeWeapon()
 	AttackDamage = 5;
 	bIsSwinging = false;
 	WeaponHolder = nullptr;
+	TargetsHit = TArray<AActor*>();
 
 	RootComponent = CreateDefaultSubobject<USceneComponent>("Scene Component");
 
@@ -39,6 +40,13 @@ void ALCPPMeleeWeapon::Hit(AActor* OtherActor, UPrimitiveComponent* OtherCompone
 }
 
 
+void ALCPPMeleeWeapon::Swing()
+{
+	TargetsHit.Empty();
+	bIsSwinging = true;
+}
+
+
 void ALCPPMeleeWeapon::Rest()
 {
 	TargetsHit.Empty();
@@ -59,11 +67,4 @@ void ALCPPMeleeWeapon::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
 
-}
-
-
-void ALCPPMeleeWeapon::Swing()
-{
-	TargetsHit.Empty();
-	bIsSwinging = true;
 }

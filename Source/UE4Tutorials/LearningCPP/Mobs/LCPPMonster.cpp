@@ -109,7 +109,11 @@ void ALCPPMonster::PostInitializeComponents()
 	MeleeWeaponInstance = GetWorld()->SpawnActor<ALCPPMeleeWeapon>(MeleeWeaponBP, FVector(), FRotator());
 
 	if (MeleeWeaponInstance != nullptr)
+	{
 		GetMesh()->GetSocketByName("RightHandSocket")->AttachActor(MeleeWeaponInstance, GetMesh());
+		auto Sword = Cast<ALCPPMeleeWeapon>(MeleeWeaponInstance);
+		if (Sword != nullptr) Sword->WeaponHolder = this;
+	}
 
 }
 
