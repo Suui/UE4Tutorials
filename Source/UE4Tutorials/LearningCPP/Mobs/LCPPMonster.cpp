@@ -3,7 +3,8 @@
 #include "UE4Tutorials.h"
 #include "LCPPMonster.h"
 #include <LearningCPP/Character/LearningCPPCharacter.h>
-#include <UE4Tutorials/LearningCPP/Weapons/LCPPMeleeWeapon.h>
+#include <LearningCPP/Weapons/LCPPMeleeWeapon.h>
+#include <LearningCPP/Projectiles/LCPPBullet.h>
 
 
 // Sets default values
@@ -33,6 +34,23 @@ ALCPPMonster::ALCPPMonster()
 	BaseAttackRangeSphereComp->AttachTo(RootComponent);
 	BaseAttackRangeSphereComp->OnComponentBeginOverlap.AddDynamic(this, &ALCPPMonster::StartAttacking);
 	BaseAttackRangeSphereComp->OnComponentEndOverlap.AddDynamic(this, &ALCPPMonster::StopAttacking);
+}
+
+
+void ALCPPMonster::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();
+	if (MeleeWeaponBP == nullptr) return;
+
+	MeleeWeaponInstance = GetWorld()->SpawnActor<ALCPPMeleeWeapon>(MeleeWeaponBP, FVector(), FRotator());
+
+	if (MeleeWeaponInstance != nullptr)
+	{
+		GetMesh()->GetSocketByName("RightHandSocket")->AttachActor(MeleeWeaponInstance, GetMesh());
+		auto Sword = Cast<ALCPPMeleeWeapon>(MeleeWeaponInstance);
+		if (Sword != nullptr) Sword->WeaponHolder = this;
+	}
+
 }
 
 
@@ -80,7 +98,7 @@ void ALCPPMonster::Tick(float DeltaTime)
 		{
 			if (TimeSinceLastBaseAttack >= BaseAttackCD)
 			{
-				// SwordSwung is Called in the Anim Graph
+				// Attack is Called in the Anim Graph and I kinda don't like it
 				EnableAttackAnim = true;
 				TimeSinceLastBaseAttack = 0.f;
 			}
@@ -109,10 +127,31 @@ void ALCPPMonster::ChasePlayer(float DeltaTime)
 }
 
 
-void ALCPPMonster::SwordSwung()
+void ALCPPMonster::Attack()
 {
 	auto Sword = Cast<ALCPPMeleeWeapon>(MeleeWeaponInstance);
-	if (Sword != nullptr) Sword->Swing();
+	
+	if (Sword != nullptr) 
+		Sword->Swing();
+	else if (BulletBP)
+	{
+		FVector NozzleLocation = GetMesh()->GetBoneLocation("RightHandIndex4");
+		NozzleLocation += GetActorForwardVector() * 20;
+		ALearningCPPCharacter* PlayerCharacter = Cast<ALearningCPPCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+		if (PlayerCharacter == nullptr) return;
+
+		FVector DirectionToPlayer = PlayerCharacter->GetActorLocation() - NozzleLocation;
+		DirectionToPlayer.Normalize();
+		ALCPPBullet* Bullet = GetWorld()->SpawnActor<ALCPPBullet>(BulletBP, NozzleLocation, RootComponent->GetComponentRotation());
+		
+		if (Bullet != nullptr)
+		{
+			Bullet->WeaponHolder = this;
+			Bullet->ProxSphere->AddImpulse(GetActorForwardVector() * BulletLaunchImpulse);
+		}
+		else
+			GEngine->AddOnScreenDebugMessage(0, 3.f, FColor::Yellow, "Monster: No bullet actor could be spawned, is the bullet overlapping something?");
+	}
 }
 
 
@@ -120,23 +159,6 @@ void ALCPPMonster::Resting()
 {
 	auto Sword = Cast<ALCPPMeleeWeapon>(MeleeWeaponInstance);
 	if (Sword != nullptr) Sword->Rest();
-}
-
-
-void ALCPPMonster::PostInitializeComponents()
-{
-	Super::PostInitializeComponents();
-	if (MeleeWeaponBP == nullptr) return;
-
-	MeleeWeaponInstance = GetWorld()->SpawnActor<ALCPPMeleeWeapon>(MeleeWeaponBP, FVector(), FRotator());
-
-	if (MeleeWeaponInstance != nullptr)
-	{
-		GetMesh()->GetSocketByName("RightHandSocket")->AttachActor(MeleeWeaponInstance, GetMesh());
-		auto Sword = Cast<ALCPPMeleeWeapon>(MeleeWeaponInstance);
-		if (Sword != nullptr) Sword->WeaponHolder = this;
-	}
-
 }
 
 

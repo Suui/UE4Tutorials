@@ -1,11 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "UE4Tutorials.h"
-#include "Bullet.h"
+#include "LCPPBullet.h"
 
 
 /// CONSTRUCTORS ///
-ABullet::ABullet()
+ALCPPBullet::ALCPPBullet()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -14,7 +14,7 @@ ABullet::ABullet()
 
 	ProxSphere = CreateDefaultSubobject<USphereComponent>("Proximity Sphere");
 	RootComponent = ProxSphere;
-	ProxSphere->OnComponentBeginOverlap.AddDynamic(this, &ABullet::Prox);
+	ProxSphere->OnComponentBeginOverlap.AddDynamic(this, &ALCPPBullet::Prox);
 	
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>("Mesh");
 	Mesh->AttachTo(ProxSphere);
@@ -22,7 +22,7 @@ ABullet::ABullet()
 
 
 /// PRIVATE FUNCTIONS ///
-void ABullet::Prox_Implementation(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSwpp, const FHitResult& SweepResult)
+void ALCPPBullet::Prox_Implementation(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSwpp, const FHitResult& SweepResult)
 {
 	// Don't collide with anything other than the other actor's RootComponent
 	if (OtherComponent != OtherActor->GetRootComponent()) return;
@@ -33,14 +33,14 @@ void ABullet::Prox_Implementation(AActor* OtherActor, UPrimitiveComponent* Other
 
 
 /// PUBLIC FUNCTIONS ///
-void ABullet::BeginPlay()
+void ALCPPBullet::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
 
-void ABullet::Tick( float DeltaTime )
+void ALCPPBullet::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
 

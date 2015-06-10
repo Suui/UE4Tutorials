@@ -3,14 +3,19 @@
 #pragma once
 
 #include "GameFramework/Actor.h"
-#include "Bullet.generated.h"
+#include "LCPPBullet.generated.h"
+
+class ALCPPMonster;
+
 
 UCLASS()
-class UE4TUTORIALS_API ABullet : public AActor
+class UE4TUTORIALS_API ALCPPBullet : public AActor
 {
 	GENERATED_BODY()
 	
 public:
+
+	ALCPPMonster* WeaponHolder;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = BulletProperties)
 	int32 Damage;
@@ -26,9 +31,8 @@ public:
 
 	virtual void Prox_Implementation(AActor* OtherAction, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSwpp, const FHitResult& SweepResult);
 
-
 	// Sets default values for this actor's properties
-	ABullet();
+	ALCPPBullet();
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

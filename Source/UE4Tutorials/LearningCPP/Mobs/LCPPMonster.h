@@ -79,7 +79,7 @@ private:
 public:
 
 	UFUNCTION(BlueprintCallable, Category = MonsterFunctions)
-	void SwordSwung();
+	void Attack();
 
 	UFUNCTION(BlueprintCallable, Category = MonsterFunctions)
 	void Resting();
