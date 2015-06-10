@@ -80,6 +80,7 @@
     <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Inventory\LearningCPPWidget.cpp" />
     <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\ItemPickup\LearningCPPPickupItem.cpp" />
     <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Mobs\LCPPMonster.cpp" />
+    <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Projectiles\Bullet.cpp" />
     <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Weapons\LCPPMeleeWeapon.cpp" />
     <ClCompile Include="..\..\Source\UE4Tutorials\UE4Tutorials.cpp" />
     <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Character\LearningCPPCharacter.h" />
@@ -89,6 +90,7 @@
     <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Inventory\LearningCPPWidget.h" />
     <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\ItemPickup\LearningCPPPickupItem.h" />
     <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Mobs\LCPPMonster.h" />
+    <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Projectiles\Bullet.h" />
     <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Weapons\LCPPMeleeWeapon.h" />
     <ClInclude Include="..\..\Source\UE4Tutorials\UE4Tutorials.h" />
     <ClCompile Include="..\..\Source\UE4Tutorials\UE4TutorialsGameMode.cpp" />

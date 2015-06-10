@@ -21,7 +21,8 @@ ALCPPMonster::ALCPPMonster()
 	Loot = nullptr;
 	BaseAttackDMG = 1;
 	BaseAttackCD = 1.5f;
-	TimeSinceLastBaseAttack = 0;
+	TimeSinceLastBaseAttack = BaseAttackCD;
+	EnableAttackAnim = false;
 
 	SightSphereComp = CreateDefaultSubobject<USphereComponent>("Sight Sphere");
 	SightSphereComp->AttachTo(RootComponent);
@@ -72,8 +73,22 @@ void ALCPPMonster::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	TimeSinceLastBaseAttack += DeltaTime;
 	if (bEnemyInSight)
+	{
+		if (bEnemyInAttackRange)
+		{
+			if (TimeSinceLastBaseAttack >= BaseAttackCD)
+			{
+				// SwordSwung is Called in the Anim Graph
+				EnableAttackAnim = true;
+				TimeSinceLastBaseAttack = 0.f;
+			}
+			return;
+		}
+		if (EnableAttackAnim) return;
 		ChasePlayer(DeltaTime);
+	}
 }
 
 
@@ -98,6 +113,13 @@ void ALCPPMonster::SwordSwung()
 {
 	auto Sword = Cast<ALCPPMeleeWeapon>(MeleeWeaponInstance);
 	if (Sword != nullptr) Sword->Swing();
+}
+
+
+void ALCPPMonster::Resting()
+{
+	auto Sword = Cast<ALCPPMeleeWeapon>(MeleeWeaponInstance);
+	if (Sword != nullptr) Sword->Rest();
 }
 
 

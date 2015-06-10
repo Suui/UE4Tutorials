@@ -12,6 +12,7 @@ ALearningCPPCharacter::ALearningCPPCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	Health = 200;
 	CameraSensitivity = 120.0f;
 	bInvertCameraXAxis = false;
 	bInvertCameraYAxis = true;
@@ -152,4 +153,11 @@ void ALearningCPPCharacter::Pitch(float Amount)
 			Amount *= -1.0f;
 		AddControllerPitchInput(CameraSensitivity * Amount * GetWorld()->GetDeltaSeconds());
 	}
+}
+
+
+float ALearningCPPCharacter::TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+	Health -= Damage;
+	return Health;
 }

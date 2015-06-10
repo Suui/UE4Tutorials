@@ -35,8 +35,6 @@ private:
 	void Hit(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 
-	void Rest();
-
 public:
 
 	// Sets default values for this actor's properties
@@ -49,5 +47,6 @@ public:
 	virtual void Tick( float DeltaSeconds ) override;
 
 	void Swing();
-	
+
+	void Rest();
 };

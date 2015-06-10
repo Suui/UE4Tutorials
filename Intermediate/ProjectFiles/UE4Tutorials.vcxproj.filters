@@ -76,6 +76,9 @@
     <Filter Include="Source\UE4Tutorials\LearningCPP\Weapons">
       <UniqueIdentifier>{3c17ff09-7601-4c58-9fc0-9b1d8aa7ad8b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\UE4Tutorials\LearningCPP\Projectiles">
+      <UniqueIdentifier>{092aaf44-2d54-4d2a-87f8-9ae41d170881}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Character\LearningCPPCharacter.cpp">
@@ -102,6 +105,9 @@
     <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Weapons\LCPPMeleeWeapon.cpp">
       <Filter>Source\UE4Tutorials\LearningCPP\Weapons</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Projectiles\Bullet.cpp">
+      <Filter>Source\UE4Tutorials\LearningCPP\Projectiles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Character\LearningCPPCharacter.h">
@@ -127,6 +133,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Weapons\LCPPMeleeWeapon.h">
       <Filter>Source\UE4Tutorials\LearningCPP\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Projectiles\Bullet.h">
+      <Filter>Source\UE4Tutorials\LearningCPP\Projectiles</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

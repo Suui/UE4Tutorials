@@ -3,6 +3,7 @@
 #include "UE4Tutorials.h"
 #include "LCPPMeleeWeapon.h"
 #include <LearningCPP/Mobs/LCPPMonster.h>
+#include <LearningCPP/Character/LearningCPPCharacter.h>
 
 
 // Sets default values
@@ -34,8 +35,12 @@ void ALCPPMeleeWeapon::Hit(AActor* OtherActor, UPrimitiveComponent* OtherCompone
 	if (bIsSwinging && OtherActor != WeaponHolder && TargetsHit.Contains(OtherActor) == false)
 	{
 		if (GEngine) GEngine->AddOnScreenDebugMessage(0, 0.5f, FColor::Magenta, "Target Hit!");
-		OtherActor->TakeDamage(AttackDamage + WeaponHolder->BaseAttackDMG, FDamageEvent(), nullptr, this);
-		TargetsHit.Add(OtherActor);
+		auto Victim = Cast<ALearningCPPCharacter>(OtherActor);
+		if (Victim != nullptr)
+		{
+			Victim->TakeDamage(AttackDamage + WeaponHolder->BaseAttackDMG, FDamageEvent(), nullptr, this);
+			TargetsHit.Add(Victim);
+		}
 	}
 }
 

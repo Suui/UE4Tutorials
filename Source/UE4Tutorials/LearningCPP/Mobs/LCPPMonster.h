@@ -38,6 +38,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MonsterProperties)
 	UClass* MeleeWeaponBP;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MonsterProperties)
+	UClass* BulletBP;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MonsterProperties)
+	float BulletLaunchImpulse;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MonsterProperties)
+	bool EnableAttackAnim;
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = MonsterProperties)
 	bool bEnemyInAttackRange;
 
@@ -67,11 +76,13 @@ private:
 
 	void ChasePlayer(float DeltaTime);
 
-
 public:
 
 	UFUNCTION(BlueprintCallable, Category = MonsterFunctions)
 	void SwordSwung();
+
+	UFUNCTION(BlueprintCallable, Category = MonsterFunctions)
+	void Resting();
 
 	// Sets default values for this character's properties
 	ALCPPMonster();
