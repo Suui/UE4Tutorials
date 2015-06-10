@@ -79,6 +79,9 @@
     <Filter Include="Source\UE4Tutorials\LearningCPP\Projectiles">
       <UniqueIdentifier>{092aaf44-2d54-4d2a-87f8-9ae41d170881}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\UE4Tutorials\LearningCPP\Spells">
+      <UniqueIdentifier>{af98d2cc-0b16-435c-8f00-28e24061ba2d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Character\LearningCPPCharacter.cpp">
@@ -108,6 +111,9 @@
     <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Projectiles\LCPPBullet.cpp">
       <Filter>Source\UE4Tutorials\LearningCPP\Projectiles</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Spells\LCPPSpell.cpp">
+      <Filter>Source\UE4Tutorials\LearningCPP\Spells</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Character\LearningCPPCharacter.h">
@@ -136,6 +142,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Projectiles\LCPPBullet.h">
       <Filter>Source\UE4Tutorials\LearningCPP\Projectiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Spells\LCPPSpell.h">
+      <Filter>Source\UE4Tutorials\LearningCPP\Spells</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
