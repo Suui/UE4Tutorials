@@ -15,6 +15,8 @@ class UE4TUTORIALS_API ALCPPMonster : public ACharacter
 
 public:
 
+	AActor* MeleeWeaponInstance;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MonsterProperties)
 	float Speed;
 
@@ -32,6 +34,21 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MonsterProperties)
 	float BaseAttackCD;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MonsterProperties)
+	UClass* MeleeWeaponBP;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MonsterProperties)
+	UClass* BulletBP;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MonsterProperties)
+	float BulletLaunchImpulse;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = MonsterProperties)
+	bool EnableAttackAnim;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = MonsterProperties)
+	bool bEnemyInAttackRange;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = MonsterProperties)
 	float TimeSinceLastBaseAttack;
@@ -51,10 +68,21 @@ private:
 	UFUNCTION()
 	void StopChasing(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex);
 
+	UFUNCTION()
+	void StartAttacking(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+	UFUNCTION()
+	void StopAttacking(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex);
+
 	void ChasePlayer(float DeltaTime);
 
-
 public:
+
+	UFUNCTION(BlueprintCallable, Category = MonsterFunctions)
+	void SwordSwung();
+
+	UFUNCTION(BlueprintCallable, Category = MonsterFunctions)
+	void Resting();
 
 	// Sets default values for this character's properties
 	ALCPPMonster();
@@ -63,6 +91,8 @@ public:
 	virtual void BeginPlay() override;
 	// Called every frame
 	virtual void Tick(float DeltaSeconds) override;
+
+	void PostInitializeComponents() override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;

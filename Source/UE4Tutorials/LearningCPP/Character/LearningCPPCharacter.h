@@ -21,7 +21,11 @@ class UE4TUTORIALS_API ALearningCPPCharacter : public ACharacter
 
 	void MouseClicked();
 
+
 public:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Character Properties")
+	int32 Health;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Character Properties")
 	float CameraSensitivity;
@@ -53,4 +57,6 @@ public:
 	void Yaw(float Amount);
 
 	void Pitch(float Amount);
+
+	float TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 };

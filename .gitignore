@@ -21,6 +21,13 @@ Content/Assets/*
 Content/StarterContent/*
 Binaries/*
 
+Intermediate/*
+!Intermediate/ProjectFiles/
+
+Intermediate/ProjectFiles/*
+!Intermediate/ProjectFiles/*.vcxproj
+!Intermediate/ProjectFiles/*.vcxproj.filters
+
 
 ### Unreal Tournament gitignore ###
 
@@ -33,7 +40,7 @@ Binaries/*
 /DerivedDataCache/**
 
 # Engine intermediates
-/Intermediate/**
+# Suui Commented /Intermediate/**
 /Plugins/**/Intermediate/**
 
 # Ignore any saved local files
@@ -45,7 +52,7 @@ Binaries/*
 ### Unreal Engine gitignore ###
 
 # Ignore project files in the root
-/*.sln
+# Suui Commented /*.sln
 *.suo
 *.opensdf
 *.sdf
@@ -123,4 +130,3 @@ Binaries/*
 
 # Ignore Mac desktop services store files 
 .DS_Store
-

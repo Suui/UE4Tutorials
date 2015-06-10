@@ -3,6 +3,7 @@
 #include "UE4Tutorials.h"
 #include "LCPPMonster.h"
 #include <LearningCPP/Character/LearningCPPCharacter.h>
+#include <UE4Tutorials/LearningCPP/Weapons/LCPPMeleeWeapon.h>
 
 
 // Sets default values
@@ -11,13 +12,17 @@ ALCPPMonster::ALCPPMonster()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	bEnemyInSight = false;
+	bEnemyInAttackRange = false;
+
 	Speed = 20;
 	Health = 20;
 	ExperienceDrop = 0;
 	Loot = nullptr;
 	BaseAttackDMG = 1;
 	BaseAttackCD = 1.5f;
-	TimeSinceLastBaseAttack = 0;
+	TimeSinceLastBaseAttack = BaseAttackCD;
+	EnableAttackAnim = false;
 
 	SightSphereComp = CreateDefaultSubobject<USphereComponent>("Sight Sphere");
 	SightSphereComp->AttachTo(RootComponent);
@@ -26,20 +31,32 @@ ALCPPMonster::ALCPPMonster()
 
 	BaseAttackRangeSphereComp = CreateDefaultSubobject<USphereComponent>("Base Attack Range");
 	BaseAttackRangeSphereComp->AttachTo(RootComponent);
+	BaseAttackRangeSphereComp->OnComponentBeginOverlap.AddDynamic(this, &ALCPPMonster::StartAttacking);
+	BaseAttackRangeSphereComp->OnComponentEndOverlap.AddDynamic(this, &ALCPPMonster::StopAttacking);
 }
 
 
 void ALCPPMonster::StartChasing(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (Cast<ALearningCPPCharacter>(OtherActor))
-		bEnemyInSight = true;
+	if (Cast<ALearningCPPCharacter>(OtherActor)) bEnemyInSight = true;
 }
 
 
 void ALCPPMonster::StopChasing(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex)
 {
-	if (Cast<ALearningCPPCharacter>(OtherActor))
-		bEnemyInSight = false;
+	if (Cast<ALearningCPPCharacter>(OtherActor)) bEnemyInSight = false;
+}
+
+
+void ALCPPMonster::StartAttacking(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	if (Cast<ALearningCPPCharacter>(OtherActor)) bEnemyInAttackRange = true;
+}
+
+
+void ALCPPMonster::StopAttacking(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex)
+{
+	if (Cast<ALearningCPPCharacter>(OtherActor)) bEnemyInAttackRange = false;
 }
 
 
@@ -56,8 +73,22 @@ void ALCPPMonster::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	TimeSinceLastBaseAttack += DeltaTime;
 	if (bEnemyInSight)
+	{
+		if (bEnemyInAttackRange)
+		{
+			if (TimeSinceLastBaseAttack >= BaseAttackCD)
+			{
+				// SwordSwung is Called in the Anim Graph
+				EnableAttackAnim = true;
+				TimeSinceLastBaseAttack = 0.f;
+			}
+			return;
+		}
+		if (EnableAttackAnim) return;
 		ChasePlayer(DeltaTime);
+	}
 }
 
 
@@ -75,6 +106,37 @@ void ALCPPMonster::ChasePlayer(float DeltaTime)
 	RotationToPlayer.Pitch = 0;		// Won't rotate in the Y axis.
 	RotationToPlayer.Roll = 0;		// Won't rotate in the X axis.
 	RootComponent->SetWorldRotation(RotationToPlayer);
+}
+
+
+void ALCPPMonster::SwordSwung()
+{
+	auto Sword = Cast<ALCPPMeleeWeapon>(MeleeWeaponInstance);
+	if (Sword != nullptr) Sword->Swing();
+}
+
+
+void ALCPPMonster::Resting()
+{
+	auto Sword = Cast<ALCPPMeleeWeapon>(MeleeWeaponInstance);
+	if (Sword != nullptr) Sword->Rest();
+}
+
+
+void ALCPPMonster::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();
+	if (MeleeWeaponBP == nullptr) return;
+
+	MeleeWeaponInstance = GetWorld()->SpawnActor<ALCPPMeleeWeapon>(MeleeWeaponBP, FVector(), FRotator());
+
+	if (MeleeWeaponInstance != nullptr)
+	{
+		GetMesh()->GetSocketByName("RightHandSocket")->AttachActor(MeleeWeaponInstance, GetMesh());
+		auto Sword = Cast<ALCPPMeleeWeapon>(MeleeWeaponInstance);
+		if (Sword != nullptr) Sword->WeaponHolder = this;
+	}
+
 }
 
 
