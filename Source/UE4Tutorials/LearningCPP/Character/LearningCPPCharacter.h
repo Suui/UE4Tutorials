@@ -18,10 +18,6 @@ class UE4TUTORIALS_API ALearningCPPCharacter : public ACharacter
 	TMap<FString, UClass*> Spells;
 	bool bInventoryIsActive;
 
-	void ToggleInventory();
-
-	void MouseClicked();
-
 
 public:
 
@@ -37,31 +33,37 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Character Properties")
 	float bInvertCameraYAxis;
 
-	// Sets default values for this character's properties
+
+private:
+
+	void ToggleInventory();
+
+	void MouseClicked();
+
+
+public:
+
 	ALearningCPPCharacter();
 
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
-	// Called every frame
-	virtual void Tick( float DeltaSeconds ) override;
+	virtual void Tick(float DeltaSeconds) override;
 
-	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
-	void Pickup(ALearningCPPPickupItem* Item);
-
-	void MoveForward(float Amount);
-
-	void Strafe(float Amount);
-
-	void Yaw(float Amount);
-
-	void Pitch(float Amount);
-
 	float TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
+	
+	void Pickup(ALearningCPPPickupItem* Item);
 
 	void CastSpell(UClass* SpellBP);
 
 	void MouseRightClicked();
+
+	void MoveForward(float Amount);
+
+	void Strafe(float Amount);
+	
+	void Yaw(float Amount);
+
+	void Pitch(float Amount);
 };
