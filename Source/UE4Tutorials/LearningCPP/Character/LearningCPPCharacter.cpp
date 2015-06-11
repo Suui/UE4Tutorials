@@ -42,6 +42,7 @@ void ALearningCPPCharacter::SetupPlayerInputComponent(class UInputComponent* Inp
 	check(InputComponent);
 	InputComponent->BindAction("Inventory", IE_Pressed, this, &ALearningCPPCharacter::ToggleInventory);
 	InputComponent->BindAction("MouseClickedLMB", IE_Pressed, this, &ALearningCPPCharacter::MouseClicked);
+	InputComponent->BindAction("MouseClickedRMB", IE_Pressed, this, &ALearningCPPCharacter::MouseRightClicked);
 
 	InputComponent->BindAxis("Forward", this, &ALearningCPPCharacter::MoveForward);
 	InputComponent->BindAxis("Strafe", this, &ALearningCPPCharacter::Strafe);
@@ -58,6 +59,7 @@ void ALearningCPPCharacter::Pickup(ALearningCPPPickupItem* Item)
 	{
 		Backpack.Add(Item->Name, Item->Quantity);
 		ItemIcons.Add(Item->Name, Item->Icon);
+		Spells.Add(Item->Name, Item->Spell);
 	}
 }
 
@@ -87,7 +89,9 @@ void ALearningCPPCharacter::ToggleInventory()
 		if (ItemIcons.Find(it->Key))
 		{
 			UTexture2D* Texture = ItemIcons[it->Key];
-			PlayerHud->AddWidget(LearningCPPWidget(FIcon(NameAndQuantity, Texture)));
+			auto Widget = LearningCPPWidget(FIcon(NameAndQuantity, Texture));
+			Widget.SpellBP = Spells[it->Key];
+			PlayerHud->AddWidget(Widget);
 		}
 	}
 }
@@ -172,4 +176,15 @@ void ALearningCPPCharacter::CastSpell(UClass* SpellBP)
 		Spell->SetCaster(this);
 	else
 		GEngine->AddOnScreenDebugMessage(0, 3.f, FColor::Yellow, "Can't cast " + SpellBP->GetName());
+}
+
+
+void ALearningCPPCharacter::MouseRightClicked()
+{
+	if (bInventoryIsActive)
+	{
+		auto PlayerController = GetWorld()->GetFirstPlayerController();
+		auto HUD = Cast<ALearningCPPHUD>(PlayerController->GetHUD());
+		HUD->MouseRightClicked();
+	}
 }

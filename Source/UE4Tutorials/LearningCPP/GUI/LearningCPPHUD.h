@@ -68,6 +68,8 @@ public:
 
 	void MouseClicked();
 
+	void MouseRightClicked();
+
 	void MouseMoved();
 
 	void AddMessage(FMessage Message);

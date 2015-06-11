@@ -2,6 +2,7 @@
 
 #include "UE4Tutorials.h"
 #include "LearningCPPHUD.h"
+#include <LearningCPP/Character/LearningCPPCharacter.h>
 
 
 void ALearningCPPHUD::DrawHUD()
@@ -67,6 +68,23 @@ void ALearningCPPHUD::MouseClicked()
 			LastTouchedWidget = &Widgets[i];
 			if (GEngine) GEngine->AddOnScreenDebugMessage(0, 1.0f, FColor::Yellow, LastTouchedWidget->GetIcon().Name + " has been clicked!");
 			return;
+		}
+	}
+}
+
+
+void ALearningCPPHUD::MouseRightClicked()
+{
+	FVector2D MousePos;
+	auto PlayerController = GetWorld()->GetFirstPlayerController();
+	PlayerController->GetMousePosition(MousePos.X, MousePos.Y);
+
+	for (int i = 0; i < Widgets.Num(); ++i)
+	{
+		if (Widgets[i].Hit(MousePos))
+		{
+			auto Character = Cast<ALearningCPPCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
+			if (Character != nullptr && Widgets[i].SpellBP != nullptr) Character->CastSpell(Widgets[i].SpellBP);
 		}
 	}
 }

@@ -169,3 +169,8 @@ void ALCPPMonster::SetupPlayerInputComponent(class UInputComponent* InputCompone
 
 }
 
+float ALCPPMonster::TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+	Health -= Damage;
+	return 0;
+}

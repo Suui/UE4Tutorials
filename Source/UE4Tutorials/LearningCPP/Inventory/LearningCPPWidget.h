@@ -21,6 +21,8 @@ class UE4TUTORIALS_API LearningCPPWidget
 
 public:
 
+	UClass* SpellBP;
+
 	LearningCPPWidget(FIcon Icon);
 
 	bool Hit(FVector2D ClickPosition);

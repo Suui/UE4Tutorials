@@ -15,6 +15,7 @@ class UE4TUTORIALS_API ALearningCPPCharacter : public ACharacter
 
 	TMap<FString, int> Backpack;
 	TMap<FString, UTexture2D*> ItemIcons;
+	TMap<FString, UClass*> Spells;
 	bool bInventoryIsActive;
 
 	void ToggleInventory();
@@ -61,4 +62,6 @@ public:
 	float TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 
 	void CastSpell(UClass* SpellBP);
+
+	void MouseRightClicked();
 };
