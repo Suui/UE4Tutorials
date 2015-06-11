@@ -21,6 +21,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Item)
 	UTexture2D* Icon;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Item)
+	UClass* Spell;
 	
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Item)
 	USphereComponent* ProxSphereComponent;

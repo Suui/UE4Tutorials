@@ -59,4 +59,6 @@ public:
 	void Pitch(float Amount);
 
 	float TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
+
+	void CastSpell(UClass* SpellBP);
 };

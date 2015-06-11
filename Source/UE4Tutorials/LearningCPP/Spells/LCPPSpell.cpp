@@ -44,7 +44,7 @@ void ALCPPSpell::Tick(float DeltaTime)
 		if (ActorsAffected[i] != Caster)
 		{
 			ALCPPMonster* Monster = Cast<ALCPPMonster>(ActorsAffected[i]);
-			if (Monster != nullptr && ProxBox->IsOverlappingComponent(Monster->CapsuleComponent))
+			if (Monster != nullptr && ProxBox->IsOverlappingComponent(Monster->GetCapsuleComponent()))
 				Monster->TakeDamage(DamagePerSec * DeltaTime, FDamageEvent(), nullptr, this);
 		}
 	}

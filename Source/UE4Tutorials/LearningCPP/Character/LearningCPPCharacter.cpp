@@ -4,6 +4,7 @@
 #include "LearningCPPCharacter.h"
 #include <LearningCPP/ItemPickup/LearningCPPPickupItem.h>
 #include <LearningCPP/GUI/LearningCPPHUD.h>
+#include <UE4Tutorials/LearningCPP/Spells/LCPPSpell.h>
 
 
 // Sets default values
@@ -160,4 +161,15 @@ float ALearningCPPCharacter::TakeDamage(float Damage, FDamageEvent const& Damage
 {
 	Health -= Damage;
 	return Health;
+}
+
+
+void ALearningCPPCharacter::CastSpell(UClass* SpellBP)
+{
+	ALCPPSpell* Spell = GetWorld()->SpawnActor<ALCPPSpell>(SpellBP, FVector(0), FRotator(0));
+
+	if (Spell != nullptr)
+		Spell->SetCaster(this);
+	else
+		GEngine->AddOnScreenDebugMessage(0, 3.f, FColor::Yellow, "Can't cast " + SpellBP->GetName());
 }
