@@ -45,10 +45,6 @@ public:
 
 	ALearningCPPCharacter();
 
-	virtual void BeginPlay() override;
-	
-	virtual void Tick(float DeltaSeconds) override;
-
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
 	float TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;

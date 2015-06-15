@@ -7,9 +7,9 @@
 #include <UE4Tutorials/LearningCPP/Spells/LCPPSpell.h>
 
 
-/****************************************************|
-|----- INITIALIZATION -------------------------------|
-|****************************************************/
+/*----------------------------------------------------------------
+- Initialization -
+----------------------------------------------------------------*/
 
 ALearningCPPCharacter::ALearningCPPCharacter()
 {
@@ -24,9 +24,9 @@ ALearningCPPCharacter::ALearningCPPCharacter()
 }
 
 
-/****************************************************|
-|----- PRIVATE --------------------------------------|
-|****************************************************/
+/*----------------------------------------------------------------
+- Private functions -
+----------------------------------------------------------------*/
 
 void ALearningCPPCharacter::ToggleInventory()
 {
@@ -69,23 +69,9 @@ void ALearningCPPCharacter::MouseClicked()
 }
 
 
-/****************************************************|
-|----- PUBLIC ---------------------------------------|
-|****************************************************/
-
-/* Override */
-void ALearningCPPCharacter::BeginPlay()
-{
-	Super::BeginPlay();
-}
-
-
-/* Override */
-void ALearningCPPCharacter::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-}
-
+/*----------------------------------------------------------------
+- Public functions -
+----------------------------------------------------------------*/
 
 /* Override */
 void ALearningCPPCharacter::SetupPlayerInputComponent(class UInputComponent* InputComponent)
