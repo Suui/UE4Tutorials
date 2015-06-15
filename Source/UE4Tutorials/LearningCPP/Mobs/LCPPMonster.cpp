@@ -7,7 +7,10 @@
 #include <LearningCPP/Projectiles/LCPPBullet.h>
 
 
-// Sets default values
+/*----------------------------------------------------------------
+- Initialization -
+----------------------------------------------------------------*/
+
 ALCPPMonster::ALCPPMonster()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
@@ -37,6 +40,7 @@ ALCPPMonster::ALCPPMonster()
 }
 
 
+/* Override */
 void ALCPPMonster::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
@@ -53,6 +57,10 @@ void ALCPPMonster::PostInitializeComponents()
 
 }
 
+
+/*----------------------------------------------------------------
+- Private functions -
+----------------------------------------------------------------*/
 
 void ALCPPMonster::StartChasing(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
@@ -78,15 +86,27 @@ void ALCPPMonster::StopAttacking(AActor* OtherActor, UPrimitiveComponent* OtherC
 }
 
 
-// Called when the game starts or when spawned
-void ALCPPMonster::BeginPlay()
+void ALCPPMonster::ChasePlayer(float DeltaTime)
 {
-	Super::BeginPlay();
-	
+	ALearningCPPCharacter* PlayerCharacter = Cast<ALearningCPPCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+	if (PlayerCharacter == nullptr) return;
+
+	FVector DirectionToPlayer = PlayerCharacter->GetActorLocation() - GetActorLocation();
+	DirectionToPlayer.Normalize();
+	AddMovementInput(DirectionToPlayer, Speed * DeltaTime);
+
+	// He will stand right even if the player is in a different altitude, by only rotating in the Z axis (Yaw).
+	FRotator RotationToPlayer = DirectionToPlayer.Rotation();
+	RotationToPlayer.Pitch = 0;		// Won't rotate in the Y axis.
+	RotationToPlayer.Roll = 0;		// Won't rotate in the X axis.
+	RootComponent->SetWorldRotation(RotationToPlayer);
 }
 
 
-// Called every frame
+/*----------------------------------------------------------------
+- Public functions -
+----------------------------------------------------------------*/
+
 void ALCPPMonster::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -107,23 +127,6 @@ void ALCPPMonster::Tick(float DeltaTime)
 		if (EnableAttackAnim) return;
 		ChasePlayer(DeltaTime);
 	}
-}
-
-
-void ALCPPMonster::ChasePlayer(float DeltaTime)
-{
-	ALearningCPPCharacter* PlayerCharacter = Cast<ALearningCPPCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
-	if (PlayerCharacter == nullptr) return;
-
-	FVector DirectionToPlayer = PlayerCharacter->GetActorLocation() - GetActorLocation();
-	DirectionToPlayer.Normalize();
-	AddMovementInput(DirectionToPlayer, Speed * DeltaTime);
-
-	// He will stand right even if the player is in a different altitude, by only rotating in the Z axis (Yaw).
-	FRotator RotationToPlayer = DirectionToPlayer.Rotation();
-	RotationToPlayer.Pitch = 0;		// Won't rotate in the Y axis.
-	RotationToPlayer.Roll = 0;		// Won't rotate in the X axis.
-	RootComponent->SetWorldRotation(RotationToPlayer);
 }
 
 
@@ -161,13 +164,6 @@ void ALCPPMonster::Resting()
 	if (Sword != nullptr) Sword->Rest();
 }
 
-
-// Called to bind functionality to input
-void ALCPPMonster::SetupPlayerInputComponent(class UInputComponent* InputComponent)
-{
-	Super::SetupPlayerInputComponent(InputComponent);
-
-}
 
 float ALCPPMonster::TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {

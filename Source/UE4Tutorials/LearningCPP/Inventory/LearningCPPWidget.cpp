@@ -4,8 +4,16 @@
 #include "LearningCPPWidget.h"
 
 
+/*----------------------------------------------------------------
+- Initialization -
+----------------------------------------------------------------*/
+
 LearningCPPWidget::LearningCPPWidget(FIcon Icon): Icon(Icon) {}
 
+
+/*----------------------------------------------------------------
+- Public functions -
+----------------------------------------------------------------*/
 
 bool LearningCPPWidget::Hit(FVector2D ClickPosition)
 {
@@ -44,4 +52,3 @@ void LearningCPPWidget::SetSize(const FVector2D& Size) { this->Size = Size; }
 
 
 LearningCPPWidget::~LearningCPPWidget() {}
-

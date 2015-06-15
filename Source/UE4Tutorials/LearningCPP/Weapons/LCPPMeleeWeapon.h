@@ -12,7 +12,8 @@ UCLASS()
 class UE4TUTORIALS_API ALCPPMeleeWeapon : public AActor
 {
 	GENERATED_BODY()
-	
+
+
 public:
 
 	TArray<AActor*> TargetsHit;
@@ -37,14 +38,7 @@ private:
 
 public:
 
-	// Sets default values for this actor's properties
 	ALCPPMeleeWeapon();
-
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-	
-	// Called every frame
-	virtual void Tick( float DeltaSeconds ) override;
 
 	void Swing();
 

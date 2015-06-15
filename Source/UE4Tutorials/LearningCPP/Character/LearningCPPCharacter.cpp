@@ -2,12 +2,15 @@
 
 #include "UE4Tutorials.h"
 #include "LearningCPPCharacter.h"
-#include <LearningCPP/ItemPickup/LearningCPPPickupItem.h>
-#include <LearningCPP/GUI/LearningCPPHUD.h>
+#include <UE4Tutorials/LearningCPP/ItemPickup/LearningCPPPickupItem.h>
+#include <UE4Tutorials/LearningCPP/GUI/LearningCPPHUD.h>
 #include <UE4Tutorials/LearningCPP/Spells/LCPPSpell.h>
 
 
-// Sets default values
+/*----------------------------------------------------------------
+- Initialization -
+----------------------------------------------------------------*/
+
 ALearningCPPCharacter::ALearningCPPCharacter()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
@@ -21,48 +24,9 @@ ALearningCPPCharacter::ALearningCPPCharacter()
 }
 
 
-// Called when the game starts or when spawned
-void ALearningCPPCharacter::BeginPlay()
-{
-	Super::BeginPlay();
-}
-
-
-// Called every frame
-void ALearningCPPCharacter::Tick( float DeltaTime )
-{
-	Super::Tick( DeltaTime );
-}
-
-
-// Called to bind functionality to input
-void ALearningCPPCharacter::SetupPlayerInputComponent(class UInputComponent* InputComponent)
-{
-	Super::SetupPlayerInputComponent(InputComponent);
-	check(InputComponent);
-	InputComponent->BindAction("Inventory", IE_Pressed, this, &ALearningCPPCharacter::ToggleInventory);
-	InputComponent->BindAction("MouseClickedLMB", IE_Pressed, this, &ALearningCPPCharacter::MouseClicked);
-	InputComponent->BindAction("MouseClickedRMB", IE_Pressed, this, &ALearningCPPCharacter::MouseRightClicked);
-
-	InputComponent->BindAxis("Forward", this, &ALearningCPPCharacter::MoveForward);
-	InputComponent->BindAxis("Strafe", this, &ALearningCPPCharacter::Strafe);
-	InputComponent->BindAxis("Yaw", this, &ALearningCPPCharacter::Yaw);
-	InputComponent->BindAxis("Pitch", this, &ALearningCPPCharacter::Pitch);
-}
-
-
-void ALearningCPPCharacter::Pickup(ALearningCPPPickupItem* Item)
-{
-	if (Backpack.Find(Item->Name))
-		Backpack[Item->Name] += Item->Quantity;
-	else
-	{
-		Backpack.Add(Item->Name, Item->Quantity);
-		ItemIcons.Add(Item->Name, Item->Icon);
-		Spells.Add(Item->Name, Item->Spell);
-	}
-}
-
+/*----------------------------------------------------------------
+- Private functions -
+----------------------------------------------------------------*/
 
 void ALearningCPPCharacter::ToggleInventory()
 {
@@ -102,6 +66,69 @@ void ALearningCPPCharacter::MouseClicked()
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 	ALearningCPPHUD* PlayerHud = Cast<ALearningCPPHUD>(PlayerController->GetHUD());
 	PlayerHud->MouseClicked();
+}
+
+
+/*----------------------------------------------------------------
+- Public functions -
+----------------------------------------------------------------*/
+
+/* Override */
+void ALearningCPPCharacter::SetupPlayerInputComponent(class UInputComponent* InputComponent)
+{
+	Super::SetupPlayerInputComponent(InputComponent);
+	check(InputComponent);
+	InputComponent->BindAction("Inventory", IE_Pressed, this, &ALearningCPPCharacter::ToggleInventory);
+	InputComponent->BindAction("MouseClickedLMB", IE_Pressed, this, &ALearningCPPCharacter::MouseClicked);
+	InputComponent->BindAction("MouseClickedRMB", IE_Pressed, this, &ALearningCPPCharacter::MouseRightClicked);
+
+	InputComponent->BindAxis("Forward", this, &ALearningCPPCharacter::MoveForward);
+	InputComponent->BindAxis("Strafe", this, &ALearningCPPCharacter::Strafe);
+	InputComponent->BindAxis("Yaw", this, &ALearningCPPCharacter::Yaw);
+	InputComponent->BindAxis("Pitch", this, &ALearningCPPCharacter::Pitch);
+}
+
+
+/* Override */
+float ALearningCPPCharacter::TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+	Health -= Damage;
+	return Health;
+}
+
+
+void ALearningCPPCharacter::Pickup(ALearningCPPPickupItem* Item)
+{
+	if (Backpack.Find(Item->Name))
+		Backpack[Item->Name] += Item->Quantity;
+	else
+	{
+		Backpack.Add(Item->Name, Item->Quantity);
+		ItemIcons.Add(Item->Name, Item->Icon);
+		Spells.Add(Item->Name, Item->Spell);
+	}
+}
+
+
+void ALearningCPPCharacter::CastSpell(UClass* SpellBP)
+{
+	ALCPPSpell* Spell = GetWorld()->SpawnActor<ALCPPSpell>(SpellBP, FVector(0), FRotator(0));
+
+	if (Spell != nullptr)
+		Spell->SetCaster(this);
+	else
+		GEngine->AddOnScreenDebugMessage(0, 3.f, FColor::Yellow, "Can't cast " + SpellBP->GetName());
+}
+
+
+void ALearningCPPCharacter::MouseRightClicked()
+{
+	if (bInventoryIsActive)
+	{
+		auto PlayerController = GetWorld()->GetFirstPlayerController();
+		auto HUD = Cast<ALearningCPPHUD>(PlayerController->GetHUD());
+		HUD->MouseRightClicked();
+	}
 }
 
 
@@ -157,34 +184,5 @@ void ALearningCPPCharacter::Pitch(float Amount)
 		if (bInvertCameraYAxis) 
 			Amount *= -1.0f;
 		AddControllerPitchInput(CameraSensitivity * Amount * GetWorld()->GetDeltaSeconds());
-	}
-}
-
-
-float ALearningCPPCharacter::TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
-{
-	Health -= Damage;
-	return Health;
-}
-
-
-void ALearningCPPCharacter::CastSpell(UClass* SpellBP)
-{
-	ALCPPSpell* Spell = GetWorld()->SpawnActor<ALCPPSpell>(SpellBP, FVector(0), FRotator(0));
-
-	if (Spell != nullptr)
-		Spell->SetCaster(this);
-	else
-		GEngine->AddOnScreenDebugMessage(0, 3.f, FColor::Yellow, "Can't cast " + SpellBP->GetName());
-}
-
-
-void ALearningCPPCharacter::MouseRightClicked()
-{
-	if (bInventoryIsActive)
-	{
-		auto PlayerController = GetWorld()->GetFirstPlayerController();
-		auto HUD = Cast<ALearningCPPHUD>(PlayerController->GetHUD());
-		HUD->MouseRightClicked();
 	}
 }

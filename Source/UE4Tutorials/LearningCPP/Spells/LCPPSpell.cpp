@@ -5,7 +5,10 @@
 #include "LearningCPP/Mobs/LCPPMonster.h"
 
 
-// Sets default values
+/*----------------------------------------------------------------
+- Initialization -
+----------------------------------------------------------------*/
+
 ALCPPSpell::ALCPPSpell()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
@@ -23,15 +26,10 @@ ALCPPSpell::ALCPPSpell()
 }
 
 
-// Called when the game starts or when spawned
-void ALCPPSpell::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
+/*----------------------------------------------------------------
+- Public functions -
+----------------------------------------------------------------*/
 
-
-// Called every frame
 void ALCPPSpell::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);

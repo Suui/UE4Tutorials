@@ -20,6 +20,7 @@
 Content/Assets/*
 Content/StarterContent/*
 Binaries/*
+*.user
 
 Intermediate/*
 !Intermediate/ProjectFiles/

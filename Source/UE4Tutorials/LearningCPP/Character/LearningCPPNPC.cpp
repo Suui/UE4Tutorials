@@ -6,7 +6,10 @@
 #include <LearningCPP/GUI/LearningCPPHUD.h>
 
 
-// Sets default values
+/*----------------------------------------------------------------
+- Initialization -
+----------------------------------------------------------------*/
+
 ALearningCPPNPC::ALearningCPPNPC()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
@@ -22,6 +25,10 @@ ALearningCPPNPC::ALearningCPPNPC()
 }
 
 
+/*----------------------------------------------------------------
+- Public functions -
+----------------------------------------------------------------*/
+
 void ALearningCPPNPC::Prox_Implementation(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	if (Cast<ALearningCPPCharacter>(OtherActor) == nullptr) return;
@@ -33,28 +40,3 @@ void ALearningCPPNPC::Prox_Implementation(AActor* OtherActor, UPrimitiveComponen
 		Hud->AddMessage(FMessage(NpcName + ": " + NpcMessage, 3.0f, FColor::White, Texture));
 	}
 }
-
-
-// Called when the game starts or when spawned
-void ALearningCPPNPC::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
-
-// Called every frame
-void ALearningCPPNPC::Tick( float DeltaTime )
-{
-	Super::Tick( DeltaTime );
-
-}
-
-
-// Called to bind functionality to input
-void ALearningCPPNPC::SetupPlayerInputComponent(class UInputComponent* InputComponent)
-{
-	Super::SetupPlayerInputComponent(InputComponent);
-
-}
-

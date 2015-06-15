@@ -25,7 +25,8 @@ struct FMessage
 		: Text(Text),
 		  Time(Time),
 		  Color(Color),
-		  Texture(Texture) {}
+		  Texture(Texture) 
+	{}
 };
 
 
