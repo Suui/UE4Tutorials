@@ -5,6 +5,7 @@
 #include "GameFramework/Character.h"
 #include "LCPPMonster.generated.h"
 
+
 UCLASS()
 class UE4TUTORIALS_API ALCPPMonster : public ACharacter
 {
@@ -76,27 +77,20 @@ private:
 
 	void ChasePlayer(float DeltaTime);
 
+
 public:
+
+	ALCPPMonster();
+
+	void PostInitializeComponents() override;
+
+	virtual void Tick(float DeltaSeconds) override;
 
 	UFUNCTION(BlueprintCallable, Category = MonsterFunctions)
 	void Attack();
 
 	UFUNCTION(BlueprintCallable, Category = MonsterFunctions)
 	void Resting();
-
-	// Sets default values for this character's properties
-	ALCPPMonster();
-
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-	// Called every frame
-	virtual void Tick(float DeltaSeconds) override;
-
-	void PostInitializeComponents() override;
-
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
-
 
 	float TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 };
