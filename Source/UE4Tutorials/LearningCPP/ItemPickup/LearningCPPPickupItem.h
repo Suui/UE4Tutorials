@@ -31,17 +31,10 @@ public:
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Item)
 	UStaticMeshComponent* StaticMeshComponent;
 
+	ALearningCPPPickupItem();
+
 	UFUNCTION(BlueprintNativeEvent, Category = Collision)
 	void Prox(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 	virtual void Prox_Implementation(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-
-	// Sets default values for this actor's properties
-	ALearningCPPPickupItem();
-
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-	
-	// Called every frame
-	virtual void Tick( float DeltaSeconds ) override;
 };

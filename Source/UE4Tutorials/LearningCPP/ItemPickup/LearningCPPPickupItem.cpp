@@ -6,7 +6,10 @@
 #include <LearningCPP/GUI/LearningCPPHUD.h>
 
 
-// Sets default values
+/*----------------------------------------------------------------
+- Initialization -
+----------------------------------------------------------------*/
+
 ALearningCPPPickupItem::ALearningCPPPickupItem()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
@@ -26,6 +29,10 @@ ALearningCPPPickupItem::ALearningCPPPickupItem()
 }
 
 
+/*----------------------------------------------------------------
+- Public functions -
+----------------------------------------------------------------*/
+
 void ALearningCPPPickupItem::Prox_Implementation(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	if (Cast<ALearningCPPCharacter>(OtherActor) == nullptr) return;
@@ -40,20 +47,3 @@ void ALearningCPPPickupItem::Prox_Implementation(AActor* OtherActor, UPrimitiveC
 
 	Destroy();
 }
-
-
-// Called when the game starts or when spawned
-void ALearningCPPPickupItem::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
-
-// Called every frame
-void ALearningCPPPickupItem::Tick( float DeltaTime )
-{
-	Super::Tick( DeltaTime );
-
-}
-
