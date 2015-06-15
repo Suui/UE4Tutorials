@@ -4,7 +4,10 @@
 #include "LCPPBullet.h"
 
 
-/// CONSTRUCTORS ///
+/*----------------------------------------------------------------
+- Initialization -
+----------------------------------------------------------------*/
+
 ALCPPBullet::ALCPPBullet()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
@@ -21,7 +24,10 @@ ALCPPBullet::ALCPPBullet()
 }
 
 
-/// PRIVATE FUNCTIONS ///
+/*----------------------------------------------------------------
+- Private functions -
+----------------------------------------------------------------*/
+
 void ALCPPBullet::Prox_Implementation(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSwpp, const FHitResult& SweepResult)
 {
 	// Don't collide with anything other than the other actor's RootComponent
@@ -30,19 +36,3 @@ void ALCPPBullet::Prox_Implementation(AActor* OtherActor, UPrimitiveComponent* O
 	OtherActor->TakeDamage(Damage, FDamageEvent(), nullptr, this);
 	Destroy();
 }
-
-
-/// PUBLIC FUNCTIONS ///
-void ALCPPBullet::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
-
-void ALCPPBullet::Tick( float DeltaTime )
-{
-	Super::Tick( DeltaTime );
-
-}
-
