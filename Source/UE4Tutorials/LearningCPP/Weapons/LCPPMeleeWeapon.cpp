@@ -6,7 +6,10 @@
 #include <LearningCPP/Character/LearningCPPCharacter.h>
 
 
-// Sets default values
+/*----------------------------------------------------------------
+- Initialization -
+----------------------------------------------------------------*/
+
 ALCPPMeleeWeapon::ALCPPMeleeWeapon()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
@@ -28,6 +31,10 @@ ALCPPMeleeWeapon::ALCPPMeleeWeapon()
 }
 
 
+/*----------------------------------------------------------------
+- Private functions -
+----------------------------------------------------------------*/
+
 void ALCPPMeleeWeapon::Hit(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	if (OtherComponent != OtherActor->GetRootComponent()) return;
@@ -45,6 +52,10 @@ void ALCPPMeleeWeapon::Hit(AActor* OtherActor, UPrimitiveComponent* OtherCompone
 }
 
 
+/*----------------------------------------------------------------
+- Public functions -
+----------------------------------------------------------------*/
+
 void ALCPPMeleeWeapon::Swing()
 {
 	TargetsHit.Empty();
@@ -56,20 +67,4 @@ void ALCPPMeleeWeapon::Rest()
 {
 	TargetsHit.Empty();
 	bIsSwinging = false;
-}
-
-
-// Called when the game starts or when spawned
-void ALCPPMeleeWeapon::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
-
-// Called every frame
-void ALCPPMeleeWeapon::Tick( float DeltaTime )
-{
-	Super::Tick( DeltaTime );
-
 }
