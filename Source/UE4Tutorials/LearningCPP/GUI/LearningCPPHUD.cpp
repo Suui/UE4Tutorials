@@ -5,17 +5,9 @@
 #include <LearningCPP/Character/LearningCPPCharacter.h>
 
 
-void ALearningCPPHUD::DrawHUD()
-{
-	Super::DrawHUD();
-
-	Dimensions.X = Canvas->SizeX;
-	Dimensions.Y = Canvas->SizeY;
-
-	DrawMessages();
-	DrawWidgets();
-}
-
+/*----------------------------------------------------------------
+- Private functions -
+----------------------------------------------------------------*/
 
 void ALearningCPPHUD::DrawMessages()
 {
@@ -52,6 +44,23 @@ void ALearningCPPHUD::DrawMessage(FMessage Message, int Index)
 	if (Message.Texture != nullptr)
 		DrawTexture(Message.Texture, X, Y, MessageHeight, MessageHeight, 0, 0, 1, 1);
 	DrawText(Message.Text, Message.Color, X + Padding + MessageHeight, Y + Padding, HudFont, FontScale);
+}
+
+
+/*----------------------------------------------------------------
+- Public functions -
+----------------------------------------------------------------*/
+
+/* Override */
+void ALearningCPPHUD::DrawHUD()
+{
+	Super::DrawHUD();
+
+	Dimensions.X = Canvas->SizeX;
+	Dimensions.Y = Canvas->SizeY;
+
+	DrawMessages();
+	DrawWidgets();
 }
 
 
