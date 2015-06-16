@@ -84,24 +84,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Character\LearningCPPCharacter.cpp">
-      <Filter>Source\UE4Tutorials\LearningCPP\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Character\LearningCPPNPC.cpp">
-      <Filter>Source\UE4Tutorials\LearningCPP\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\GameRules\LearningCPPGameMode.cpp">
-      <Filter>Source\UE4Tutorials\LearningCPP\GameRules</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\GUI\LearningCPPHUD.cpp">
-      <Filter>Source\UE4Tutorials\LearningCPP\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Inventory\LearningCPPWidget.cpp">
-      <Filter>Source\UE4Tutorials\LearningCPP\Inventory</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\ItemPickup\LearningCPPPickupItem.cpp">
-      <Filter>Source\UE4Tutorials\LearningCPP\ItemPickup</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Mobs\LCPPMonster.cpp">
       <Filter>Source\UE4Tutorials\LearningCPP\Mobs</Filter>
     </ClCompile>
@@ -114,26 +96,26 @@
     <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Spells\LCPPSpell.cpp">
       <Filter>Source\UE4Tutorials\LearningCPP\Spells</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\ItemPickup\LCPPPickupItem.cpp">
+      <Filter>Source\UE4Tutorials\LearningCPP\ItemPickup</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Inventory\LCPPWidget.cpp">
+      <Filter>Source\UE4Tutorials\LearningCPP\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\GUI\LCPPHUD.cpp">
+      <Filter>Source\UE4Tutorials\LearningCPP\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\GameRules\LCPPGameMode.cpp">
+      <Filter>Source\UE4Tutorials\LearningCPP\GameRules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Character\LCPPNPC.cpp">
+      <Filter>Source\UE4Tutorials\LearningCPP\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Character\LCPPCharacter.cpp">
+      <Filter>Source\UE4Tutorials\LearningCPP\Character</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Character\LearningCPPCharacter.h">
-      <Filter>Source\UE4Tutorials\LearningCPP\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Character\LearningCPPNPC.h">
-      <Filter>Source\UE4Tutorials\LearningCPP\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\GameRules\LearningCPPGameMode.h">
-      <Filter>Source\UE4Tutorials\LearningCPP\GameRules</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\GUI\LearningCPPHUD.h">
-      <Filter>Source\UE4Tutorials\LearningCPP\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Inventory\LearningCPPWidget.h">
-      <Filter>Source\UE4Tutorials\LearningCPP\Inventory</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\ItemPickup\LearningCPPPickupItem.h">
-      <Filter>Source\UE4Tutorials\LearningCPP\ItemPickup</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Mobs\LCPPMonster.h">
       <Filter>Source\UE4Tutorials\LearningCPP\Mobs</Filter>
     </ClInclude>
@@ -145,6 +127,24 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Spells\LCPPSpell.h">
       <Filter>Source\UE4Tutorials\LearningCPP\Spells</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\ItemPickup\LCPPPickupItem.h">
+      <Filter>Source\UE4Tutorials\LearningCPP\ItemPickup</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Inventory\LCPPWidget.h">
+      <Filter>Source\UE4Tutorials\LearningCPP\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\GUI\LCPPHUD.h">
+      <Filter>Source\UE4Tutorials\LearningCPP\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\GameRules\LCPPGameMode.h">
+      <Filter>Source\UE4Tutorials\LearningCPP\GameRules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Character\LCPPNPC.h">
+      <Filter>Source\UE4Tutorials\LearningCPP\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Character\LCPPCharacter.h">
+      <Filter>Source\UE4Tutorials\LearningCPP\Character</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

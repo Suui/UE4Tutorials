@@ -3,11 +3,11 @@
 #pragma once
 
 #include "GameFramework/Actor.h"
-#include "LearningCPPPickupItem.generated.h"
+#include "LCPPPickupItem.generated.h"
 
 
 UCLASS()
-class UE4TUTORIALS_API ALearningCPPPickupItem : public AActor
+class UE4TUTORIALS_API ALCPPPickupItem : public AActor
 {
 	GENERATED_BODY()
 	
@@ -31,7 +31,7 @@ public:
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Item)
 	UStaticMeshComponent* StaticMeshComponent;
 
-	ALearningCPPPickupItem();
+	ALCPPPickupItem();
 
 	UFUNCTION(BlueprintNativeEvent, Category = Collision)
 	void Prox(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);

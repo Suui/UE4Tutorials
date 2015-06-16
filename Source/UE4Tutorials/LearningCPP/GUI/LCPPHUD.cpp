@@ -1,15 +1,15 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "UE4Tutorials.h"
-#include "LearningCPPHUD.h"
-#include <LearningCPP/Character/LearningCPPCharacter.h>
+#include "LCPPHUD.h"
+#include <LearningCPP/Character/LCPPCharacter.h>
 
 
 /*----------------------------------------------------------------
 - Private functions -
 ----------------------------------------------------------------*/
 
-void ALearningCPPHUD::DrawMessages()
+void ALCPPHUD::DrawMessages()
 {
 	for (int i = Messages.Num() - 1; i >= 0; i--)
 	{
@@ -21,7 +21,7 @@ void ALearningCPPHUD::DrawMessages()
 }
 
 
-void ALearningCPPHUD::DrawWidgets()
+void ALCPPHUD::DrawWidgets()
 {
 	for (int i = 0; i < Widgets.Num(); ++i)
 	{
@@ -31,7 +31,7 @@ void ALearningCPPHUD::DrawWidgets()
 }
 
 
-void ALearningCPPHUD::DrawMessage(FMessage Message, int Index)
+void ALCPPHUD::DrawMessage(FMessage Message, int Index)
 {
 	float OutputWidth, OutputHeight, Padding = 10.0f;
 	GetTextSize(Message.Text, OutputWidth, OutputHeight, HudFont, FontScale);
@@ -52,7 +52,7 @@ void ALearningCPPHUD::DrawMessage(FMessage Message, int Index)
 ----------------------------------------------------------------*/
 
 /* Override */
-void ALearningCPPHUD::DrawHUD()
+void ALCPPHUD::DrawHUD()
 {
 	Super::DrawHUD();
 
@@ -64,7 +64,7 @@ void ALearningCPPHUD::DrawHUD()
 }
 
 
-void ALearningCPPHUD::MouseClicked()
+void ALCPPHUD::MouseClicked()
 {
 	FVector2D ClickPosition;
 	PlayerOwner->GetMousePosition(ClickPosition.X, ClickPosition.Y);
@@ -82,7 +82,7 @@ void ALearningCPPHUD::MouseClicked()
 }
 
 
-void ALearningCPPHUD::MouseRightClicked()
+void ALCPPHUD::MouseRightClicked()
 {
 	FVector2D MousePos;
 	auto PlayerController = GetWorld()->GetFirstPlayerController();
@@ -92,14 +92,14 @@ void ALearningCPPHUD::MouseRightClicked()
 	{
 		if (Widgets[i].Hit(MousePos))
 		{
-			auto Character = Cast<ALearningCPPCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
+			auto Character = Cast<ALCPPCharacter>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
 			if (Character != nullptr && Widgets[i].SpellBP != nullptr) Character->CastSpell(Widgets[i].SpellBP);
 		}
 	}
 }
 
 
-void ALearningCPPHUD::MouseMoved()
+void ALCPPHUD::MouseMoved()
 {
 	FVector2D CurrentMousePos, MousePosDifference;
 
@@ -114,13 +114,13 @@ void ALearningCPPHUD::MouseMoved()
 }
 
 
-void ALearningCPPHUD::AddMessage(FMessage InputMessage)
+void ALCPPHUD::AddMessage(FMessage InputMessage)
 {
 	Messages.Add(InputMessage);
 }
 
 
-void ALearningCPPHUD::AddWidget(LearningCPPWidget Widget)
+void ALCPPHUD::AddWidget(LCPPWidget Widget)
 {
 	Widget.SetSize(FVector2D(WIDGET_SIZE, WIDGET_SIZE));
 
@@ -138,7 +138,7 @@ void ALearningCPPHUD::AddWidget(LearningCPPWidget Widget)
 }
 
 
-void ALearningCPPHUD::ClearWidgets()
+void ALCPPHUD::ClearWidgets()
 {
 	Widgets.Empty();
 }

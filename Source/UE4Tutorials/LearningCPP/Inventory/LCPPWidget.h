@@ -14,7 +14,7 @@ struct FIcon
 };
 
 
-class UE4TUTORIALS_API LearningCPPWidget
+class UE4TUTORIALS_API LCPPWidget
 {
 	FIcon Icon;
 	FVector2D Position, Size;
@@ -23,7 +23,7 @@ public:
 
 	UClass* SpellBP;
 
-	LearningCPPWidget(FIcon Icon);
+	LCPPWidget(FIcon Icon);
 
 	bool Hit(FVector2D ClickPosition);
 
@@ -47,5 +47,5 @@ public:
 
 	void SetSize(const FVector2D& Size);
 
-	~LearningCPPWidget();
+	~LCPPWidget();
 };

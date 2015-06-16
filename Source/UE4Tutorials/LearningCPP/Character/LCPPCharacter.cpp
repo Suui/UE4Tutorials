@@ -1,17 +1,17 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "UE4Tutorials.h"
-#include "LearningCPPCharacter.h"
-#include <UE4Tutorials/LearningCPP/ItemPickup/LearningCPPPickupItem.h>
-#include <UE4Tutorials/LearningCPP/GUI/LearningCPPHUD.h>
-#include <UE4Tutorials/LearningCPP/Spells/LCPPSpell.h>
+#include "LCPPCharacter.h"
+#include <LearningCPP/ItemPickup/LCPPPickupItem.h>
+#include <LearningCPP/GUI/LCPPHUD.h>
+#include <LearningCPP/Spells/LCPPSpell.h>
 
 
 /*----------------------------------------------------------------
 - Initialization -
 ----------------------------------------------------------------*/
 
-ALearningCPPCharacter::ALearningCPPCharacter()
+ALCPPCharacter::ALCPPCharacter()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -28,13 +28,13 @@ ALearningCPPCharacter::ALearningCPPCharacter()
 - Private functions -
 ----------------------------------------------------------------*/
 
-void ALearningCPPCharacter::ToggleInventory()
+void ALCPPCharacter::ToggleInventory()
 {
 	if (GEngine != nullptr && bInventoryIsActive == false)
 		GEngine->AddOnScreenDebugMessage(0, 1.0f, FColor::Red, "Showing Inventory...");
 
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
-	ALearningCPPHUD* PlayerHud = Cast<ALearningCPPHUD>(PlayerController->GetHUD());
+	ALCPPHUD* PlayerHud = Cast<ALCPPHUD>(PlayerController->GetHUD());
 
 	if (bInventoryIsActive)
 	{
@@ -53,7 +53,7 @@ void ALearningCPPCharacter::ToggleInventory()
 		if (ItemIcons.Find(it->Key))
 		{
 			UTexture2D* Texture = ItemIcons[it->Key];
-			auto Widget = LearningCPPWidget(FIcon(NameAndQuantity, Texture));
+			auto Widget = LCPPWidget(FIcon(NameAndQuantity, Texture));
 			Widget.SpellBP = Spells[it->Key];
 			PlayerHud->AddWidget(Widget);
 		}
@@ -61,10 +61,10 @@ void ALearningCPPCharacter::ToggleInventory()
 }
 
 
-void ALearningCPPCharacter::MouseClicked()
+void ALCPPCharacter::MouseClicked()
 {
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
-	ALearningCPPHUD* PlayerHud = Cast<ALearningCPPHUD>(PlayerController->GetHUD());
+	ALCPPHUD* PlayerHud = Cast<ALCPPHUD>(PlayerController->GetHUD());
 	PlayerHud->MouseClicked();
 }
 
@@ -74,30 +74,30 @@ void ALearningCPPCharacter::MouseClicked()
 ----------------------------------------------------------------*/
 
 /* Override */
-void ALearningCPPCharacter::SetupPlayerInputComponent(class UInputComponent* InputComponent)
+void ALCPPCharacter::SetupPlayerInputComponent(class UInputComponent* InputComponent)
 {
 	Super::SetupPlayerInputComponent(InputComponent);
 	check(InputComponent);
-	InputComponent->BindAction("Inventory", IE_Pressed, this, &ALearningCPPCharacter::ToggleInventory);
-	InputComponent->BindAction("MouseClickedLMB", IE_Pressed, this, &ALearningCPPCharacter::MouseClicked);
-	InputComponent->BindAction("MouseClickedRMB", IE_Pressed, this, &ALearningCPPCharacter::MouseRightClicked);
+	InputComponent->BindAction("Inventory", IE_Pressed, this, &ALCPPCharacter::ToggleInventory);
+	InputComponent->BindAction("MouseClickedLMB", IE_Pressed, this, &ALCPPCharacter::MouseClicked);
+	InputComponent->BindAction("MouseClickedRMB", IE_Pressed, this, &ALCPPCharacter::MouseRightClicked);
 
-	InputComponent->BindAxis("Forward", this, &ALearningCPPCharacter::MoveForward);
-	InputComponent->BindAxis("Strafe", this, &ALearningCPPCharacter::Strafe);
-	InputComponent->BindAxis("Yaw", this, &ALearningCPPCharacter::Yaw);
-	InputComponent->BindAxis("Pitch", this, &ALearningCPPCharacter::Pitch);
+	InputComponent->BindAxis("Forward", this, &ALCPPCharacter::MoveForward);
+	InputComponent->BindAxis("Strafe", this, &ALCPPCharacter::Strafe);
+	InputComponent->BindAxis("Yaw", this, &ALCPPCharacter::Yaw);
+	InputComponent->BindAxis("Pitch", this, &ALCPPCharacter::Pitch);
 }
 
 
 /* Override */
-float ALearningCPPCharacter::TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+float ALCPPCharacter::TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
 	Health -= Damage;
 	return Health;
 }
 
 
-void ALearningCPPCharacter::Pickup(ALearningCPPPickupItem* Item)
+void ALCPPCharacter::Pickup(ALCPPPickupItem* Item)
 {
 	if (Backpack.Find(Item->Name))
 		Backpack[Item->Name] += Item->Quantity;
@@ -110,7 +110,7 @@ void ALearningCPPCharacter::Pickup(ALearningCPPPickupItem* Item)
 }
 
 
-void ALearningCPPCharacter::CastSpell(UClass* SpellBP)
+void ALCPPCharacter::CastSpell(UClass* SpellBP)
 {
 	ALCPPSpell* Spell = GetWorld()->SpawnActor<ALCPPSpell>(SpellBP, FVector(0), FRotator(0));
 
@@ -121,18 +121,18 @@ void ALearningCPPCharacter::CastSpell(UClass* SpellBP)
 }
 
 
-void ALearningCPPCharacter::MouseRightClicked()
+void ALCPPCharacter::MouseRightClicked()
 {
 	if (bInventoryIsActive)
 	{
 		auto PlayerController = GetWorld()->GetFirstPlayerController();
-		auto HUD = Cast<ALearningCPPHUD>(PlayerController->GetHUD());
+		auto HUD = Cast<ALCPPHUD>(PlayerController->GetHUD());
 		HUD->MouseRightClicked();
 	}
 }
 
 
-void ALearningCPPCharacter::MoveForward(float Amount)
+void ALCPPCharacter::MoveForward(float Amount)
 {
 	if (Controller != nullptr && Amount != 0)
 	{
@@ -142,7 +142,7 @@ void ALearningCPPCharacter::MoveForward(float Amount)
 }
 
 
-void ALearningCPPCharacter::Strafe(float Amount)
+void ALCPPCharacter::Strafe(float Amount)
 {
 	if (Controller != nullptr && Amount != 0)
 	{
@@ -152,12 +152,12 @@ void ALearningCPPCharacter::Strafe(float Amount)
 }
 
 
-void ALearningCPPCharacter::Yaw(float Amount)
+void ALCPPCharacter::Yaw(float Amount)
 {
 	if (bInventoryIsActive)
 	{
 		auto PlayerController = GetWorld()->GetFirstPlayerController();
-		Cast<ALearningCPPHUD>(PlayerController->GetHUD())->MouseMoved();
+		Cast<ALCPPHUD>(PlayerController->GetHUD())->MouseMoved();
 		return;
 	}
 
@@ -170,12 +170,12 @@ void ALearningCPPCharacter::Yaw(float Amount)
 }
 
 
-void ALearningCPPCharacter::Pitch(float Amount)
+void ALCPPCharacter::Pitch(float Amount)
 {
 	if (bInventoryIsActive)
 	{
 		auto PlayerController = GetWorld()->GetFirstPlayerController();
-		Cast<ALearningCPPHUD>(PlayerController->GetHUD())->MouseMoved();
+		Cast<ALCPPHUD>(PlayerController->GetHUD())->MouseMoved();
 		return;
 	}
 

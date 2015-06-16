@@ -3,8 +3,8 @@
 #pragma once
 
 #include "GameFramework/HUD.h"
-#include <LearningCPP/Inventory/LearningCPPWidget.h>
-#include "LearningCPPHUD.generated.h"
+#include <LearningCPP/Inventory/LCPPWidget.h>
+#include "LCPPHUD.generated.h"
 
 
 struct FMessage
@@ -31,7 +31,7 @@ struct FMessage
 
 
 UCLASS()
-class UE4TUTORIALS_API ALearningCPPHUD : public AHUD
+class UE4TUTORIALS_API ALCPPHUD : public AHUD
 {
 	GENERATED_BODY()
 
@@ -39,10 +39,10 @@ class UE4TUTORIALS_API ALearningCPPHUD : public AHUD
 	const float WIDGET_PADDING = 12.0f;
 	
 	TArray<FMessage> Messages;
-	TArray<LearningCPPWidget> Widgets;
+	TArray<LCPPWidget> Widgets;
 
 	FVector2D LastMousePos, Dimensions;
-	LearningCPPWidget* LastTouchedWidget;
+	LCPPWidget* LastTouchedWidget;
 
 
 public:
@@ -75,7 +75,7 @@ public:
 
 	void AddMessage(FMessage Message);
 
-	void AddWidget(LearningCPPWidget Widget);
+	void AddWidget(LCPPWidget Widget);
 
 	void ClearWidgets();
 };

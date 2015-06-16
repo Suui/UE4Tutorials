@@ -1,16 +1,16 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "UE4Tutorials.h"
-#include "LearningCPPPickupItem.h"
-#include <LearningCPP/Character/LearningCPPCharacter.h>
-#include <LearningCPP/GUI/LearningCPPHUD.h>
+#include "LCPPPickupItem.h"
+#include <LearningCPP/Character/LCPPCharacter.h>
+#include <LearningCPP/GUI/LCPPHUD.h>
 
 
 /*----------------------------------------------------------------
 - Initialization -
 ----------------------------------------------------------------*/
 
-ALearningCPPPickupItem::ALearningCPPPickupItem()
+ALCPPPickupItem::ALCPPPickupItem()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -22,7 +22,7 @@ ALearningCPPPickupItem::ALearningCPPPickupItem()
 	ProxSphereComponent->AttachTo(RootComponent);
 
 	StaticMeshComponent->SetSimulatePhysics(true);
-	ProxSphereComponent->OnComponentBeginOverlap.AddDynamic(this, &ALearningCPPPickupItem::Prox);
+	ProxSphereComponent->OnComponentBeginOverlap.AddDynamic(this, &ALCPPPickupItem::Prox);
 
 	Name = "NoName";
 	Quantity = 0;
@@ -33,16 +33,16 @@ ALearningCPPPickupItem::ALearningCPPPickupItem()
 - Public functions -
 ----------------------------------------------------------------*/
 
-void ALearningCPPPickupItem::Prox_Implementation(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void ALCPPPickupItem::Prox_Implementation(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (Cast<ALearningCPPCharacter>(OtherActor) == nullptr) return;
+	if (Cast<ALCPPCharacter>(OtherActor) == nullptr) return;
 
 	// Reference to the character which is the Player Pawn with index 0 in the World (in this case where we only have 1 offline player).
-	ALearningCPPCharacter* Character = Cast<ALearningCPPCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+	ALCPPCharacter* Character = Cast<ALCPPCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 	Character->Pickup(this);
 
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
-	ALearningCPPHUD* PlayerHUD = Cast<ALearningCPPHUD>(PlayerController->GetHUD());
+	ALCPPHUD* PlayerHUD = Cast<ALCPPHUD>(PlayerController->GetHUD());
 	PlayerHUD->AddMessage(FMessage(FString("Picked up ") + FString::FromInt(Quantity) + FString(" " + Name), 5.0f, FColor::White, Icon));
 
 	Destroy();

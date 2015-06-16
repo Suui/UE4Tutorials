@@ -2,7 +2,7 @@
 
 #include "UE4Tutorials.h"
 #include "LCPPMonster.h"
-#include <LearningCPP/Character/LearningCPPCharacter.h>
+#include <LearningCPP/Character/LCPPCharacter.h>
 #include <LearningCPP/Weapons/LCPPMeleeWeapon.h>
 #include <LearningCPP/Projectiles/LCPPBullet.h>
 
@@ -64,31 +64,31 @@ void ALCPPMonster::PostInitializeComponents()
 
 void ALCPPMonster::StartChasing(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (Cast<ALearningCPPCharacter>(OtherActor)) bEnemyInSight = true;
+	if (Cast<ALCPPCharacter>(OtherActor)) bEnemyInSight = true;
 }
 
 
 void ALCPPMonster::StopChasing(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex)
 {
-	if (Cast<ALearningCPPCharacter>(OtherActor)) bEnemyInSight = false;
+	if (Cast<ALCPPCharacter>(OtherActor)) bEnemyInSight = false;
 }
 
 
 void ALCPPMonster::StartAttacking(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (Cast<ALearningCPPCharacter>(OtherActor)) bEnemyInAttackRange = true;
+	if (Cast<ALCPPCharacter>(OtherActor)) bEnemyInAttackRange = true;
 }
 
 
 void ALCPPMonster::StopAttacking(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex)
 {
-	if (Cast<ALearningCPPCharacter>(OtherActor)) bEnemyInAttackRange = false;
+	if (Cast<ALCPPCharacter>(OtherActor)) bEnemyInAttackRange = false;
 }
 
 
 void ALCPPMonster::ChasePlayer(float DeltaTime)
 {
-	ALearningCPPCharacter* PlayerCharacter = Cast<ALearningCPPCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+	ALCPPCharacter* PlayerCharacter = Cast<ALCPPCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 	if (PlayerCharacter == nullptr) return;
 
 	FVector DirectionToPlayer = PlayerCharacter->GetActorLocation() - GetActorLocation();
@@ -140,7 +140,7 @@ void ALCPPMonster::Attack()
 	{
 		FVector NozzleLocation = GetMesh()->GetBoneLocation("RightHandIndex4");
 		NozzleLocation += GetActorForwardVector() * 20;
-		ALearningCPPCharacter* PlayerCharacter = Cast<ALearningCPPCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+		ALCPPCharacter* PlayerCharacter = Cast<ALCPPCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 		if (PlayerCharacter == nullptr) return;
 
 		FVector DirectionToPlayer = PlayerCharacter->GetActorLocation() - NozzleLocation;

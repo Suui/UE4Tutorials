@@ -3,11 +3,11 @@
 #pragma once
 
 #include "GameFramework/Character.h"
-#include "LearningCPPNPC.generated.h"
+#include "LCPPNPC.generated.h"
 
 
 UCLASS()
-class UE4TUTORIALS_API ALearningCPPNPC : public ACharacter
+class UE4TUTORIALS_API ALCPPNPC : public ACharacter
 {
 	GENERATED_BODY()
 
@@ -25,7 +25,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC Properties")
 	FString NpcMessage;
 
-	ALearningCPPNPC();
+	ALCPPNPC();
 
 	UFUNCTION(BlueprintNativeEvent, Category = "Collision")
 	void Prox(AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);

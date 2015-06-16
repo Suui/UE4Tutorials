@@ -3,13 +3,13 @@
 #pragma once
 
 #include "GameFramework/Character.h"
-#include "LearningCPPCharacter.generated.h"
+#include "LCPPCharacter.generated.h"
 
-class ALearningCPPPickupItem;
+class ALCPPPickupItem;
 
 
 UCLASS()
-class UE4TUTORIALS_API ALearningCPPCharacter : public ACharacter
+class UE4TUTORIALS_API ALCPPCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
@@ -43,13 +43,13 @@ private:
 
 public:
 
-	ALearningCPPCharacter();
+	ALCPPCharacter();
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
 	float TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 	
-	void Pickup(ALearningCPPPickupItem* Item);
+	void Pickup(ALCPPPickupItem* Item);
 
 	void CastSpell(UClass* SpellBP);
 
