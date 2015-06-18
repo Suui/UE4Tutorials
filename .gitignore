@@ -15,12 +15,15 @@
 
 
 ### Suui ###
-# Basically ignoring every asset (.uasset || .umap) but Blueprints
-# Ignore StarterContent and Assets (Any StarterContent used in the project should be moved to the Assets)
-Content/Assets/*
-Content/StarterContent/*
 Binaries/*
+Build/*
+Content/*
+Saved/*
+*.sdf
+*.opensdf
+*.suo
 *.user
+
 
 Intermediate/*
 !Intermediate/ProjectFiles/
@@ -28,6 +31,7 @@ Intermediate/*
 Intermediate/ProjectFiles/*
 !Intermediate/ProjectFiles/*.vcxproj
 !Intermediate/ProjectFiles/*.vcxproj.filters
+
 
 
 ### Unreal Tournament gitignore ###
