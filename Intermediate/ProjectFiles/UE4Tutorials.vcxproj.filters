@@ -1,150 +1,154 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <ItemGroup>
-    <None Include="..\..\UE4Tutorials.uproject" />
-    <Filter Include="Source">
-      <UniqueIdentifier>{B987D77F-9089-4D6B-BABB-CA0BBD7643F0}</UniqueIdentifier>
-    </Filter>
-    <None Include="..\..\Source\UE4Tutorials.Target.cs">
-      <Filter>Source</Filter>
-    </None>
-    <None Include="..\..\Source\UE4TutorialsEditor.Target.cs">
-      <Filter>Source</Filter>
-    </None>
-    <Filter Include="Config">
-      <UniqueIdentifier>{48953277-764B-4D15-96D2-48433D66046A}</UniqueIdentifier>
-    </Filter>
-    <None Include="..\..\Config\DefaultEditor.ini">
-      <Filter>Config</Filter>
-    </None>
-    <None Include="..\..\Config\DefaultEngine.ini">
-      <Filter>Config</Filter>
-    </None>
-    <None Include="..\..\Config\DefaultGame.ini">
-      <Filter>Config</Filter>
-    </None>
-    <Filter Include="Source\UE4Tutorials">
-      <UniqueIdentifier>{6C375E66-6E63-4142-B5AE-98B54EB82BBE}</UniqueIdentifier>
-    </Filter>
-    <None Include="..\..\Source\UE4Tutorials\UE4Tutorials.Build.cs">
-      <Filter>Source\UE4Tutorials</Filter>
-    </None>
-    <ClCompile Include="..\..\Source\UE4Tutorials\UE4Tutorials.cpp">
-      <Filter>Source\UE4Tutorials</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\UE4Tutorials\UE4Tutorials.h">
-      <Filter>Source\UE4Tutorials</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\UE4Tutorials\UE4TutorialsGameMode.cpp">
-      <Filter>Source\UE4Tutorials</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\UE4Tutorials\UE4TutorialsGameMode.h">
-      <Filter>Source\UE4Tutorials</Filter>
-    </ClInclude>
-    <Filter Include="Source\UE4Tutorials\Resources">
-      <UniqueIdentifier>{A5AA1AA2-CB02-4D62-A592-D35E01506561}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\UE4Tutorials\Resources\Windows">
-      <UniqueIdentifier>{B5DEF484-5CC3-4474-9825-E4053CA4EC17}</UniqueIdentifier>
-    </Filter>
-    <ResourceCompile Include="..\..\Source\UE4Tutorials\Resources\Windows\UE4Tutorials.rc">
-      <Filter>Source\UE4Tutorials\Resources\Windows</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Source\UE4Tutorials\LearningCPP">
-      <UniqueIdentifier>{712c4639-1f5c-402c-a538-8669cd0f01de}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\UE4Tutorials\LearningCPP\GameRules">
-      <UniqueIdentifier>{7bd3f9c8-fa27-47cf-aa34-51504c20f4c3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\UE4Tutorials\LearningCPP\GUI">
-      <UniqueIdentifier>{40dd4977-8b9e-481e-bd51-c733055a5534}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\UE4Tutorials\LearningCPP\Character">
-      <UniqueIdentifier>{31edf937-7e54-42a5-bf7d-49b6f1a5a7bc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\UE4Tutorials\LearningCPP\ItemPickup">
-      <UniqueIdentifier>{a5247872-6a14-403c-8fe0-7e01144ecc77}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\UE4Tutorials\LearningCPP\Inventory">
-      <UniqueIdentifier>{bcdb181c-b67d-48a5-b0da-37e4f003c38a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\UE4Tutorials\LearningCPP\Mobs">
-      <UniqueIdentifier>{e94eb73b-9620-4b06-9184-201cd71910bc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\UE4Tutorials\LearningCPP\Weapons">
-      <UniqueIdentifier>{3c17ff09-7601-4c58-9fc0-9b1d8aa7ad8b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\UE4Tutorials\LearningCPP\Projectiles">
-      <UniqueIdentifier>{092aaf44-2d54-4d2a-87f8-9ae41d170881}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\UE4Tutorials\LearningCPP\Spells">
-      <UniqueIdentifier>{af98d2cc-0b16-435c-8f00-28e24061ba2d}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Mobs\LCPPMonster.cpp">
-      <Filter>Source\UE4Tutorials\LearningCPP\Mobs</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Weapons\LCPPMeleeWeapon.cpp">
-      <Filter>Source\UE4Tutorials\LearningCPP\Weapons</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Projectiles\LCPPBullet.cpp">
-      <Filter>Source\UE4Tutorials\LearningCPP\Projectiles</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Spells\LCPPSpell.cpp">
-      <Filter>Source\UE4Tutorials\LearningCPP\Spells</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\ItemPickup\LCPPPickupItem.cpp">
-      <Filter>Source\UE4Tutorials\LearningCPP\ItemPickup</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Inventory\LCPPWidget.cpp">
-      <Filter>Source\UE4Tutorials\LearningCPP\Inventory</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\GUI\LCPPHUD.cpp">
-      <Filter>Source\UE4Tutorials\LearningCPP\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\GameRules\LCPPGameMode.cpp">
-      <Filter>Source\UE4Tutorials\LearningCPP\GameRules</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Character\LCPPNPC.cpp">
-      <Filter>Source\UE4Tutorials\LearningCPP\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Character\LCPPCharacter.cpp">
-      <Filter>Source\UE4Tutorials\LearningCPP\Character</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Mobs\LCPPMonster.h">
-      <Filter>Source\UE4Tutorials\LearningCPP\Mobs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Weapons\LCPPMeleeWeapon.h">
-      <Filter>Source\UE4Tutorials\LearningCPP\Weapons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Projectiles\LCPPBullet.h">
-      <Filter>Source\UE4Tutorials\LearningCPP\Projectiles</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Spells\LCPPSpell.h">
-      <Filter>Source\UE4Tutorials\LearningCPP\Spells</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\ItemPickup\LCPPPickupItem.h">
-      <Filter>Source\UE4Tutorials\LearningCPP\ItemPickup</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Inventory\LCPPWidget.h">
-      <Filter>Source\UE4Tutorials\LearningCPP\Inventory</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\GUI\LCPPHUD.h">
-      <Filter>Source\UE4Tutorials\LearningCPP\GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\GameRules\LCPPGameMode.h">
-      <Filter>Source\UE4Tutorials\LearningCPP\GameRules</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Character\LCPPNPC.h">
-      <Filter>Source\UE4Tutorials\LearningCPP\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Character\LCPPCharacter.h">
-      <Filter>Source\UE4Tutorials\LearningCPP\Character</Filter>
-    </ClInclude>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\..\UE4Tutorials.uproject" />
+		<Filter Include="Source">
+			<UniqueIdentifier>{7522CB1B-5C38-4930-8AB6-ECDF63BE5640}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\UE4Tutorials.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<None Include="..\..\Source\UE4TutorialsEditor.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<Filter Include="Config">
+			<UniqueIdentifier>{B7C64750-18CD-4E71-9126-41BEB6FAFB88}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Config\DefaultEditor.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEditorGameAgnostic.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEditorUserSettings.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEngine.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultGame.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultInput.ini">
+			<Filter>Config</Filter>
+		</None >
+		<Filter Include="Source\UE4Tutorials">
+			<UniqueIdentifier>{0F036C91-327D-47FC-A25D-DB5A3E1D360A}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\UE4Tutorials\UE4Tutorials.Build.cs">
+			<Filter>Source\UE4Tutorials</Filter>
+		</None >
+		<ClCompile Include="..\..\Source\UE4Tutorials\UE4Tutorials.cpp">
+			<Filter>Source\UE4Tutorials</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\UE4Tutorials\UE4Tutorials.h">
+			<Filter>Source\UE4Tutorials</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\UE4Tutorials\UE4TutorialsGameMode.cpp">
+			<Filter>Source\UE4Tutorials</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\UE4Tutorials\UE4TutorialsGameMode.h">
+			<Filter>Source\UE4Tutorials</Filter>
+		</ClInclude >
+		<Filter Include="Source\UE4Tutorials\LearningCPP">
+			<UniqueIdentifier>{2679E0AF-73F7-435C-8BE1-FE07CB865CC4}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="Source\UE4Tutorials\LearningCPP\Character">
+			<UniqueIdentifier>{86E1BC78-74EB-4B0B-9287-406CC2AED916}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Character\LCPPCharacter.cpp">
+			<Filter>Source\UE4Tutorials\LearningCPP\Character</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Character\LCPPCharacter.h">
+			<Filter>Source\UE4Tutorials\LearningCPP\Character</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Character\LCPPNPC.cpp">
+			<Filter>Source\UE4Tutorials\LearningCPP\Character</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Character\LCPPNPC.h">
+			<Filter>Source\UE4Tutorials\LearningCPP\Character</Filter>
+		</ClInclude >
+		<Filter Include="Source\UE4Tutorials\LearningCPP\GameRules">
+			<UniqueIdentifier>{1B053455-2743-402C-9A81-392CE34023D9}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\GameRules\LCPPGameMode.cpp">
+			<Filter>Source\UE4Tutorials\LearningCPP\GameRules</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\GameRules\LCPPGameMode.h">
+			<Filter>Source\UE4Tutorials\LearningCPP\GameRules</Filter>
+		</ClInclude >
+		<Filter Include="Source\UE4Tutorials\LearningCPP\GUI">
+			<UniqueIdentifier>{124B12CE-B312-4CE1-8E8B-196EF0F12FA6}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\GUI\LCPPHUD.cpp">
+			<Filter>Source\UE4Tutorials\LearningCPP\GUI</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\GUI\LCPPHUD.h">
+			<Filter>Source\UE4Tutorials\LearningCPP\GUI</Filter>
+		</ClInclude >
+		<Filter Include="Source\UE4Tutorials\LearningCPP\Inventory">
+			<UniqueIdentifier>{3F61897D-2EAA-4FB9-8ACC-30E47D62FD57}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Inventory\LCPPWidget.cpp">
+			<Filter>Source\UE4Tutorials\LearningCPP\Inventory</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Inventory\LCPPWidget.h">
+			<Filter>Source\UE4Tutorials\LearningCPP\Inventory</Filter>
+		</ClInclude >
+		<Filter Include="Source\UE4Tutorials\LearningCPP\ItemPickup">
+			<UniqueIdentifier>{6E861911-9181-4340-9CFD-F5C368968F5C}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\ItemPickup\LCPPPickupItem.cpp">
+			<Filter>Source\UE4Tutorials\LearningCPP\ItemPickup</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\ItemPickup\LCPPPickupItem.h">
+			<Filter>Source\UE4Tutorials\LearningCPP\ItemPickup</Filter>
+		</ClInclude >
+		<Filter Include="Source\UE4Tutorials\LearningCPP\Mobs">
+			<UniqueIdentifier>{E3896248-752D-4D2C-AE8D-C6A36F44373A}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Mobs\LCPPMonster.cpp">
+			<Filter>Source\UE4Tutorials\LearningCPP\Mobs</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Mobs\LCPPMonster.h">
+			<Filter>Source\UE4Tutorials\LearningCPP\Mobs</Filter>
+		</ClInclude >
+		<Filter Include="Source\UE4Tutorials\LearningCPP\Projectiles">
+			<UniqueIdentifier>{8E62D98A-F373-4AF2-AE90-6A266CF2A243}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Projectiles\LCPPBullet.cpp">
+			<Filter>Source\UE4Tutorials\LearningCPP\Projectiles</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Projectiles\LCPPBullet.h">
+			<Filter>Source\UE4Tutorials\LearningCPP\Projectiles</Filter>
+		</ClInclude >
+		<Filter Include="Source\UE4Tutorials\LearningCPP\Spells">
+			<UniqueIdentifier>{96C9B92C-751D-4261-842C-52DD08A78C69}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Spells\LCPPSpell.cpp">
+			<Filter>Source\UE4Tutorials\LearningCPP\Spells</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Spells\LCPPSpell.h">
+			<Filter>Source\UE4Tutorials\LearningCPP\Spells</Filter>
+		</ClInclude >
+		<Filter Include="Source\UE4Tutorials\LearningCPP\Weapons">
+			<UniqueIdentifier>{6D84D494-4F50-4C2B-93B8-7E99FE3BD3D8}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="..\..\Source\UE4Tutorials\LearningCPP\Weapons\LCPPMeleeWeapon.cpp">
+			<Filter>Source\UE4Tutorials\LearningCPP\Weapons</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\UE4Tutorials\LearningCPP\Weapons\LCPPMeleeWeapon.h">
+			<Filter>Source\UE4Tutorials\LearningCPP\Weapons</Filter>
+		</ClInclude >
+		<Filter Include="Source\UE4Tutorials\Resources">
+			<UniqueIdentifier>{B7F24AC1-8BB3-488B-B43B-9DB810F9024B}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="Source\UE4Tutorials\Resources\Windows">
+			<UniqueIdentifier>{1DACC7D2-E35F-4D6D-93AA-9B351F6EB8D9}</UniqueIdentifier>
+		</Filter>
+		<ResourceCompile Include="..\..\Source\UE4Tutorials\Resources\Windows\UE4Tutorials.rc">
+			<Filter>Source\UE4Tutorials\Resources\Windows</Filter>
+		</ResourceCompile >
+	</ItemGroup>
 </Project>
