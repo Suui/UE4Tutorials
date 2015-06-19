@@ -16,13 +16,18 @@
 
 ### Suui ###
 Binaries/*
-Build/*
 Content/*
 Saved/*
 *.sdf
 *.opensdf
 *.suo
 *.user
+
+Build/*
+!Build/Windows/
+
+Build/Windows/*
+!Build/Windows/Application.ico
 
 
 Intermediate/*
