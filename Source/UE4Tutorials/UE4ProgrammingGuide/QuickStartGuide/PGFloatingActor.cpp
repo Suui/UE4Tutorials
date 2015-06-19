@@ -4,25 +4,20 @@
 #include "PGFloatingActor.h"
 
 
-// Sets default values
 APGFloatingActor::APGFloatingActor()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
 }
 
-// Called when the game starts or when spawned
-void APGFloatingActor::BeginPlay()
+
+void APGFloatingActor::Tick(float DeltaTime)
 {
-	Super::BeginPlay();
-	
+	Super::Tick(DeltaTime);
+
+	FVector NewLocation = GetActorLocation();
+	float DeltaHeight = FMath::Sin(RunningTime + DeltaTime) - FMath::Sin(RunningTime);
+
+	NewLocation.Z += DeltaHeight * HeightScale;
+	RunningTime += DeltaTime;
+	SetActorLocation(NewLocation);
 }
-
-// Called every frame
-void APGFloatingActor::Tick( float DeltaTime )
-{
-	Super::Tick( DeltaTime );
-
-}
-

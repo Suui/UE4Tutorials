@@ -5,21 +5,19 @@
 #include "GameFramework/Actor.h"
 #include "PGFloatingActor.generated.h"
 
+
 UCLASS()
 class UE4TUTORIALS_API APGFloatingActor : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
-	// Sets default values for this actor's properties
+
+
+public:
+
+	float RunningTime = 0.f;
+	float HeightScale = 20.f;
+
 	APGFloatingActor();
 
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-	
-	// Called every frame
-	virtual void Tick( float DeltaSeconds ) override;
-
-	
-	
+	void Tick(float DeltaTime) override;
 };
