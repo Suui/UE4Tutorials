@@ -17,7 +17,10 @@ void APGFloatingActor::Tick(float DeltaTime)
 	FVector NewLocation = GetActorLocation();
 	float DeltaHeight = FMath::Sin(RunningTime + DeltaTime) - FMath::Sin(RunningTime);
 
-	NewLocation.Z += DeltaHeight * HeightScale;
+	NewLocation.X += DeltaHeight * MovementMagnitude;
+	NewLocation.Y += DeltaHeight * MovementMagnitude;
+	NewLocation.Z += DeltaHeight * MovementMagnitude;
+
 	RunningTime += DeltaTime;
 	SetActorLocation(NewLocation);
 }

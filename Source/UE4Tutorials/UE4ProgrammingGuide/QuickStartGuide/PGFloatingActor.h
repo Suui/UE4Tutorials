@@ -15,7 +15,17 @@ class UE4TUTORIALS_API APGFloatingActor : public AActor
 public:
 
 	float RunningTime = 0.f;
-	float HeightScale = 20.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FloatingActorProperties)
+	float MovementMagnitude = 20.f;
+
+	/* Minimal random magnitude of the movement applied on the X and Y axis */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FloatingActorProperties)
+	float MinRandomScale = 0.6f;
+
+	/* Maximum random magnitude of the movement applied on the X and Y axis */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FloatingActorProperties)
+	float MaxRandomScale = 1.4f;
 
 	APGFloatingActor();
 
