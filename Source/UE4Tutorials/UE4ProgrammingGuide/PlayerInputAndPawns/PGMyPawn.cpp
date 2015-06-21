@@ -17,8 +17,8 @@ APGMyPawn::APGMyPawn()
 
 	UCameraComponent* OurCamera = CreateDefaultSubobject<UCameraComponent>("Our Camera");
 	OurCamera->AttachTo(RootComponent);
-	OurCamera->SetRelativeLocation(FVector(-250.f, 0.f, 250.f));
-	OurCamera->SetRelativeRotation(FRotator(-45.f, 0.f, 0.f));
+	OurCamera->SetRelativeLocation(FVector(-400.f, 0.f, 320.f));
+	OurCamera->SetRelativeRotation(FRotator(-30.f, 0.f, 0.f));
 
 	OurVisibleComponent = CreateDefaultSubobject<UStaticMeshComponent>("Out Visible Component");
 	OurVisibleComponent->AttachTo(RootComponent);
