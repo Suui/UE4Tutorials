@@ -157,15 +157,24 @@
     <Filter Include="Source\UE4Tutorials\UE4ProgrammingGuide\QuickStartGuide">
       <UniqueIdentifier>{49bdb428-81f8-4d9b-97f5-42f751351aa9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\UE4Tutorials\UE4ProgrammingGuide\PlayerInputAndPawns">
+      <UniqueIdentifier>{fc804251-4637-4967-bc48-965d545bcd15}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\QuickStartGuide\PGFloatingActor.h">
       <Filter>Source\UE4Tutorials\UE4ProgrammingGuide\QuickStartGuide</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\PlayerInputAndPawns\PGMyPawn.h">
+      <Filter>Source\UE4Tutorials\UE4ProgrammingGuide\PlayerInputAndPawns</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\QuickStartGuide\PGFloatingActor.cpp">
       <Filter>Source\UE4Tutorials\UE4ProgrammingGuide\QuickStartGuide</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\PlayerInputAndPawns\PGMyPawn.cpp">
+      <Filter>Source\UE4Tutorials\UE4ProgrammingGuide\PlayerInputAndPawns</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
