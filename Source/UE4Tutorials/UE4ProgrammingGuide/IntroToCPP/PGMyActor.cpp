@@ -4,25 +4,44 @@
 #include "PGMyActor.h"
 
 
-// Sets default values
+/*----------------------------------------------------------------
+- Initialization -
+----------------------------------------------------------------*/
+
 APGMyActor::APGMyActor()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
-
+	TotalDamge = 200;
+	DamageTimeInSeconds = 1.f;
 }
 
-// Called when the game starts or when spawned
-void APGMyActor::BeginPlay()
+
+void APGMyActor::PostInitProperties()
 {
-	Super::BeginPlay();
-	
+	Super::PostInitProperties();
+
+	CalculateValues();
 }
 
-// Called every frame
-void APGMyActor::Tick( float DeltaTime )
+
+/*----------------------------------------------------------------
+- Private functions -
+----------------------------------------------------------------*/
+
+void APGMyActor::CalculateValues()
 {
-	Super::Tick( DeltaTime );
-
+	DamagePerSecond = TotalDamge / DamageTimeInSeconds;
 }
 
+
+/*----------------------------------------------------------------
+- Public functions -
+----------------------------------------------------------------*/
+
+#if WITH_EDITOR
+/* Override */
+void APGMyActor::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
+{
+	CalculateValues();
+	Super::PostEditChangeProperty(PropertyChangedEvent);
+}
+#endif

@@ -9,17 +9,30 @@ UCLASS()
 class UE4TUTORIALS_API APGMyActor : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
-	// Sets default values for this actor's properties
+
+
+public:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Damage")
+	int32 TotalDamge;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Damage")
+	float DamageTimeInSeconds;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Transient, Category = "Damage")
+	float DamagePerSecond;
+
+
+private:
+
+	void CalculateValues();
+
+
+public:
+
 	APGMyActor();
 
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-	
-	// Called every frame
-	virtual void Tick( float DeltaSeconds ) override;
+	void PostInitProperties() override;
 
-	
-	
+	void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
 };
