@@ -17,8 +17,11 @@ class UE4TUTORIALS_API APGMyPawn : public APawn
 
 public:
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = MyPawnProperties)
 	USceneComponent* OurVisibleComponent;
+
+	UPROPERTY(EditAnywhere, Category = MyPawnProperties)
+	float MovementSpeed;
 
 
 private:

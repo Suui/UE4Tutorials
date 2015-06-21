@@ -22,6 +22,8 @@ APGMyPawn::APGMyPawn()
 
 	OurVisibleComponent = CreateDefaultSubobject<UStaticMeshComponent>("Out Visible Component");
 	OurVisibleComponent->AttachTo(RootComponent);
+
+	MovementSpeed = 200.f;
 }
 
 
@@ -31,13 +33,13 @@ APGMyPawn::APGMyPawn()
 
 void APGMyPawn::MoveForward(float AxisValue)
 {
-	CurrentVelocity.X += FMath::Clamp(AxisValue, -1.f, 1.f) * 100.f;
+	CurrentVelocity.X = FMath::Clamp(AxisValue, -1.f, 1.f) * MovementSpeed;
 }
 
 
 void APGMyPawn::Strafe(float AxisValue)
 {
-	CurrentVelocity.Y += FMath::Clamp(AxisValue, -1.f, 1.f) * 100.f;
+	CurrentVelocity.Y = FMath::Clamp(AxisValue, -1.f, 1.f) * MovementSpeed;
 }
 
 
@@ -68,6 +70,7 @@ void APGMyPawn::SetupPlayerInputComponent(UInputComponent* InputComponent)
 }
 
 
+/* Override */
 void APGMyPawn::Tick(float DeltaTime)
 {
 	float CurrentXScale = OurVisibleComponent->GetComponentScale().X;
