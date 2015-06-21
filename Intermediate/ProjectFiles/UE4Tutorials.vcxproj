@@ -66,6 +66,8 @@
     <NsightTegraProjectRevisionNumber>6</NsightTegraProjectRevisionNumber>
   </PropertyGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\UE4Tutorials\UEProgrammingGuide\IntroToCPP\PGMyActor.cpp" />
+    <ClInclude Include="..\..\Source\UE4Tutorials\UEProgrammingGuide\IntroToCPP\PGMyActor.h" />
     <None Include="..\..\UE4Tutorials.uproject" />
     <None Include="..\..\Source\UE4Tutorials.Target.cs" />
     <None Include="..\..\Source\UE4TutorialsEditor.Target.cs" />
