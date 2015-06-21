@@ -16,16 +16,13 @@ public:
 
 	float RunningTime = 0.f;
 
+	/* The magnitude for the movement in the X, Y, Z axis (How large the Sine movement is) */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FloatingActorProperties)
-	float MovementMagnitude = 20.f;
+	FVector MovementMagnitude = FVector(20.f, 20.f, 20.f);
 
-	/* Minimal random magnitude of the movement applied on the X and Y axis */
+	/* The scale for the movement in the X, Y, Z axis (How fast the Sine movement is) */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FloatingActorProperties)
-	float MinRandomScale = 0.6f;
-
-	/* Maximum random magnitude of the movement applied on the X and Y axis */
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = FloatingActorProperties)
-	float MaxRandomScale = 1.4f;
+	FVector MovementScale = FVector(2.2f, 1.4f, 1.f);
 
 	APGFloatingActor();
 
