@@ -23,9 +23,13 @@ public:
 	float DamagePerSecond;
 
 
-private:
+protected:
 
+	UFUNCTION(BlueprintCallable, Category = "Damage")
 	void CalculateValues();
+
+	UFUNCTION(BlueprintNativeEvent, Category = "Damage")
+	void CalledFromCpp();
 
 
 public:

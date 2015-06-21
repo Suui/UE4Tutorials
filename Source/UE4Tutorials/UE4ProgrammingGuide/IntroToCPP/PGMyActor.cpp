@@ -24,12 +24,18 @@ void APGMyActor::PostInitProperties()
 
 
 /*----------------------------------------------------------------
-- Private functions -
+- Protected functions -
 ----------------------------------------------------------------*/
 
 void APGMyActor::CalculateValues()
 {
 	DamagePerSecond = TotalDamge / DamageTimeInSeconds;
+}
+
+
+void APGMyActor::CalledFromCpp_Implementation()
+{
+
 }
 
 
