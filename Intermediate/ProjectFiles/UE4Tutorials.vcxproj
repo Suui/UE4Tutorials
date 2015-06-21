@@ -66,8 +66,6 @@
     <NsightTegraProjectRevisionNumber>6</NsightTegraProjectRevisionNumber>
   </PropertyGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\UE4Tutorials\UEProgrammingGuide\IntroToCPP\PGMyActor.cpp" />
-    <ClInclude Include="..\..\Source\UE4Tutorials\UEProgrammingGuide\IntroToCPP\PGMyActor.h" />
     <None Include="..\..\UE4Tutorials.uproject" />
     <None Include="..\..\Source\UE4Tutorials.Target.cs" />
     <None Include="..\..\Source\UE4TutorialsEditor.Target.cs" />
@@ -78,8 +76,10 @@
     <None Include="..\..\Config\DefaultGame.ini" />
     <None Include="..\..\Config\DefaultInput.ini" />
     <None Include="..\..\Source\UE4Tutorials\UE4Tutorials.Build.cs" />
+    <ClCompile Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\IntroToCPP\PGMyActor.cpp" />
     <ClCompile Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\QuickStartGuide\PGFloatingActor.cpp" />
     <ClCompile Include="..\..\Source\UE4Tutorials\UE4Tutorials.cpp" />
+    <ClInclude Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\IntroToCPP\PGMyActor.h" />
     <ClInclude Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\QuickStartGuide\PGFloatingActor.h" />
     <ClInclude Include="..\..\Source\UE4Tutorials\UE4Tutorials.h" />
     <ClCompile Include="..\..\Source\UE4Tutorials\UE4TutorialsGameMode.cpp" />
