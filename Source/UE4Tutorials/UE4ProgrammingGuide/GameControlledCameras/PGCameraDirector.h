@@ -19,10 +19,10 @@ class UE4TUTORIALS_API APGCameraDirector : public AActor
 
 public:
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	AActor* CameraOne;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	AActor* CameraTwo;
 
 	APGCameraDirector();

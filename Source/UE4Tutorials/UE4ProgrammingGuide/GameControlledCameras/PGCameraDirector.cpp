@@ -2,13 +2,11 @@
 
 #include "UE4Tutorials.h"
 #include "PGCameraDirector.h"
-#include "Kismet/GameplayStatics.h"
 
 
 APGCameraDirector::APGCameraDirector()
 {
 	PrimaryActorTick.bCanEverTick = true;
-
 }
 
 
