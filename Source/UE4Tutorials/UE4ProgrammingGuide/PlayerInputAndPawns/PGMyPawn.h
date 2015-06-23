@@ -11,14 +11,21 @@ class UE4TUTORIALS_API APGMyPawn : public APawn
 {
 	GENERATED_BODY()
 
-	FVector CurrentVelocity;
+	FVector ForwardVelocity;
+	FVector StrafeVelocity;
 	bool bIsGrowing;
 
 
 public:
 
-	UPROPERTY(EditAnywhere, Category = MyPawnProperties)
+	UPROPERTY(VisibleAnywhere, Category = MyPawnProperties)
 	USceneComponent* OurVisibleComponent;
+
+	UPROPERTY(VisibleAnywhere, Category = MyPawnProperties)
+	USpringArmComponent* CameraBoom;
+
+	UPROPERTY(VisibleAnywhere, Category = MyPawnProperties)
+	UCameraComponent* OurCamera;
 
 	UPROPERTY(EditAnywhere, Category = MyPawnProperties)
 	float MovementSpeed;

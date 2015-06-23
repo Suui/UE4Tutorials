@@ -15,13 +15,16 @@ APGMyPawn::APGMyPawn()
 
 	RootComponent = CreateDefaultSubobject<USceneComponent>("RootComponent");
 
-	UCameraComponent* OurCamera = CreateDefaultSubobject<UCameraComponent>("Our Camera");
-	OurCamera->AttachTo(RootComponent);
-	OurCamera->SetRelativeLocation(FVector(-400.f, 0.f, 320.f));
-	OurCamera->SetRelativeRotation(FRotator(-30.f, 0.f, 0.f));
-
 	OurVisibleComponent = CreateDefaultSubobject<UStaticMeshComponent>("Out Visible Component");
 	OurVisibleComponent->AttachTo(RootComponent);
+
+	CameraBoom = CreateDefaultSubobject<USpringArmComponent>("Camera Boom");
+	CameraBoom->AttachTo(RootComponent);
+	CameraBoom->SetRelativeLocation(FVector(0.f, 0.f, 100.f));
+	CameraBoom->SetRelativeRotation(FRotator(0.f, -30.f, 0.f));
+
+	OurCamera = CreateDefaultSubobject<UCameraComponent>("Our Camera");
+	OurCamera->AttachTo(CameraBoom);
 
 	MovementSpeed = 200.f;
 }
@@ -33,13 +36,13 @@ APGMyPawn::APGMyPawn()
 
 void APGMyPawn::MoveForward(float AxisValue)
 {
-	CurrentVelocity.X = FMath::Clamp(AxisValue, -1.f, 1.f) * MovementSpeed;
+	ForwardVelocity = GetActorForwardVector() * FMath::Clamp(AxisValue, -1.f, 1.f) * MovementSpeed;
 }
 
 
 void APGMyPawn::Strafe(float AxisValue)
 {
-	CurrentVelocity.Y = FMath::Clamp(AxisValue, -1.f, 1.f) * MovementSpeed;
+	StrafeVelocity = GetActorRightVector() * FMath::Clamp(AxisValue, -1.f, 1.f) * MovementSpeed;
 }
 
 
@@ -83,9 +86,6 @@ void APGMyPawn::Tick(float DeltaTime)
 	CurrentXScale = FMath::Clamp(CurrentXScale, 1.0f, 2.0f);
 	OurVisibleComponent->SetWorldScale3D(FVector(CurrentXScale));
 
-	if (CurrentVelocity.IsZero() == false)
-	{
-		FVector NewLocation = GetActorLocation() + CurrentVelocity * DeltaTime;
-		SetActorLocation(NewLocation);
-	}
+	if (ForwardVelocity.IsZero() == false || StrafeVelocity.IsZero() == false)
+		SetActorLocation(GetActorLocation() + (ForwardVelocity + StrafeVelocity).GetClampedToMaxSize(MovementSpeed) * DeltaTime);
 }
