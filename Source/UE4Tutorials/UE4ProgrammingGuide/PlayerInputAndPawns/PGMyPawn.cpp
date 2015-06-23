@@ -72,7 +72,12 @@ void APGMyPawn::CheckSpeedIncreasement(float DeltaTime)
 		TimeStrafePressed = 0.f;
 	}
 
-	if (ForwardVelocity.IsZero() && StrafeVelocity.IsZero()) MovementSpeed = 200.f;
+	if (ForwardVelocity.IsZero() && StrafeVelocity.IsZero())
+	{
+		MovementSpeed = 200.f;
+		TimeForwardPressed = 0.f;
+		TimeStrafePressed = 0.f;
+	} 
 }
 
 
