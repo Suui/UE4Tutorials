@@ -5,21 +5,27 @@
 #include "GameFramework/Actor.h"
 #include "PGCameraDirector.generated.h"
 
+
 UCLASS()
 class UE4TUTORIALS_API APGCameraDirector : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
-	// Sets default values for this actor's properties
+
+	float TimeToNextCameraChange;
+
+	const float TIME_BETWEEN_CAMERA_CHANGES = 2.f;
+	const float SMOOTH_BLEND_TIME = 0.75f;
+
+
+public:
+
+	UPROPERTY(EditAnywhere)
+	AActor* CameraOne;
+
+	UPROPERTY(EditAnywhere)
+	AActor* CameraTwo;
+
 	APGCameraDirector();
 
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-	
-	// Called every frame
-	virtual void Tick( float DeltaSeconds ) override;
-
-	
-	
+	void Tick(float DeltaTime) override;
 };

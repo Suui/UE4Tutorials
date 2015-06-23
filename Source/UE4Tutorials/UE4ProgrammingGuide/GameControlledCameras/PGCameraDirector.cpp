@@ -2,27 +2,33 @@
 
 #include "UE4Tutorials.h"
 #include "PGCameraDirector.h"
+#include "Kismet/GameplayStatics.h"
 
 
-// Sets default values
 APGCameraDirector::APGCameraDirector()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 }
 
-// Called when the game starts or when spawned
-void APGCameraDirector::BeginPlay()
+
+void APGCameraDirector::Tick(float DeltaTime)
 {
-	Super::BeginPlay();
-	
+	Super::Tick(DeltaTime);
+
+	TimeToNextCameraChange -= DeltaTime;
+
+	if (TimeToNextCameraChange <= 0.f)
+	{
+		TimeToNextCameraChange += TIME_BETWEEN_CAMERA_CHANGES;
+
+		APlayerController* OurPlayerController = UGameplayStatics::GetPlayerController(this, 0);
+		if (OurPlayerController)
+		{
+			if (OurPlayerController->GetViewTarget() != CameraOne && CameraOne != nullptr)
+				OurPlayerController->SetViewTarget(CameraOne);
+			else if (OurPlayerController->GetViewTarget() != CameraTwo && CameraTwo != nullptr)
+				OurPlayerController->SetViewTargetWithBlend(CameraTwo, SMOOTH_BLEND_TIME);
+		}
+	}
 }
-
-// Called every frame
-void APGCameraDirector::Tick( float DeltaTime )
-{
-	Super::Tick( DeltaTime );
-
-}
-
