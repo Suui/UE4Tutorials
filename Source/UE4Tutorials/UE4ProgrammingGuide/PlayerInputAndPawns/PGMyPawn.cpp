@@ -77,7 +77,14 @@ void APGMyPawn::CheckSpeedIncreasement(float DeltaTime)
 		MovementSpeed = 200.f;
 		TimeForwardPressed = 0.f;
 		TimeStrafePressed = 0.f;
-	} 
+	}
+}
+
+
+void APGMyPawn::TryToGrowInstantly()
+{
+	if (ForwardVelocity.IsZero() == false && TimeForwardPressed < .3f && MovementSpeed == 200.f)
+		OurVisibleComponent->SetWorldScale3D(FVector(2.f, 2.f, 2.f));
 }
 
 
@@ -90,6 +97,7 @@ void APGMyPawn::SetupPlayerInputComponent(UInputComponent* InputComponent)
 {
 	InputComponent->BindAction("Grow", IE_Pressed, this, &APGMyPawn::StartGrowing);
 	InputComponent->BindAction("Grow", IE_Released, this, &APGMyPawn::StopGrowing);
+	InputComponent->BindAction("InstantGrow", IE_Pressed, this, &APGMyPawn::TryToGrowInstantly);
 
 	InputComponent->BindAxis("Forward", this, &APGMyPawn::MoveForward);
 	InputComponent->BindAxis("Strafe", this, &APGMyPawn::Strafe);

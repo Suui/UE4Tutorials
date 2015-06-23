@@ -13,7 +13,7 @@ class UE4TUTORIALS_API APGMyPawn : public APawn
 
 	FVector ForwardVelocity;
 	FVector StrafeVelocity;
-	bool bIsGrowing;
+	bool bIsGrowing = false;
 
 	float TimeForwardPressed = 0.f;
 	float TimeStrafePressed = 0.f;
@@ -45,6 +45,9 @@ private:
 	void StopGrowing();
 
 	void CheckSpeedIncreasement(float DeltaTime);
+
+	void TryToGrowInstantly();
+
 
 public:
 
