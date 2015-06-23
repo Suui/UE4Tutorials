@@ -11,7 +11,6 @@
 APGMyPawn::APGMyPawn()
 {
 	PrimaryActorTick.bCanEverTick = true;
-	AutoPossessPlayer = EAutoReceiveInput::Player0;
 
 	RootComponent = CreateDefaultSubobject<USceneComponent>("RootComponent");
 
