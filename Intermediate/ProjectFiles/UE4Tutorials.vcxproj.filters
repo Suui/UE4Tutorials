@@ -163,6 +163,9 @@
     <Filter Include="Source\UE4Tutorials\UE4ProgrammingGuide\IntroToCPP">
       <UniqueIdentifier>{41382414-9420-4abf-bd56-162467e70d5c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\UE4Tutorials\UE4ProgrammingGuide\GameControlledCameras">
+      <UniqueIdentifier>{876eaa14-30dc-4476-92b2-8e8f70748de5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\QuickStartGuide\PGFloatingActor.h">
@@ -174,6 +177,9 @@
     <ClInclude Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\IntroToCPP\PGMyActor.h">
       <Filter>Source\UE4Tutorials\UE4ProgrammingGuide\IntroToCPP</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\GameControlledCameras\PGCameraDirector.h">
+      <Filter>Source\UE4Tutorials\UE4ProgrammingGuide\GameControlledCameras</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\QuickStartGuide\PGFloatingActor.cpp">
@@ -184,6 +190,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\PlayerInputAndPawns\PGMyPawn.cpp">
       <Filter>Source\UE4Tutorials\UE4ProgrammingGuide\PlayerInputAndPawns</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\GameControlledCameras\PGCameraDirector.cpp">
+      <Filter>Source\UE4Tutorials\UE4ProgrammingGuide\GameControlledCameras</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
