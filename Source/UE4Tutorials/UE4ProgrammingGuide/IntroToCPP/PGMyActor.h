@@ -5,6 +5,7 @@
 #include "GameFramework/Actor.h"
 #include "PGMyActor.generated.h"
 
+
 UCLASS()
 class UE4TUTORIALS_API APGMyActor : public AActor
 {
