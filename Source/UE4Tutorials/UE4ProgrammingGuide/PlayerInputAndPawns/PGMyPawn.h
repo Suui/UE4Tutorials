@@ -15,6 +15,9 @@ class UE4TUTORIALS_API APGMyPawn : public APawn
 	FVector StrafeVelocity;
 	bool bIsGrowing;
 
+	float TimeForwardPressed = 0.f;
+	float TimeStrafePressed = 0.f;
+
 
 public:
 
@@ -27,7 +30,7 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = MyPawnProperties)
 	UCameraComponent* OurCamera;
 
-	UPROPERTY(EditAnywhere, Category = MyPawnProperties)
+	UPROPERTY(VisibleAnywhere, Category = MyPawnProperties)
 	float MovementSpeed;
 
 
@@ -41,6 +44,7 @@ private:
 
 	void StopGrowing();
 
+	void CheckSpeedIncreasement(float DeltaTime);
 
 public:
 

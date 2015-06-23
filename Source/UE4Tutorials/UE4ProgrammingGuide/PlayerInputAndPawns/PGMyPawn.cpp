@@ -57,6 +57,25 @@ void APGMyPawn::StopGrowing()
 }
 
 
+void APGMyPawn::CheckSpeedIncreasement(float DeltaTime)
+{
+	if (ForwardVelocity.IsZero() == false)
+		TimeForwardPressed += DeltaTime;
+
+	if (StrafeVelocity.IsZero() == false)
+		TimeStrafePressed += DeltaTime;
+
+	if (TimeForwardPressed > 1.f || TimeStrafePressed > 1.f)
+	{
+		MovementSpeed = 500.f;
+		TimeForwardPressed = 0.f;
+		TimeStrafePressed = 0.f;
+	}
+
+	if (ForwardVelocity.IsZero() && StrafeVelocity.IsZero()) MovementSpeed = 200.f;
+}
+
+
 /*----------------------------------------------------------------
 - Public functions -
 ----------------------------------------------------------------*/
@@ -87,4 +106,6 @@ void APGMyPawn::Tick(float DeltaTime)
 
 	if (ForwardVelocity.IsZero() == false || StrafeVelocity.IsZero() == false)
 		SetActorLocation(GetActorLocation() + (ForwardVelocity + StrafeVelocity).GetClampedToMaxSize(MovementSpeed) * DeltaTime);
+
+	CheckSpeedIncreasement(DeltaTime);
 }
