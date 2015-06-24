@@ -13,20 +13,17 @@ APGCameraDirector::APGCameraDirector()
 void APGCameraDirector::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	if (Cameras.Num() == 0) return;
 
 	TimeToNextCameraChange -= DeltaTime;
 
-	if (TimeToNextCameraChange <= 0.f)
+	if (TimeToNextCameraChange < 0.f)
 	{
-		TimeToNextCameraChange += TIME_BETWEEN_CAMERA_CHANGES;
-
-		APlayerController* OurPlayerController = UGameplayStatics::GetPlayerController(this, 0);
-		if (OurPlayerController)
-		{
-			if (OurPlayerController->GetViewTarget() != CameraOne && CameraOne != nullptr)
-				OurPlayerController->SetViewTarget(CameraOne);
-			else if (OurPlayerController->GetViewTarget() != CameraTwo && CameraTwo != nullptr)
-				OurPlayerController->SetViewTargetWithBlend(CameraTwo, SMOOTH_BLEND_TIME);
-		}
+		Index = (Index + 1) % Cameras.Num();
+		TimeToNextCameraChange = Cameras[Index].TimeBeforeChangingToNextCamera;
+		APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+		
+		if (PlayerController && Cameras[Index].Camera != nullptr)
+			PlayerController->SetViewTargetWithBlend(Cameras[Index].Camera, Cameras[Index].SmoothBlendTime);
 	}
 }
