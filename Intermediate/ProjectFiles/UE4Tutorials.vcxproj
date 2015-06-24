@@ -76,10 +76,12 @@
     <None Include="..\..\Config\DefaultGame.ini" />
     <None Include="..\..\Config\DefaultInput.ini" />
     <None Include="..\..\Source\UE4Tutorials\UE4Tutorials.Build.cs" />
+    <ClCompile Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\GameControlledCameras\PGCameraDirector.cpp" />
     <ClCompile Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\PlayerInputAndPawns\PGMyPawn.cpp" />
     <ClCompile Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\IntroToCPP\PGMyActor.cpp" />
     <ClCompile Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\QuickStartGuide\PGFloatingActor.cpp" />
     <ClCompile Include="..\..\Source\UE4Tutorials\UE4Tutorials.cpp" />
+    <ClInclude Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\GameControlledCameras\PGCameraDirector.h" />
     <ClInclude Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\PlayerInputAndPawns\PGMyPawn.h" />
     <ClInclude Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\IntroToCPP\PGMyActor.h" />
     <ClInclude Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\QuickStartGuide\PGFloatingActor.h" />
