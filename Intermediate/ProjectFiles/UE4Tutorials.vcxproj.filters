@@ -166,6 +166,9 @@
     <Filter Include="Source\UE4Tutorials\UE4ProgrammingGuide\GameControlledCameras">
       <UniqueIdentifier>{876eaa14-30dc-4476-92b2-8e8f70748de5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\UE4Tutorials\UE4ProgrammingGuide\VariablesTimersAndEvents">
+      <UniqueIdentifier>{2714aa44-cf7f-4937-8c24-637a17503959}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\QuickStartGuide\PGFloatingActor.h">
@@ -180,6 +183,9 @@
     <ClInclude Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\GameControlledCameras\PGCameraDirector.h">
       <Filter>Source\UE4Tutorials\UE4ProgrammingGuide\GameControlledCameras</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\VariablesTimersAndEvents\PGCountdown.h">
+      <Filter>Source\UE4Tutorials\UE4ProgrammingGuide\VariablesTimersAndEvents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\QuickStartGuide\PGFloatingActor.cpp">
@@ -193,6 +199,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\GameControlledCameras\PGCameraDirector.cpp">
       <Filter>Source\UE4Tutorials\UE4ProgrammingGuide\GameControlledCameras</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\VariablesTimersAndEvents\PGCountdown.cpp">
+      <Filter>Source\UE4Tutorials\UE4ProgrammingGuide\VariablesTimersAndEvents</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
