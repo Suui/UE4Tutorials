@@ -10,9 +10,16 @@ class UE4TUTORIALS_API APGRotatingActor : public AActor
 {
 	GENERATED_BODY()
 
+	UPROPERTY()
+	AActor* TargetActor;
+
+	FVector TargetVector;
+	FVector OriginalLocation;
 	FTimerHandle MovingWithBlendHandle, RotatingAroundActorHandle;
+
 	float TimerElapsed = 0.f;
 	float TimerTicksLeft = 0.f;
+	const float TIMER_RATE = 0.02f;
 
 
 public:
@@ -22,9 +29,6 @@ public:
 
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = RotatingActorProperties)
 	UStaticMeshComponent* Mesh;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = RotatingActorProperties)
-	AActor* TargetActor;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = RotatingActorProperties)
 	float DistanceToTargetTolerance;
@@ -41,15 +45,23 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = RotatingActorProperties)
 	float RotationSpeed;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = RotatingActorProperties)
+	float TimeToRotate;
+
 
 private:
 
 	UFUNCTION(BlueprintCallable, Category = RotatingActorFunctions)
-	void MoveToTargetWithBlend();
+	void MoveToActorWithBlend(AActor* Target);
 
-	void ComputeNewLocation();
+	UFUNCTION(BlueprintCallable, Category = RotatingActorFunctions)
+	void MoveToTargetWithBlend(FVector Target);
 
-	void StartRotatingAroundTarget();
+	void ComputeLocationToActor();
+
+	void ComputeLocationToTarget();
+
+	void RotateAroundActor();
 
 
 public:
