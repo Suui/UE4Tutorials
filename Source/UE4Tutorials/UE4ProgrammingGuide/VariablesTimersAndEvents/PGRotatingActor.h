@@ -10,8 +10,9 @@ class UE4TUTORIALS_API APGRotatingActor : public AActor
 {
 	GENERATED_BODY()
 
-	FTimerHandle MovingWithBlendHandle;
+	FTimerHandle MovingWithBlendHandle, RotatingAroundActorHandle;
 	float TimerElapsed = 0.f;
+	float TimerTicksLeft = 0.f;
 
 
 public:
@@ -36,6 +37,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = RotatingActorProperties)
 	float RotationDistance;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = RotatingActorProperties)
+	float RotationSpeed;
 
 
 private:
