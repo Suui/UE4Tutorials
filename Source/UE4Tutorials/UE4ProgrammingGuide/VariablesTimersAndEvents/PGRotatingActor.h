@@ -11,6 +11,7 @@ class UE4TUTORIALS_API APGRotatingActor : public AActor
 	GENERATED_BODY()
 
 	FTimerHandle MovingWithBlendHandle;
+	float TimerElapsed = 0.f;
 
 
 public:
@@ -39,9 +40,12 @@ public:
 
 private:
 
+	UFUNCTION(BlueprintCallable, Category = RotatingActorFunctions)
 	void MoveToTargetWithBlend();
 
 	void ComputeNewLocation();
+
+	void StartRotatingAroundTarget();
 
 
 public:
