@@ -51,12 +51,6 @@ public:
 
 private:
 
-	UFUNCTION(BlueprintCallable, Category = RotatingActorFunctions)
-	void MoveToActorWithBlend(AActor* Target);
-
-	UFUNCTION(BlueprintCallable, Category = RotatingActorFunctions)
-	void MoveToTargetWithBlend(FVector Target);
-
 	void ComputeLocationToActor();
 
 	void ComputeLocationToTarget();
@@ -67,4 +61,10 @@ private:
 public:
 
 	APGRotatingActor();
+
+	UFUNCTION(BlueprintCallable, Category = RotatingActorFunctions)
+	void MoveToActorWithBlend(AActor* Target);
+
+	UFUNCTION(BlueprintCallable, Category = RotatingActorFunctions)
+	void MoveToTargetWithBlend(FVector Target);
 };

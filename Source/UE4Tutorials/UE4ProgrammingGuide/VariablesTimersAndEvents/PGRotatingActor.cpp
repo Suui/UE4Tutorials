@@ -30,29 +30,6 @@ APGRotatingActor::APGRotatingActor()
 - Private functions -
 ----------------------------------------------------------------*/
 
-void APGRotatingActor::MoveToActorWithBlend(AActor* Target)
-{
-	if ((Target->GetActorLocation() - GetActorLocation()).Size() > DistanceToTargetTolerance) return;
-
-	OriginalLocation = GetActorLocation();
-	TargetActor = Target;
-	TimerTicksLeft = BlendTime / TIMER_RATE;
-
-	GetWorldTimerManager().SetTimer(MovingWithBlendHandle, this, &APGRotatingActor::ComputeLocationToActor, TIMER_RATE, true);
-}
-
-
-void APGRotatingActor::MoveToTargetWithBlend(FVector Target)
-{
-	if ((Target - GetActorLocation()).Size() > DistanceToTargetTolerance) return;
-
-	TargetVector = Target;
-	TimerTicksLeft = BlendTime / TIMER_RATE;
-
-	GetWorldTimerManager().SetTimer(MovingWithBlendHandle, this, &APGRotatingActor::ComputeLocationToTarget, TIMER_RATE, true);
-}
-
-
 void APGRotatingActor::ComputeLocationToActor()
 {
 	FVector TargetLocation = TargetActor->GetActorLocation() + TargetActor->GetActorForwardVector() * RotationDistance + TargetActor->GetActorUpVector() * RotationAltitude;
@@ -101,4 +78,31 @@ void APGRotatingActor::RotateAroundActor()
 		GetWorldTimerManager().ClearTimer(RotatingAroundActorHandle);
 		MoveToTargetWithBlend(OriginalLocation);
 	}
+}
+
+
+/*----------------------------------------------------------------
+- Public functions -
+----------------------------------------------------------------*/
+
+void APGRotatingActor::MoveToActorWithBlend(AActor* Target)
+{
+	if ((Target->GetActorLocation() - GetActorLocation()).Size() > DistanceToTargetTolerance) return;
+
+	OriginalLocation = GetActorLocation();
+	TargetActor = Target;
+	TimerTicksLeft = BlendTime / TIMER_RATE;
+
+	GetWorldTimerManager().SetTimer(MovingWithBlendHandle, this, &APGRotatingActor::ComputeLocationToActor, TIMER_RATE, true);
+}
+
+
+void APGRotatingActor::MoveToTargetWithBlend(FVector Target)
+{
+	if ((Target - GetActorLocation()).Size() > DistanceToTargetTolerance) return;
+
+	TargetVector = Target;
+	TimerTicksLeft = BlendTime / TIMER_RATE;
+
+	GetWorldTimerManager().SetTimer(MovingWithBlendHandle, this, &APGRotatingActor::ComputeLocationToTarget, TIMER_RATE, true);
 }
