@@ -11,6 +11,10 @@ class UE4TUTORIALS_API APGPawnWithCamera : public APawn
 {
 	GENERATED_BODY()
 
+	FVector2D MovementInput, CameraInput;
+	float ZoomFactor;
+	bool bZoomingIn;
+
 
 protected:
 
@@ -18,6 +22,18 @@ protected:
 	USpringArmComponent* OurCameraSpringarm;
 
 	UCameraComponent* OurCamera;
+
+	void MoveForward(float AxisValue);
+
+	void MoveRight(float AxisValue);
+
+	void PitchCamera(float AxisValue);
+
+	void YawCamera(float AxisValue);
+
+	void ZoomIn();
+
+	void ZoomOut();
 
 
 public:
