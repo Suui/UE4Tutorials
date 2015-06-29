@@ -4,6 +4,10 @@
 #include "PGPawnWithCamera.h"
 
 
+/*----------------------------------------------------------------
+- Initialization -
+----------------------------------------------------------------*/
+
 
 APGPawnWithCamera::APGPawnWithCamera()
 {
@@ -20,12 +24,31 @@ APGPawnWithCamera::APGPawnWithCamera()
 
 	OurCamera = CreateDefaultSubobject<UCameraComponent>("Game Camera");
 	OurCamera->AttachTo(OurCameraSpringarm, USpringArmComponent::SocketName);
+
+	WalkingSpeed = 200.f;
+	RunningSpeed = 350.f;
+	MovementSpeed = WalkingSpeed;
+}
+
+
+/* Override */
+void APGPawnWithCamera::PostInitProperties()
+{
+	Super::PostInitProperties();
+
+	CalculateMovementSpeed();
 }
 
 
 /*----------------------------------------------------------------
 - Protected functions -
 ----------------------------------------------------------------*/
+
+void APGPawnWithCamera::CalculateMovementSpeed()
+{
+	MovementSpeed = WalkingSpeed;
+}
+
 
 void APGPawnWithCamera::MoveForward(float AxisValue)
 {
@@ -63,6 +86,23 @@ void APGPawnWithCamera::ZoomOut()
 }
 
 
+void APGPawnWithCamera::Run()
+{
+	MovementSpeed = RunningSpeed;
+}
+
+
+void APGPawnWithCamera::StopRunning()
+{
+	MovementSpeed = WalkingSpeed;
+}
+
+
+/*----------------------------------------------------------------
+- Public functions -
+----------------------------------------------------------------*/
+
+/* Override */
 void APGPawnWithCamera::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -87,7 +127,7 @@ void APGPawnWithCamera::Tick(float DeltaTime)
 
 	if (MovementInput.IsZero() == false)
 	{
-		MovementInput = MovementInput.GetSafeNormal() * 100.f;
+		MovementInput = MovementInput.GetSafeNormal() * MovementSpeed;
 		SetActorLocation(GetActorLocation()
 						+ GetActorForwardVector() * MovementInput.X * DeltaTime
 						+ GetActorRightVector() * MovementInput.Y * DeltaTime);
@@ -95,15 +135,29 @@ void APGPawnWithCamera::Tick(float DeltaTime)
 }
 
 
+/* Override */
 void APGPawnWithCamera::SetupPlayerInputComponent(class UInputComponent* InputComponent)
 {
 	Super::SetupPlayerInputComponent(InputComponent);
 
 	InputComponent->BindAction("ZoomIn", IE_Pressed, this, &APGPawnWithCamera::ZoomIn);
 	InputComponent->BindAction("ZoomIn", IE_Released, this, &APGPawnWithCamera::ZoomOut);
+	InputComponent->BindAction("Run", IE_Pressed, this, &APGPawnWithCamera::Run);
+	InputComponent->BindAction("Run", IE_Released, this, &APGPawnWithCamera::StopRunning);
+
 	
 	InputComponent->BindAxis("Forward", this, &APGPawnWithCamera::MoveForward);
 	InputComponent->BindAxis("Strafe", this, &APGPawnWithCamera::MoveRight);
 	InputComponent->BindAxis("Pitch", this, &APGPawnWithCamera::PitchCamera);
 	InputComponent->BindAxis("Yaw", this, &APGPawnWithCamera::YawCamera);
 }
+
+
+#if WITH_EDITOR
+/* Override */
+void APGPawnWithCamera::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
+{
+	CalculateMovementSpeed();
+	Super::PostEditChangeProperty(PropertyChangedEvent);
+}
+#endif
