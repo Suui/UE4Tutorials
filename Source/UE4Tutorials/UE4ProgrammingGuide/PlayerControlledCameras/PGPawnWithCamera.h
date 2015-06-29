@@ -12,6 +12,7 @@ class UE4TUTORIALS_API APGPawnWithCamera : public APawn
 	GENERATED_BODY()
 
 	FVector2D MovementInput, CameraInput;
+	FVector CameraMotion;
 
 	float ZoomFactor;
 	bool bZoomingIn, bIsRunning;
@@ -28,13 +29,19 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = "PawnWithCamera Properties")
 	float MovementSpeed;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PawnWithCamera Properties")
+	float CameraMotionFactor;
+
 
 protected:
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere)
 	USpringArmComponent* OurCameraSpringarm;
 
 	UCameraComponent* OurCamera;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PawnWithCamera Properties")
+	UCurveVector* CameraMotionCurve;
 
 	void CalculateMovementSpeed();
 

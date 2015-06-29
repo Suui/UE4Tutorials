@@ -28,6 +28,7 @@ APGPawnWithCamera::APGPawnWithCamera()
 	WalkingSpeed = 200.f;
 	RunningSpeed = 350.f;
 	MovementSpeed = WalkingSpeed;
+	CameraMotionFactor = 0.1f;
 }
 
 
@@ -117,12 +118,14 @@ void APGPawnWithCamera::Tick(float DeltaTime)
 	OurCamera->FieldOfView = FMath::Lerp<float>(90.f, 60.f, ZoomFactor);
 	OurCameraSpringarm->TargetArmLength = FMath::Lerp<float>(400.f, 300.f, ZoomFactor);
 
+	CameraMotion = CameraMotionCurve->GetVectorValue(FMath::Fmod(UGameplayStatics::GetRealTimeSeconds(GetWorld()), 10.f));
+
 	FRotator NewRotation = GetActorRotation();
-	NewRotation.Yaw += CameraInput.X;
+	NewRotation.Yaw += CameraInput.X + CameraMotion.X * CameraMotionFactor;
 	SetActorRotation(NewRotation);
 
 	NewRotation = OurCameraSpringarm->GetComponentRotation();
-	NewRotation.Pitch = FMath::Clamp(NewRotation.Pitch + CameraInput.Y, -80.f, -15.f);
+	NewRotation.Pitch = FMath::Clamp(NewRotation.Pitch + CameraInput.Y + CameraMotion.Y * CameraMotionFactor, -85.f, 85.f);
 	OurCameraSpringarm->SetWorldRotation(NewRotation);
 
 	if (MovementInput.IsZero() == false)
