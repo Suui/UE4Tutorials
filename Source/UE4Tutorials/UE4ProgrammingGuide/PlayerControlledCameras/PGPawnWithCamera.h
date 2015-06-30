@@ -15,7 +15,7 @@ class UE4TUTORIALS_API APGPawnWithCamera : public APawn
 	FVector CameraMotion;
 
 	float ZoomFactor;
-	bool bZoomingIn, bIsRunning;
+	bool bZoomingIn;
 
 
 public:
@@ -72,7 +72,7 @@ public:
 
 	void PostInitProperties() override;
 
-	virtual void Tick( float DeltaSeconds ) override;
+	virtual void Tick(float DeltaTime) override;
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 

@@ -28,6 +28,10 @@ APGPawnWithCamera::APGPawnWithCamera()
 	OurCamera = CreateDefaultSubobject<UCameraComponent>("Game Camera");
 	OurCamera->AttachTo(OurCameraSpringarm);
 
+	static ConstructorHelpers::FObjectFinder<UCurveVector> CurveAsset(TEXT("/Game/UE4ProgrammingGuide/CU_CameraMotion.CU_CameraMotion"));
+	if (CurveAsset.Succeeded())
+		CameraMotionCurve = CurveAsset.Object;
+
 	WalkingSpeed = 200.f;
 	RunningSpeed = 350.f;
 	MovementSpeed = WalkingSpeed;
@@ -56,13 +60,13 @@ void APGPawnWithCamera::CalculateMovementSpeed()
 
 void APGPawnWithCamera::MoveForward(float AxisValue)
 {
-	MovementInput.X = FMath::Clamp<float>(AxisValue, -1.f, 1.f);
+	MovementInput.X = FMath::Clamp(AxisValue, -1.f, 1.f);
 }
 
 
 void APGPawnWithCamera::MoveRight(float AxisValue)
 {
-	MovementInput.Y = FMath::Clamp<float>(AxisValue, -1.f, 1.f);
+	MovementInput.Y = FMath::Clamp(AxisValue, -1.f, 1.f);
 }
 
 
@@ -116,12 +120,13 @@ void APGPawnWithCamera::Tick(float DeltaTime)
 	else
 		ZoomFactor -= DeltaTime / 0.25f;
 
-	ZoomFactor = FMath::Clamp<float>(ZoomFactor, 0.f, 1.f);
+	ZoomFactor = FMath::Clamp(ZoomFactor, 0.f, 1.f);
 
-	OurCamera->FieldOfView = FMath::Lerp<float>(90.f, 60.f, ZoomFactor);
-	OurCameraSpringarm->TargetArmLength = FMath::Lerp<float>(400.f, 300.f, ZoomFactor);
+	OurCamera->FieldOfView = FMath::Lerp(90.f, 60.f, ZoomFactor);
+	OurCameraSpringarm->TargetArmLength = FMath::Lerp(400.f, 300.f, ZoomFactor);
 
-	CameraMotion = CameraMotionCurve->GetVectorValue(FMath::Fmod(UGameplayStatics::GetRealTimeSeconds(GetWorld()), 10.f));
+	if (CameraMotionCurve != nullptr)
+		CameraMotion = CameraMotionCurve->GetVectorValue(FMath::Fmod(UGameplayStatics::GetRealTimeSeconds(GetWorld()), 10.f));
 
 	FRotator NewRotation = GetActorRotation();
 	NewRotation.Yaw += CameraInput.X + CameraMotion.X * CameraMotionFactor;
@@ -151,7 +156,6 @@ void APGPawnWithCamera::SetupPlayerInputComponent(class UInputComponent* InputCo
 	InputComponent->BindAction("Run", IE_Pressed, this, &APGPawnWithCamera::Run);
 	InputComponent->BindAction("Run", IE_Released, this, &APGPawnWithCamera::StopRunning);
 
-	
 	InputComponent->BindAxis("Forward", this, &APGPawnWithCamera::MoveForward);
 	InputComponent->BindAxis("Strafe", this, &APGPawnWithCamera::MoveRight);
 	InputComponent->BindAxis("Pitch", this, &APGPawnWithCamera::PitchCamera);
