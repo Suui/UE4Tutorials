@@ -15,6 +15,9 @@ APGPawnWithCamera::APGPawnWithCamera()
 
 	RootComponent = CreateDefaultSubobject<USceneComponent>("Root Component");
 
+	Mesh = CreateDefaultSubobject<UStaticMeshComponent>("Mesh");
+	Mesh->AttachTo(RootComponent);
+
 	OurCameraSpringarm = CreateDefaultSubobject<USpringArmComponent>("Camera Spring Arm");
 	OurCameraSpringarm->AttachTo(RootComponent);
 	OurCameraSpringarm->SetRelativeLocationAndRotation(FVector(0.f, 0.f, 50.f), FRotator(-60.f, 0.f, 0.f));
@@ -23,7 +26,7 @@ APGPawnWithCamera::APGPawnWithCamera()
 	OurCameraSpringarm->CameraLagSpeed = 3.f;
 
 	OurCamera = CreateDefaultSubobject<UCameraComponent>("Game Camera");
-	OurCamera->AttachTo(OurCameraSpringarm, USpringArmComponent::SocketName);
+	OurCamera->AttachTo(OurCameraSpringarm);
 
 	WalkingSpeed = 200.f;
 	RunningSpeed = 350.f;

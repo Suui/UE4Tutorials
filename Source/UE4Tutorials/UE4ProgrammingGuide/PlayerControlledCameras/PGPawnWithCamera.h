@@ -35,10 +35,14 @@ public:
 
 protected:
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, Category = "PawnWithCamera Properties")
 	USpringArmComponent* OurCameraSpringarm;
 
+	UPROPERTY(VisibleAnywhere, Category = "PawnWithCamera Properties")
 	UCameraComponent* OurCamera;
+
+	UPROPERTY(VisibleAnywhere, Category = "PawnWithCamera Properties")
+	UStaticMeshComponent* Mesh;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PawnWithCamera Properties")
 	UCurveVector* CameraMotionCurve;
