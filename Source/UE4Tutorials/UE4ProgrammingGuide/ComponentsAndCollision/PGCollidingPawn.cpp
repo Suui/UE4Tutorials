@@ -73,7 +73,7 @@ void APGCollidingPawn::MoveRight(float AxisValue)
 
 void APGCollidingPawn::Turn(float AxisValue)
 {
-	SetActorRotation(GetActorRotation() + FRotator(AxisValue, 0.f, 0.f));
+	SetActorRotation(GetActorRotation() + FRotator(0.f, AxisValue, 0.f));
 }
 
 
