@@ -222,6 +222,9 @@
     <ClInclude Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\ComponentsAndCollision\PGCollidingPawnMovementComponent.h">
       <Filter>Source\UE4Tutorials\UE4ProgrammingGuide\ComponentsAndCollision</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\ComponentsAndCollision\PGRotatingMeshComponent.h">
+      <Filter>Source\UE4Tutorials\UE4ProgrammingGuide\ComponentsAndCollision</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\PlayerControlledCameras\PGPawnWithCamera.cpp">
@@ -231,6 +234,9 @@
       <Filter>Source\UE4Tutorials\UE4ProgrammingGuide\ComponentsAndCollision</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\ComponentsAndCollision\PGCollidingPawnMovementComponent.cpp">
+      <Filter>Source\UE4Tutorials\UE4ProgrammingGuide\ComponentsAndCollision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\ComponentsAndCollision\PGRotatingMeshComponent.cpp">
       <Filter>Source\UE4Tutorials\UE4ProgrammingGuide\ComponentsAndCollision</Filter>
     </ClCompile>
   </ItemGroup>
