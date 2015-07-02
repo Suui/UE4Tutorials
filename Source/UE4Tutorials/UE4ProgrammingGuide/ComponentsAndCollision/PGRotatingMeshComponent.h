@@ -14,7 +14,11 @@ class UE4TUTORIALS_API UPGRotatingMeshComponent : public UStaticMeshComponent
 	GENERATED_BODY()
 
 
+
 public:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Rotation Mesh Component Properties")
+	FVector RotationCenterOffset;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Rotation Mesh Component Properties")
 	FVector LocationOffset;

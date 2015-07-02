@@ -10,6 +10,7 @@ UPGRotatingMeshComponent::UPGRotatingMeshComponent()
 	PrimaryComponentTick.bCanEverTick = true;
 	bAutoActivate = true;
 
+	RotationCenterOffset = FVector(0.f, 0.f, 0.f);
 	LocationOffset = FVector(0.f, 0.f, 0.f);
 	RotationOffset = FRotator(0.f, 0.f, 0.f);
 
@@ -22,10 +23,24 @@ void UPGRotatingMeshComponent::TickComponent(float DeltaTime, ELevelTick TickTyp
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	FVector RotationCenter = AttachParent->GetComponentLocation() + LocationOffset;
+//	FVector ParentLocation = AttachParent->GetRelativeTransform().GetLocation();
+//
+//	FVector RotationCenter = ParentLocation + RotationCenterOffset;
+//	if (GEngine) GEngine->AddOnScreenDebugMessage(0, 2.f, FColor::Magenta, RotationCenter.ToString());
+//
+//	FVector RotatingMeshLocation = RotationCenter + LocationOffset;
+//	if (GEngine) GEngine->AddOnScreenDebugMessage(1, 2.f, FColor::Magenta, RotatingMeshLocation.ToString());
+//
+//	FVector Test = RotatingMeshLocation - RotationCenter;
+//	if (GEngine) GEngine->AddOnScreenDebugMessage(2, 2.f, FColor::Magenta, Test.ToString());
+//
+//	FVector Displacement = Test.RotateAngleAxis(RotationSpeed * DeltaTime, AttachParent->GetUpVector());
+//	SetRelativeLocation(RotationCenter + Displacement);
+
+
 //	SetWorldRotation(UKismetMathLibrary::FindLookAtRotation(GetComponentLocation(), RotationCenter) + RotationOffset);
 
-	FVector RightDisplacement = GetComponentLocation() + GetRightVector() * RotationSpeed;
-	FVector DisplacedLocation = (RotationCenter - RightDisplacement).GetClampedToSize(RotationAmplitude, RotationAmplitude);
-	SetWorldLocation(RotationCenter - DisplacedLocation);
+//	FVector RightDisplacement = GetComponentLocation() + GetRightVector() * RotationSpeed;
+//	FVector DisplacedLocation = (RotationCenter - RightDisplacement).GetClampedToSize(RotationAmplitude, RotationAmplitude);
+//	SetWorldLocation(RotationCenter - DisplacedLocation);
 }
