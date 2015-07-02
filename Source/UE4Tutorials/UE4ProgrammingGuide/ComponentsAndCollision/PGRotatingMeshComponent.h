@@ -13,6 +13,7 @@ class UE4TUTORIALS_API UPGRotatingMeshComponent : public UStaticMeshComponent
 {
 	GENERATED_BODY()
 
+	FVector RotationCenter, RotationAxis;
 
 
 public:
@@ -34,6 +35,8 @@ public:
 	float RotationAmplitude;
 
 	UPGRotatingMeshComponent();
+
+	void BeginPlay() override;
 
 	void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 };
