@@ -12,18 +12,10 @@ UPGRotatingMeshComponent::UPGRotatingMeshComponent()
 
 	RotationCenterOffset = FVector(0.f, 0.f, 0.f);
 	LocationOffset = FVector(0.f, 0.f, 0.f);
+	RotationOffset = FRotator(0.f, 0.f, 0.f);
 
 	RotationSpeed = 90.f;
-}
-
-
-/* Override */
-void UPGRotatingMeshComponent::BeginPlay()
-{
-	RotationCenter = AttachParent->GetRelativeTransform().GetLocation() + RotationCenterOffset;
-
-	// Gets the UpVector for the created Rotator which orients X along the LocationOffset direction
-	RotationAxis = UKismetMathLibrary::GetUpVector(UKismetMathLibrary::Conv_VectorToRotator(LocationOffset));
+	bFaceRotationPoint = false;
 }
 
 
@@ -32,6 +24,14 @@ void UPGRotatingMeshComponent::TickComponent(float DeltaTime, ELevelTick TickTyp
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
+	RotationCenter = AttachParent->GetComponentLocation() + RotationCenterOffset;
+
+	// Gets the UpVector for the created Rotator which orients X along the LocationOffset direction
+	RotationAxis = UKismetMathLibrary::GetUpVector(UKismetMathLibrary::Conv_VectorToRotator(LocationOffset));
+
 	LocationOffset = UKismetMathLibrary::RotateAngleAxis(LocationOffset, RotationSpeed * DeltaTime, RotationAxis);
-	SetRelativeLocation(RotationCenter + LocationOffset);
+	SetWorldLocation(RotationCenter + LocationOffset);
+
+	if (bFaceRotationPoint)
+		SetWorldRotation(UKismetMathLibrary::FindLookAtRotation(RotationCenter + LocationOffset, RotationCenter) + RotationOffset);
 }
