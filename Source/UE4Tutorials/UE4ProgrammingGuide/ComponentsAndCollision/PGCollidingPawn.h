@@ -16,8 +16,10 @@ class UE4TUTORIALS_API APGCollidingPawn : public APawn
 
 protected:
 
+	UPROPERTY()
 	UParticleSystemComponent* OurParticleSystem;
 
+	UPROPERTY()
 	UPGCollidingPawnMovementComponent* OurMovementComponent;
 
 	void MoveForward(float AxisValue);

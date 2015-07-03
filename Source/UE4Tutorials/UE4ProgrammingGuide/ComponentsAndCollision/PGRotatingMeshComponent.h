@@ -5,10 +5,8 @@
 #include "Components/StaticMeshComponent.h"
 #include "PGRotatingMeshComponent.generated.h"
 
-/**
- * 
- */
-UCLASS(ClassGroup=(Suui), meta=(BlueprintSpawnableComponent))
+
+UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class UE4TUTORIALS_API UPGRotatingMeshComponent : public UStaticMeshComponent
 {
 	GENERATED_BODY()

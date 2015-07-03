@@ -15,6 +15,7 @@ APGMyActor::APGMyActor()
 }
 
 
+/* Override */
 void APGMyActor::PostInitProperties()
 {
 	Super::PostInitProperties();

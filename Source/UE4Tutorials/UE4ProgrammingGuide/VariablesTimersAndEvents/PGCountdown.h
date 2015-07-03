@@ -5,6 +5,7 @@
 #include "GameFramework/Actor.h"
 #include "PGCountdown.generated.h"
 
+
 UCLASS()
 class UE4TUTORIALS_API APGCountdown : public AActor
 {
@@ -16,7 +17,7 @@ class UE4TUTORIALS_API APGCountdown : public AActor
 
 public:
 
-	// How long the countdown will run (in seconds)
+	/* How long the countdown will run (in seconds). */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int32 CountdownTime;
 

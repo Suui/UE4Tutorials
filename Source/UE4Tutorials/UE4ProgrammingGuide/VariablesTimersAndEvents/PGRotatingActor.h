@@ -5,6 +5,7 @@
 #include "GameFramework/Actor.h"
 #include "PGRotatingActor.generated.h"
 
+
 UCLASS()
 class UE4TUTORIALS_API APGRotatingActor : public AActor
 {

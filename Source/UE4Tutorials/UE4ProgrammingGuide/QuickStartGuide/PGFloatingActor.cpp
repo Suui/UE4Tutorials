@@ -10,6 +10,7 @@ APGFloatingActor::APGFloatingActor()
 }
 
 
+/* Override */
 void APGFloatingActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
