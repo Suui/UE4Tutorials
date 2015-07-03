@@ -76,8 +76,14 @@
     <None Include="..\..\Config\DefaultGame.ini" />
     <None Include="..\..\Config\DefaultInput.ini" />
     <None Include="..\..\Source\UE4Tutorials\UE4Tutorials.Build.cs" />
+    <ClCompile Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\ComponentsAndCollision\PGCollidingPawn.cpp" />
+    <ClCompile Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\ComponentsAndCollision\PGCollidingPawnMovementComponent.cpp" />
+    <ClCompile Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\ComponentsAndCollision\PGRotatingMeshComponent.cpp" />
     <ClCompile Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\PlayerControlledCameras\PGPawnWithCamera.cpp" />
     <ClCompile Include="..\..\Source\UE4Tutorials\UE4Tutorials.cpp" />
+    <ClInclude Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\ComponentsAndCollision\PGCollidingPawn.h" />
+    <ClInclude Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\ComponentsAndCollision\PGCollidingPawnMovementComponent.h" />
+    <ClInclude Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\ComponentsAndCollision\PGRotatingMeshComponent.h" />
     <ClInclude Include="..\..\Source\UE4Tutorials\UE4ProgrammingGuide\PlayerControlledCameras\PGPawnWithCamera.h" />
     <ClInclude Include="..\..\Source\UE4Tutorials\UE4Tutorials.h" />
     <ClCompile Include="..\..\Source\UE4Tutorials\UE4TutorialsGameMode.cpp" />

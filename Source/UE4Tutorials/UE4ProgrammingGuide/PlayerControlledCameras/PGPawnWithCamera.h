@@ -15,7 +15,7 @@ class UE4TUTORIALS_API APGPawnWithCamera : public APawn
 	FVector CameraMotion;
 
 	float ZoomFactor;
-	bool bZoomingIn, bIsRunning;
+	bool bZoomingIn;
 
 
 public:
@@ -35,10 +35,14 @@ public:
 
 protected:
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, Category = "PawnWithCamera Properties")
 	USpringArmComponent* OurCameraSpringarm;
 
+	UPROPERTY(VisibleAnywhere, Category = "PawnWithCamera Properties")
 	UCameraComponent* OurCamera;
+
+	UPROPERTY(VisibleAnywhere, Category = "PawnWithCamera Properties")
+	UStaticMeshComponent* Mesh;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PawnWithCamera Properties")
 	UCurveVector* CameraMotionCurve;
@@ -68,7 +72,7 @@ public:
 
 	void PostInitProperties() override;
 
-	virtual void Tick( float DeltaSeconds ) override;
+	virtual void Tick(float DeltaTime) override;
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
