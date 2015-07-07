@@ -8,7 +8,7 @@ When I decided to do this, I also thought it would be nice to make it public, as
 
 The tutorials I'll be following may be from the Official Video Tutorials, the Unreal Documentation, the wiki or any other tutorials that I find.
 
-I'll be listing **here** every single tutorial I've completed, with a reference and a brief description.
+I'll be listing [**here in the Tutorials.md file**](https://github.com/Suui/UE4Tutorials/blob/master/Tutorials.md) every single tutorial I've completed with some details like the title, description and references.
 
 
 ## How to get the project
@@ -35,4 +35,12 @@ There are two ways of getting this project up and ready on your end. You may for
 The Content includes way more things than used. You may find the StarterContent, AnimStarterPack, some migrated stuff from the ContentExamples, and some more.
 
 #### Project Organization
-Inside the Content folder, you cand find the **Assets** folder, which contains all the non-tutorial specific Content. The other folders are each one in reference to a tutorial, or a related series of them. Inside those you will find everything that was created for the tutorial.
+Inside the Content folder, you cand find the **Assets** folder, which contains all the non-tutorial specific Content. The other folders are each one named in reference to a tutorial, or a related series of them. Inside those you will find everything that was created for it.
+
+#### Repository Organization
+I'm using the Gitflow workflow.
+
+- You will find the latest release in the **master** branch.
+- The **develop** branch contains the features that are being implemented in the next release.
+- Wild **feature/TutorialName** branches will appear. Each feature is a tutorial that is being done.
+- Wild **release/X.Y** branches will less often appear, whenever a release is coming.
