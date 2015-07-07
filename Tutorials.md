@@ -4,30 +4,34 @@ Here follows a list (in alphabetical order) of the tutorials that have been comp
 
 **Note:** I've completed far more tutorials, but before making them into a single project. I hope to find some time to merge them into this project. Also, as of release 1.0 there are only C++ tutorials, I want to include the ones non-code related too. However after the r1.0 I won't be able to work on this for an entire month or so, sorry. After that, back on it!
 
-### Template
+- The **Folder name** will correspond with the Content folder name for that tutorial.
+- The **abbreviation** is used for organization purposes, to avoid conflicts in the blueprints and C++ classes names.
 
-##### Tutorial Title
+### Template Tutorial Title
 Folder name: **FolderName**, abbreviation: **ABR**.
+##### 1. Possible Sub-Tutorial Title
 - **About:** A description of what to expect from the tutorial.
 - **Covers:** This, That, Stuff. Little of Something.
 - **Notes:** Things that should be noticed about the completed tutorial.
 - **Source:** Link to the tutorial.
 
-## Completed Tutorials List
+# Completed Tutorials List
 
-#### Learning C++ by Creating Games with Unreal Engine 4
+
+### Learning C++ by Creating Games with Unreal Engine 4
 Folder name: **LearningCPP**, abbreviation: **LCPP**.
 - **About:** This is an entire book written by William Serif. It has about 315 pages in which he covers learning C++ and then he applies it with UE4. Really nice for non-programmers who want to get into coding, or for programmers who want to switch to C++. The UE4 version that is used in the books is the v4.5, however I've updated the code to work with the current UE4 version.
 - **Covers:** Learning C++, UE4 C++, Character, Enemy Mobs, Inventory, Melee Attacking, Spells. Little of how to make a level, a basic UI and Particles are also mentioned.
 - **Notes:** You may find the code largely modified sometimes. I don't really like the coding design used in the book, but tried to stay faithful to it when I could.
 - **Source:** [You can find it on amazon.](http://www.amazon.com/Learning-C-Creating-Games-UE4-ebook/dp/B00U01QQV6)
 
+--
 
-#### Unreal Engine 4 Programming Guide
+### Unreal Engine 4 Programming Guide
 Folder name: **UE4ProgrammingGuide**, abbreviation: **PG**.
 
 ##### 1. Programming Quick Start
-- **About**: This tutorial will take you through the steps for creating a UE4 C++ project, add code to it, compile it, and basically a first step into C++ programming in UE4.
+- **About**: This tutorial will take you through the steps for creating a UE4 C++ project, add code to it, compile it, and basically take a first step into C++ programming in UE4.
 - **Covers:** Create project, Add code to it, Compile it, Actors
 - **Notes:** The On Your Own! part is completed.
 - **Source:** [UE4 Documentation link.](https://docs.unrealengine.com/latest/INT/Programming/QuickStart/index.html)
@@ -52,7 +56,7 @@ Folder name: **UE4ProgrammingGuide**, abbreviation: **PG**.
 
 ##### 5. Variables, Timers and Events
 - **About:** Title says it all, creating timers, clearing them and combining the function calls between C++ and Blueprints.
-- **Covers:** Timers, Actors.
+- **Covers:** Timers, Actors, Events
 - **Notes:** The On Your Own! part is partly completed. The torch part was a bit freestyle, making use of the Tick function instead of Timers.
 - **Source:** [UE4 Documentation link.](https://docs.unrealengine.com/latest/INT/Programming/Tutorials/VariablesTimersEvents/index.html)
 
